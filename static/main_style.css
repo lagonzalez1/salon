@@ -1,0 +1,367 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500&family=Montserrat:wght@100&family=Nunito&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500&family=Montserrat:wght@100&family=Nunito:ital,wght@0,400;1,200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500&family=Montserrat:wght@100&family=Nunito:ital,wght@0,300;0,400;1,200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500&family=Montserrat:wght@100&family=Nunito:wght@200;400&family=Raleway:wght@300&display=swap');
+
+body, html {
+    height: 100%;
+}
+
+/* The hero image */
+.hero-image {
+  /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url('img/bg_1.jpg');
+
+  /* Set a specific height */
+  height: 100%;
+
+  /* Position and center the image to scale nicely on all screens */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+
+input[type=text] {
+  background-color: transparent ! important;
+  border: 0;
+  box-shadow: none;
+  color: white ! important;
+}
+
+
+
+input::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color: white ! important;
+    font-family: 'Nunito', sans-serif;
+}
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color: white ! important;
+   opacity:  1;
+   font-family: 'Nunito', sans-serif;
+}
+input::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color: white ! important;
+   opacity:  1;
+   font-family: 'Nunito', sans-serif;
+}
+input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color: white ! important;
+   font-family: 'Nunito', sans-serif;
+}
+input::-ms-input-placeholder { /* Microsoft Edge */
+   color: white ! important;
+   font-family: 'Nunito', sans-serif;
+}
+
+input::placeholder { /* Most modern browsers support this now. */
+   color: white ! important;
+   font-family: 'Nunito', sans-serif;
+
+}
+
+
+input {
+  border: 0 ! important;
+  box-shadow: none;
+  outline: none;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+/* Place text in the middle of the image */
+.hero-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+.navbar {
+  padding: .8rem;
+
+}
+
+.navbar > .navbar-inner {
+    background:transparent ! important;
+}
+
+.navbar-nav li {
+  padding-right: 20px;
+}
+.nav-item a {
+  color: black ! important;
+}
+
+.mb-4 {
+  font-size: 150%;
+  font-weight: bold;
+  padding-top: 30px;
+  font-family: 'Nunito', sans-serif;
+
+}
+
+.mb-3 {
+  padding-top: 5px;
+  font-size: 15px;
+  font-family: 'Nunito', sans-serif;
+
+}
+
+.header {
+  font-size: 30px;
+  font-weight: bold;
+  padding-top: 20px;
+  padding-bottom: 5px;
+  font-family: 'Nunito', sans-serif;
+
+}
+
+.price {
+  color: #f74ed9;
+  font-size: 22px;
+  font-weight: lighter;
+  font-family: 'Nunito', sans-serif;
+}
+
+.sub_header {
+  font-size: 15px;
+  font-weight: lighter;
+  font-family: 'Nunito', sans-serif;
+
+}
+
+
+.apt_title {
+  font-family: 'Nunito', sans-serif;
+  color: white ! important;
+  font-size: 32px;
+  font-weight: lighter;
+  margin-bottom: 20px;
+}
+
+.adr {
+  font-family: 'Nunito', sans-serif;
+  color: white ! important;
+  font-size: 18px;
+  font-weight: lighter;
+  margin-top: 0px;
+}
+
+#card1 {
+  border-color: #f74ed9;
+  border-width: 0.5px;
+}
+
+#card2 {
+  border-color: #f74ed9;
+  border-width: 0.5px;
+}
+#card3 {
+  border-color: #f74ed9;
+  border-width: 0.5px;
+}
+
+#appointments{
+  background-color: #f74ed9;
+}
+.jumbotron {
+  background-color: white ! important;
+}
+
+.appointment-info{
+  background-color: #f74ed9;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.sub_header {
+  font-size: 15px;
+  font-weight: lighter;
+  font-family: 'Nunito', sans-serif;
+
+}
+
+.appointment-info {
+  width: 100%;
+  display: block;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+  -webkit-box-shadow: 0px 5px 71px -27px rgba(0, 0, 0, 0.21);
+  -moz-box-shadow: 0px 5px 71px -27px rgba(0, 0, 0, 0.21);
+  box-shadow: 0px 5px 71px -27px rgba(0, 0, 0, 0.21); 
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+#carrier-id {
+  background-color: transparent;
+  border: 0;
+}
+#employee-id {
+  background-color: transparent;
+  border: 0;
+}
+
+.list-group-item{
+  font-size: 15px;
+  font-weight: lighter;
+  font-family: 'Nunito', sans-serif;
+}
+
+.card-title {
+  font-size: 25px;
+  font-family: 'Nunito', sans-serif;
+}
+
+.btn {
+  border-radius: 30%;
+  background-color: #f74ed9 ! important;
+  color: white ! important;
+
+}
+.btn-outline-light:hover {
+  color:rgba(255, 255, 255, 0.9) ! important;
+
+}
+
+select {
+  border: none;
+  color: white ! important;
+  background: rgba(255, 255, 255, 0.1) ! important;
+  font-size: 20px;
+  font-weight: lighter;
+  padding: 2px 10px;
+  width: 378px;
+  *width: 350px;
+  *background: white;
+}
+
+
+
+.row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px; }
+
+
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto; }
+  @media (min-width: 576px) {
+    .container {
+      max-width: 540px; } }
+  @media (min-width: 768px) {
+    .container {
+      max-width: 720px; } }
+  @media (min-width: 992px) {
+    .container {
+      max-width: 960px; } }
+  @media (min-width: 1200px) {
+    .container {
+      max-width: 1140px; } }
+
+
+
+
+.ftco-section {
+  padding: 7em 0;
+  position: relative; }
+  @media (max-width: 767.98px) {
+    .ftco-section {
+      padding: 6em 0; } }
+
+.padd {
+  margin-bottom: 1.5rem !important;
+}
+
+.mb-5 {
+  font-size: 25px;
+  font-family: 'Nunito', sans-serif;
+
+}
+.ftco-partner {
+  padding: 2em 0;
+  background-color: white;
+}
+
+footer{
+  background-color: #252525;
+}
+footer p {
+  font-size: 15px;
+  font-weight: lighter;
+  font-family: 'Nunito', sans-serif;
+  color: white;
+}
+
+.address{
+  font-size: 17px;
+  color: white;
+  font-family: 'Nunito', sans-serif;
+}
+
+.header_title {
+  font-size: 25px;
+  padding-bottom: 20px;
+  color: white;
+  font-weight: bolder;
+  font-family: 'Nunito', sans-serif;
+}
+
+.small_hr {
+  width: 50px;
+  max-width: 50px;
+  color: white;
+  background-color: white ! important;
+}
+
+.headthin {
+  font-size: 21px;
+  color: white;
+  font-weight: lighter;
+  font-family: 'Nunito', sans-serif;
+}
+
+
+.subthin {
+  font-size: 20px;
+  color: white;
+  font-family: 'Raleway', sans-serif;
+}
+.subthindark {
+  font-size: 22px;
+  color: black;
+  font-weight: lighter;
+  font-family: 'Nunito', sans-serif;
+}
+
+.footer_title {
+  padding-top: 30px;
+  font-size: 18px;
+  color: white;
+  font-weight: lighter;
+  font-family: 'Nunito', sans-serif;
+}
+
+.f-1 {
+  background-color: white;
+}
+
+
+p {
+  font-weight: bold;
+  font-size: 15px;
+  font-family: 'Nunito', sans-serif;
+}
