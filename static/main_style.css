@@ -22,6 +22,11 @@ body, html {
   position: relative;
 }
 
+.l-hr {
+  max-width: 500px;
+  background-color: white ! important;
+  color: white;
+}
 
 input[type=text] {
   background-color: transparent ! important;
@@ -30,7 +35,9 @@ input[type=text] {
   color: white ! important;
 }
 
-
+.w-hr {
+  color: white;
+}
 
 input::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     color: white ! important;
