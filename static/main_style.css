@@ -22,6 +22,19 @@ body, html {
   position: relative;
 }
 
+
+#time_title_message {
+  border-color: white ! important;
+  
+}
+
+#check_time {
+  background-color: #f74ed9 ! important;
+  color: white ! important;
+  border-color: white ! important;
+
+}
+
 .l-hr {
   max-width: 500px;
   background-color: white ! important;
@@ -225,12 +238,7 @@ input {
   font-family: 'Nunito', sans-serif;
 }
 
-.btn {
-  border-radius: 30%;
-  background-color: #f74ed9 ! important;
-  color: white ! important;
 
-}
 .btn-outline-light:hover {
   color:rgba(255, 255, 255, 0.9) ! important;
 
