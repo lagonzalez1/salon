@@ -19,21 +19,15 @@ $arr_times_av = array(
  		if(mysqli_num_rows($result) > 0){
  			while($row = mysqli_fetch_assoc($result)){
  				$conflict_t = $row['App_Time'];
- 				for($i = 0; $i < count($arr_times_av); $i++){
- 					if($conflict_t === $arr_times_av[$i]){
- 						unset($arr_times_av[$i]);
- 						continue;
- 						// Undefined ref at index 4
- 						// Because we dont define via keys 1 => 'var'
- 						// Only error as of now
- 					}
+ 				if ($key = array_search($conflict_t, $arr_times_av) ){
+ 					unset($arr_times_av[$key]);
+ 					continue;
  				}
- 				
-
  			}
-
  		}else{
- 			echo 'ROWS';
+ 			// No Affected rows
+ 			// Everything is open for this Date and Person.
+ 			echo ( json_encode(array_values($arr_times_av)) );
  			exit();
  		}
 
@@ -43,7 +37,7 @@ $arr_times_av = array(
  		exit();
  	}
 
- 	echo ( json_encode($arr_times_av) );
+ 	echo ( json_encode(array_values($arr_times_av)) );
  	exit();
 
  }

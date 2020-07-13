@@ -322,36 +322,39 @@
 <div class="collapse" id="check_av_times">
   <div class="card card-body">
   	<div class="card card-title" id="time_title_message">
-  		<h2 class="header">All Available Times</h2>
+  		<h2 class="header" id="av_title">All Available Times</h2>
   		<h3 class="sub_header">Act Fast, Dont Loose Your Spot!</h3>
   	</div>
-    <div class="row form-group d-flex text-center">	
-    	<div class="form-group padding">
-    	<button class="btn btn-primary sm">9:30am</button>
-    	<button class="btn btn-primary sm">10:00am</button>
-    	<button class="btn btn-primary sm">10:30am</button>
-    	<button class="btn btn-primary sm">11:00am</button>
-    	<button class="btn btn-primary sm">11:30am</button>
-    	<button class="btn btn-primary sm">12:00am</button>
-    	<button class="btn btn-primary sm">12:30am</button>
-    	<button class="btn btn-primary sm">01:00pm</button>
-    	<button class="btn btn-primary sm">01:30am</button>
-    	<button class="btn btn-primary sm">02:00am</button>
-    	<button class="btn btn-primary sm">02:30am</button>
-    	<button class="btn btn-primary sm">03:00am</button>
-    	<button class="btn btn-primary sm">03:30am</button>
-    	<button class="btn btn-primary sm">04:00am</button>
-    	<button class="btn btn-primary sm">04:30am</button>
-    	<button class="btn btn-primary sm">05:00am</button>
-    	
-
+    <div class="row btn-group d-flex text-center">	
+    	<div class="btn-group" role="group" id="available_times" aria-label="Basic example">
     	</div>
     </div>
   </div>
 </div>
 
 
-    <script type="text/javascript">
+
+<div class="modal" tabindex="-1" role="dialog" id="instructions">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title header">Instructions</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="sub_header">Please select the Date & Stylist to reveal their Availability.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
 
 
     console.log("Working");
@@ -369,19 +372,44 @@
     });
    
 
+
+function add(id) {
+  //Create an input type dynamically.   
+  var element = document.createElement("Button");
+  //Assign different attributes to the element. 
+  element.type = "button";
+  element.value = id; // Really? You want the default value to be the type string?
+  element.name = id; // And the name too?
+  element.innerHTML = id;
+  element.className = "btn btn-primary";
+  element.onclick = function() { // Note this is a function
+   	console.log(element.name);
+
+  };
+
+
+   var avaiable_times_div = document.getElementById("available_times");
+  //Append the element in page (in span).  
+  avaiable_times_div.appendChild(element);
+}
+
+
+function remove_leftover(){
+	const node = document.getElementById("available_times");
+	while(node.firstChild){
+		node.removeChild(node.lastChild);
+	}
+}
     
 
     $(document).ready(function(){
     	$('#check_tm').on('click', function() {
-
+    		remove_leftover();
     		var date = $('#calendar').val();
     		var stls = $('#employee-id').val();
-    		console.log(date);
-    		console.log(stls);
-
-
+    		document.getElementById("av_title").innerHTML = "All Available Times For " + stls;
     		if(date == "" || stls == "None"){
-    			
+    			$('#instructions').modal('toggle');			
     		}else{
     			var date = $('#calendar').val();
     			var stls = $('#employee-id').val();
@@ -393,31 +421,22 @@
         			data:{'date': date, 'empl': stls},
 
         			success: function(rdata) {
-        				// Returns arra 
-        				// Returning correclly
-        				// Ensure refresh every 10 seconds
-        				// Keep the table fresh of times.
-
-        				for(i = 0 ; i < rdata.length; i++){
-        					console.log(rdata[i]);
+        				for (i = 0 ; i < rdata.length; i++){
+        					add(rdata[i]);
         				}
-
-
-
+        				$('#check_av_times').collapse('toggle');
         			}, 
         			error: function(err, code) {
         				console.log(err);
         				console.log(code);
-        				// Possible errors.
-        				// *Might of lost their spot as they waited
-        				// Connection
+        				
 
         			}
 
     			});
 
 
-    			$('#check_av_times').collapse('toggle');
+    			
     		}	
 
     	
