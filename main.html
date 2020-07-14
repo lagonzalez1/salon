@@ -372,6 +372,7 @@
     });
    
 
+// You need to make the button smaller, to large to fit 
 
 function add(id) {
   //Create an input type dynamically.   
@@ -381,7 +382,7 @@ function add(id) {
   element.value = id; // Really? You want the default value to be the type string?
   element.name = id; // And the name too?
   element.innerHTML = id;
-  element.className = "btn btn-primary";
+  element.className = "btn btn-primary sm";
   element.onclick = function() { // Note this is a function
    	console.log(element.name);
 

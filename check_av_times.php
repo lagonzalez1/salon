@@ -1,12 +1,14 @@
  <?php
 
 
- include('server_connect.php');
+include('server_connect.php');
+date_default_timezone_set("America/Los_Angeles");
 
 
 $arr_times_av = array(
-	'09:00am', '9:30am', '10:00am','10:30am', '12:00pm', '12:30pm','01:00pm', '01:30pm','02:00pm','02:30pm', '03:00pm', '03:30pm','04:00pm', '04:30pm','05:00pm', 
-	'05:30pm', '06:00pm', '06:30pm');
+	'09:00:am', '09:30:am', '10:00:am','10:30:am', '12:00:pm', '12:30:pm','01:00:pm', '01:30:pm','02:00:pm','02:30:pm', '03:00:pm', '03:30:pm','04:00:pm', '04:30:pm','05:00:pm', 
+	'05:30:pm', '06:00:pm', '06:30:pm');
+$current_time = date("h:i:a");
 
  if(isset($_POST['date']) || isset($_POST['empl']) ){
  	$return_arr = (array)null;
@@ -41,3 +43,71 @@ $arr_times_av = array(
  	exit();
 
  }
+
+
+ function remove_past_times($current_time) {
+ 	$current_date = date("m/d/o");
+
+
+
+ }
+
+
+
+ /*
+
+$arr_times_av = array(
+	'09:00:am', '09:30:am', '10:00:am','10:30:am', '12:00:pm', '12:30:pm','01:00:pm', '01:30:pm','02:00:pm','02:30:pm', '03:00:pm', '03:30:pm','04:00:pm', '04:30:pm','05:00:pm', 
+	'05:30:pm', '06:00:pm', '06:30:pm');
+	
+	
+function remove_non(){
+$current_date = date("m/d/o");
+$current_time = date("h:i:a");
+global $arr_times_av;
+
+$arr = explode(":",$current_time);
+$hour = $arr[0];
+$minute_tt = $arr[1];
+$am_pm = $arr[2];
+
+
+for($i = 0 ; $i < count($arr_times_av); $i++){
+    
+    if($hour === $secH = explode(":",$arr_times_av[$i])[0] ){
+        if($am_pm === $ap = explode(":",$arr_times_av[$i])[2] ){
+            
+            $tt = explode(":", $arr_times_av[$i])[1];
+            if($minute_tt < $tt){
+                // Return the key
+                return $i;
+            }else{
+                // Return key ++;
+                $count = count($arr_times_av);
+                $ii_val = $i + 1;
+                if($count > $ii_val){
+                    return $count - 1;
+                }else{
+                    return $i + 1;
+                }
+                
+                
+            }
+        
+        }
+    }
+}
+
+return 0;
+}
+
+
+
+echo remove_non();
+
+
+
+
+
+
+ */
