@@ -4,9 +4,6 @@
 <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Company Name</title>
-
-
-
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>   
   	<link href = "https://code.jquery.com/ui/1.10.4/themes/cupertino/jquery-ui.css" rel = "stylesheet">
@@ -325,10 +322,12 @@
   		<h2 class="header" id="av_title">All Available Times</h2>
   		<h3 class="sub_header">Act Fast, Dont Loose Your Spot!</h3>
   	</div>
-    <div class="row btn-group d-flex text-center">	
-    	<div class="btn-group" role="group" id="available_times" aria-label="Basic example">
-    	</div>
-    </div>
+  		
+			<div class="row btn-group d-flex">	
+				<div class="btn-group btn-group-vertical" role="group" id="available_times" aria-label="Basic example">
+				</div>	
+			</div>
+    	
   </div>
 </div>
 
@@ -382,7 +381,7 @@ function add(id) {
   element.value = id; // Really? You want the default value to be the type string?
   element.name = id; // And the name too?
   element.innerHTML = id;
-  element.className = "btn btn-primary sm";
+  element.className = "btn btn-primary";
   element.onclick = function() { // Note this is a function
    	console.log(element.name);
 
