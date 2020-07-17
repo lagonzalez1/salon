@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+f<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -256,21 +256,23 @@
 	    			<form action="#" class="appointment-form">
 	            <div class="row form-group d-flex">
 	            	<div class="col-md-6">
-	            		<input type="text" class="form-control no-border" placeholder="First & Last">
+	            		<input type="text" class="form-control no-border" placeholder="First & Last" id="name">
 	            		<hr class= "w-hr">
 	            	</div>
 	            	<div class="col-md-6">
-	            		<input type="text" class="form-control no-border" placeholder="Email">
+	            		<input type="text" class="form-control no-border" placeholder="Email" id="email">
 	            		<hr class= "w-hr">
 	            	</div>
 	            </div>
 	            <div class="row form-group d-flex">
 	            	<div class="col-md-6">
-	            		<input type="text" class="form-control no-border" placeholder="Phone">
+	            		<input type="text" class="form-control no-border" placeholder="Phone" id="phone">
 	            		<hr class= "w-hr">
 	            	</div>
 	            	<div class="col-md-6">
-	
+	            		
+	              		<input type="text" value="" class="form-control no-border" id="time" readonly>
+	           			<hr class="w-hr">
 	            	</div>
 	            </div>
 	            <div class="row form-group d-flex">
@@ -305,8 +307,9 @@
 
 
 	            <div class="form-group">
-	              <input type="submit" value="Create" class="btn btn-primary btn-outline-white">
+	              <input type="button" value="Create" class="btn btn-primary btn-outline-white" id="create_app">
 	            </div>
+
 	          </form>
 	    		</div>  
 
@@ -322,11 +325,13 @@
   		<h2 class="header" id="av_title">All Available Times</h2>
   		<h3 class="sub_header">Act Fast, Dont Loose Your Spot!</h3>
   	</div>
-  		
+  			
 			<div class="row btn-group d-flex">	
-				<div class="btn-group btn-group-vertical" role="group" id="available_times" aria-label="Basic example">
+				<div class="btn-group-vertical" role="group" id="available_times" aria-label="Basic example">
+
 				</div>	
 			</div>
+		
     	
   </div>
 </div>
@@ -367,12 +372,11 @@
         	
     	});
 
-
     });
    
 
 // You need to make the button smaller, to large to fit 
-
+var time = null;
 function add(id) {
   //Create an input type dynamically.   
   var element = document.createElement("Button");
@@ -383,12 +387,11 @@ function add(id) {
   element.innerHTML = id;
   element.className = "btn btn-primary";
   element.onclick = function() { // Note this is a function
-   	console.log(element.name);
-
+   	document.getElementById("time").value = element.name;
   };
 
 
-   var avaiable_times_div = document.getElementById("available_times");
+  var avaiable_times_div = document.getElementById("available_times");
   //Append the element in page (in span).  
   avaiable_times_div.appendChild(element);
 }
@@ -453,13 +456,12 @@ function remove_leftover(){
 
 
 
-    function makeRequest(stl, date){
-
-
-
-    }
+  
     
 
+    function isEmpty(str) {
+    	return (!str || 0 === str.length);
+	}
 
 
      function nonWorkingDates(date){
@@ -483,11 +485,38 @@ function remove_leftover(){
 
         return [true];
     }
+
+function show_modal(title,body){
+  document.getElementById('title_config').innerHTML = title;
+  document.getElementById('body_config').innerHTML = body;
+  $("#configure_modal").modal("show");
+}
     	
 
 
 
     </script>
+
+
+
+<div class="modal fade" id="configure_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="title_config">Refresh Error</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id= "body_config">
+        Looks like we have a timeout error, please check if you are connected to the internet. Or try to refresh the entire page.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
     <footer>

@@ -7,6 +7,10 @@ body, html {
     height: 100%;
 }
 
+
+
+
+
 /* The hero image */
 .hero-image {
   /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
@@ -20,6 +24,13 @@ body, html {
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+}
+
+
+
+.btn-group-vertical > .btn {
+  background-color: #f74ed9 ! important;
+  color: white;
 }
 
 .btn-group {
@@ -290,9 +301,6 @@ select {
   @media (min-width: 1200px) {
     .container {
       max-width: 1140px; } }
-
-
-
 
 .ftco-section {
   padding: 7em 0;
