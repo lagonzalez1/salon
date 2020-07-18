@@ -253,31 +253,31 @@ f<!DOCTYPE html>
 	    		</div>
 	    		<div class="col-md-6 appointment pl-md-5">
 	    			<h3 class="apt_title">Appointments</h3>
-	    			<form action="#" class="appointment-form">
+	    	<form action="make_appointment.php" method="post">
 	            <div class="row form-group d-flex">
 	            	<div class="col-md-6">
-	            		<input type="text" class="form-control no-border" placeholder="First & Last" id="name">
+	            		<input type="text" class="form-control no-border" placeholder="First & Last" id="name" name="name">
 	            		<hr class= "w-hr">
 	            	</div>
 	            	<div class="col-md-6">
-	            		<input type="text" class="form-control no-border" placeholder="Email" id="email">
+	            		<input type="text" class="form-control no-border" placeholder="Email" id="email" name="email">
 	            		<hr class= "w-hr">
 	            	</div>
 	            </div>
 	            <div class="row form-group d-flex">
 	            	<div class="col-md-6">
-	            		<input type="text" class="form-control no-border" placeholder="Phone" id="phone">
+	            		<input type="text" class="form-control no-border" placeholder="Phone" id="phone" name="phone">
 	            		<hr class= "w-hr">
 	            	</div>
 	            	<div class="col-md-6">
 	            		
-	              		<input type="text" value="" class="form-control no-border" id="time" readonly>
+	              		<input type="text" value="" class="form-control no-border" id="time" name="time" readonly>
 	           			<hr class="w-hr">
 	            	</div>
 	            </div>
 	            <div class="row form-group d-flex">
 	            <div class="col-md-6">
-	            	<select class="form-control" id="employee-id" name="carrier-id" required="">
+	            	<select class="form-control" id="employee_values" name="empl" required>
 					        <option value="None">Perferred stylist</option>
 					        <option value="Stacy">Stacy Carrol</option>
 					        <option value="Sam">Sam Jr</option>
@@ -289,7 +289,7 @@ f<!DOCTYPE html>
 	            </div>
 		            <div class="col-md-6">
 		              <div class="form-group">
-	                    <input type="text" class="form-control no-border" placeholder="Date" id="calendar" required="">                    
+	                    <input type="text" class="form-control no-border" placeholder="Date" id="calendar" name="date" required>                    
 		              <hr class= "w-hr">
 		            </div>
 		        	</div>
@@ -307,7 +307,7 @@ f<!DOCTYPE html>
 
 
 	            <div class="form-group">
-	              <input type="button" value="Create" class="btn btn-primary btn-outline-white" id="create_app">
+	              <input type="submit" value="Make Appointment" class="btn btn-primary" id="create_app" name="clicked">
 	            </div>
 
 	          </form>

@@ -61,15 +61,9 @@ if(isset($_GET['team_k'])){
   <h1 class="display-4">Appointment made!</h1>
 
     <?php   
-        echo '<p class="lead"> <mark>'.htmlentities($_SESSION['client-name']).'</mark> your appointment has been set, please head over to check into the line.</p>';    
+        echo '<p class="lead"> <mark>'.htmlentities($_SESSION['name']).'</mark> your appointment has been set, with <mark>'.htmlentities($_SESSION['empl']).' please head over to check into the line.</p>';    
     ?>
-  <?php include_once 'server_connect.php';
-        $stmt = "SELECT * FROM `client_information` ORDER BY `Time` ASC; ";
-        $result = mysqli_query($connection , $stmt);
-        $number_rows = htmlentities(mysqli_num_rows($result) - 1);
-  echo '<p>Currently <mark>'.$number_rows.'</mark> customers ahead of you, thanks, and hope to see you soon.</p> ';
-  mysqli_close($connection);
-   ?>
+
   <!-- Shop current Address Locaiton should be added here. -->
 
 </div>
