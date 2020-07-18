@@ -256,28 +256,28 @@ f<!DOCTYPE html>
 	    	<form action="make_appointment.php" method="post">
 	            <div class="row form-group d-flex">
 	            	<div class="col-md-6">
-	            		<input type="text" class="form-control no-border" placeholder="First & Last" id="name" name="name">
+	            		<input type="text" class="form-control no-border" placeholder="First & Last" id="name" name="name" required="">
 	            		<hr class= "w-hr">
 	            	</div>
 	            	<div class="col-md-6">
-	            		<input type="text" class="form-control no-border" placeholder="Email" id="email" name="email">
+	            		<input type="text" class="form-control no-border" placeholder="Email" id="email" name="email" required="">
 	            		<hr class= "w-hr">
 	            	</div>
 	            </div>
 	            <div class="row form-group d-flex">
 	            	<div class="col-md-6">
-	            		<input type="text" class="form-control no-border" placeholder="Phone" id="phone" name="phone">
+	            		<input type="text" class="form-control no-border" placeholder="Phone" id="phone" name="phone" required="">
 	            		<hr class= "w-hr">
 	            	</div>
 	            	<div class="col-md-6">
 	            		
-	              		<input type="text" value="" class="form-control no-border" id="time" name="time" readonly>
+	              		<input type="text" value="" class="form-control no-border" id="time" name="time" readonly required="">
 	           			<hr class="w-hr">
 	            	</div>
 	            </div>
 	            <div class="row form-group d-flex">
 	            <div class="col-md-6">
-	            	<select class="form-control" id="employee_values" name="empl" required>
+	            	<select class="form-control" id="employee-id" name="empl" required>
 					        <option value="None">Perferred stylist</option>
 					        <option value="Stacy">Stacy Carrol</option>
 					        <option value="Sam">Sam Jr</option>
@@ -289,7 +289,7 @@ f<!DOCTYPE html>
 	            </div>
 		            <div class="col-md-6">
 		              <div class="form-group">
-	                    <input type="text" class="form-control no-border" placeholder="Date" id="calendar" name="date" required>                    
+	                    <input type="text" class="form-control no-border" placeholder="Date" id="calendar" name="date" required="">                    
 		              <hr class= "w-hr">
 		            </div>
 		        	</div>
@@ -403,6 +403,55 @@ function remove_leftover(){
 		node.removeChild(node.lastChild);
 	}
 }
+
+
+function convert_time(hour, min){
+	var h = hour;
+	var m = min;
+	var del_val = null;
+	if(hour >= 12){
+		h = h - 12;
+		del_val = "pm";
+	}
+	if(hour == 0){ h = 12; }
+	if(hour < 12){ del_val = "am"; }
+	return [h,min,del_val];
+}
+
+function get_today(){
+	var today = new Date();
+	var dd = String(today.getDate()).padStart(2, '0');
+	var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+	var yyyy = today.getFullYear();
+
+	return today = mm + '/' + dd + '/' + yyyy;
+}
+
+
+function remove_based_time(lastVal, currDate){
+	if(currDate === get_today()) {
+		var date = new Date();
+		var h = date.getHours();
+		var m = date.getMinutes();
+		var complete = convert_time(h,m);
+
+		if(lastVal == null){
+			return false;
+		}
+		var splitArr = lastVal.split(":");
+		var hhr = splitArr[0];
+		var mmr = splitArr[1];
+		var ap = splitArr[2];
+
+		if(complete[0] > hhr){
+			return true;
+		}else{
+			return false;
+		}
+	}else{
+		return false;
+	}	
+}
     
 
     $(document).ready(function(){
@@ -424,33 +473,36 @@ function remove_leftover(){
         			data:{'date': date, 'empl': stls},
 
         			success: function(rdata) {
-        				for (i = 0 ; i < rdata.length; i++){
+        				// Check Close time to make sure no values can be inserted before.
+        				// Resolves glitch where php cannot handle
+        				// php removes app and before app, but not closing hours.
+        				var checkLast = rdata.pop();
+        				if(remove_based_time(checkLast,date)){
+
+        				add("No Times Available");
+        				$('#check_av_times').collapse('toggle');
+        				}else{
+        					for (i = 0 ; i < rdata.length; i++){
         					add(rdata[i]);
         				}
         				$('#check_av_times').collapse('toggle');
+
+        				}
+        			    
         			}, 
         			error: function(err, code) {
         				console.log(err);
         				console.log(code);
         				
-
         			}
-
-    			});
-
-
-    			
-    		}	
-
-    	
-
+    			});	
+    		}
     		
     	});
     		
     });
 
     $('#check_av_times').on('show.bs.collapse', function () {
-
 
 	});
 

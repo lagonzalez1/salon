@@ -50,6 +50,10 @@ body, html {
 
 }
 
+.form-control:valid {
+  background-color: #f74ed9;
+}
+
 .l-hr {
   max-width: 500px;
   background-color: white ! important;
