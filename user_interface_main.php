@@ -229,7 +229,7 @@ $(function () {
       success: function (responce) {
         
           if(responce == "Error: Email is empty"){
-            $("#email_error_modal").modal("show");
+            show_modal("Error", "Email Is empty! Try another source of contact");
             console.log("Email Empty");
           }else if (responce == "Success: SMS & Email") {
             console.log("SMS && Email");
