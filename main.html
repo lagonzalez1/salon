@@ -429,7 +429,7 @@ function get_today(){
 
 
 function remove_based_time(lastVal, currDate){
-	if(currDate === get_today()) {
+	if(currDate == get_today()) {
 		var date = new Date();
 		var h = date.getHours();
 		var m = date.getMinutes();
@@ -438,12 +438,13 @@ function remove_based_time(lastVal, currDate){
 		if(lastVal == null){
 			return false;
 		}
+		// Last Array value
 		var splitArr = lastVal.split(":");
-		var hhr = splitArr[0];
-		var mmr = splitArr[1];
-		var ap = splitArr[2];
+		var hhr = splitArr[0]; // Last Array Value Hour EX: 6:00:pm
+		var mmr = splitArr[1]; // Last Array Value Minute
+		var ap = splitArr[2]; // No Need to check
 
-		if(complete[0] > hhr){
+		if(complete[0] > hhr && complete[3] == ap){
 			return true;
 		}else{
 			return false;
@@ -478,14 +479,13 @@ function remove_based_time(lastVal, currDate){
         				// php removes app and before app, but not closing hours.
         				var checkLast = rdata.pop();
         				if(remove_based_time(checkLast,date)){
-
-        				add("No Times Available");
-        				$('#check_av_times').collapse('toggle');
+        					add("No Times Available");
+        					$('#check_av_times').collapse('toggle');
         				}else{
         					for (i = 0 ; i < rdata.length; i++){
         					add(rdata[i]);
         				}
-        				$('#check_av_times').collapse('toggle');
+        					$('#check_av_times').collapse('toggle');
 
         				}
         			    

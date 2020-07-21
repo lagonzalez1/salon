@@ -134,6 +134,7 @@ input {
 }
 .nav-item a {
   color: black ! important;
+  font-family: 'Nunito', sans-serif;
 }
 
 .mb-4 {

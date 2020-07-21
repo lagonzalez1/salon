@@ -58,11 +58,38 @@ if(isset($_GET['team_k'])){
   </nav>
 
   <div class="jumbotron text-center">
-  <h1 class="display-4">Appointment made!</h1>
+  <h1 class="display-4">Appointment Made!</h1>
 
-    <?php   
-        echo '<p class="lead"> <mark>'.htmlentities($_SESSION['name']).'</mark> your appointment has been set, with <mark>'.htmlentities($_SESSION['empl']).'</mark> please head over to check into the line.</p>';    
+    <div class="row d-flex">
+
+      <div class="col-md-6">
+      <hr class="small_hr">
+      <?php 
+        echo '<p class="lead"> <mark>'.htmlentities($_SESSION['name']).'</mark> your appointment has been set, with <mark>'.htmlentities($_SESSION['empl']).'</mark></p>'; 
+      ?>
+      <p class="lead">Please Arrive 10 Minutes Early to Ensure Your Appointment. </p>
+      <p class="lead">Hope to see you soon!</p>
+      <p class="lead">-Arriving later than 10 minutes can result in your spot being lost!</p>
+      <hr class="small_hr">
+    </div>
+
+
+
+    <div class="col-md-6">
+    <hr class="small_hr">
+    <?php    
+        echo '<p class="lead"><ins>Appointment Details</ins></p>';
+        echo '<p class="lead"> - Date: '.htmlentities($_SESSION['date']).' </p>';
+        echo '<p class="lead"> - Time: '.htmlentities($_SESSION['time']).' </p>';
+        echo '<p class="lead"> - Stylist: '.htmlentities($_SESSION['empl']).' </p>';  
     ?>
+    <hr class="small_hr">
+    </div>
+    
+
+
+
+  </div>
 
   <!-- Shop current Address Locaiton should be added here. -->
 
@@ -84,7 +111,6 @@ if(isset($_GET['team_k'])){
 
 
 <script type="text/javascript">
-
   $(document).ready(function() {
     $('#help').on('click', function() {
     help();

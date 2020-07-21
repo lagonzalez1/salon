@@ -8,7 +8,8 @@ date_default_timezone_set("America/Los_Angeles");
 $arr_times_av = array(
 	'09:00:am', '09:30:am', '10:00:am','10:30:am','11:00:am','11:30:am','12:00:pm','12:30:pm','01:00:pm','01:30:pm','02:00:pm','02:30:pm','03:00:pm',
     '03:30:pm','04:00:pm', '04:30:pm','05:00:pm', 
-	'05:30:pm', '06:00:pm', '06:30:pm');
+	'05:30:pm', '06:00:pm');
+
 
 $current_time = date("h:i:a");
 
@@ -23,7 +24,7 @@ $current_time = date("h:i:a");
  		if(mysqli_num_rows($result) > 0){
  			while($row = mysqli_fetch_assoc($result)){
  				$conflict_t = $row['App_Time'];
-                
+        // Remove from array
  				if ($key = array_search($conflict_t, $arr_times_av) ){
  					unset($arr_times_av[$key]);
  					continue;
@@ -49,11 +50,8 @@ $current_time = date("h:i:a");
 
 
  function remove_past_times($array, $app_date) {
-
-
-
     $var_set_array = array_values($array);
- 	$current_date = date("m/d/o");
+ 	  $current_date = date("m/d/o");
     global $current_time;
 
     // Make sure remove past time only affectst current day

@@ -10,7 +10,7 @@
 
 .navbar {
   padding: .8rem;
-  background-color: #5c3ac5 !important;
+  background-color: transparent !important;
 }
 
 .navbar-nav li {
@@ -18,10 +18,17 @@
 }
 .nav-item a {
   color: white ! important;
+  font-weight: lighter;
+  font-family: 'Nunito', sans-serif;
 }
 
 .nav-link {
   font-size: 1.0em ! important;
+}
+
+.display-4 h1{
+  font-weight: normal;
+  font-family: 'Nunito', sans-serif;
 }
 
 footer{
