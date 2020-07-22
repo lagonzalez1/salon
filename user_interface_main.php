@@ -1,5 +1,11 @@
 <?php
 
+// 1. Added check in feature
+// 2. We need to find a way to update all tables
+// 3. *Important to be able to scale up or down* EX: Depedning on how many employees
+// 4. empl1  empl2  empl3   empl4
+//    person person preson person 
+// 5. Check glitch in the morning, For some reason it didnt want to show times early in the morning for a current date
 
 
 
@@ -25,11 +31,11 @@ if(!isset($_SESSION['user-login-success'])){
 }
 include('server_connect.php');
 
-	$stmt = "SELECT * FROM `client_information` ORDER BY `Time` ASC; ";
+	$stmt = "SELECT * FROM `client_upgrade` ORDER BY `App_Time` DESC;";
 	$result = mysqli_query($connection , $stmt);
 
   date_default_timezone_set("America/Los_Angeles");
-  $current_date = date("o-m-d");
+  $current_date = date("m/d/o");
 
 ?>
 
@@ -398,27 +404,6 @@ function show_modal(title,body){
 
 
 
-<div class="modal fade" id="email_error_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="error_modal">Email Cannot be sent</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Client did not specify a valid email, try calling the phone number given.
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
 <div class="modal fade" id="email_send_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -518,43 +503,38 @@ function show_modal(title,body){
 	      <th scope="col">#</th>
 	      <th scope="col">Name</th>
 	      <th scope="col">Phone Number</th>
-	      <th scope="col">Guest Count</th>
-        <th scope="col">Email</th>
-	      <th scope="col">Status</th>
-	      <th scope="col">*</th>
+	      <th scope="col">Stylist</th>
+        <th scope="col">Time</th>
+        <th scope="col">Actions</th>
 	    </tr>
 	  </thead>
 	  <tbody>
 	  	<?php
+      date_default_timezone_set("America/Los_Angeles");
+        $current_date = date("m/d/o");
 	  	  $itter = 1;
 	  		if( mysqli_num_rows($result) > 0){
 	  			while( $row = mysqli_fetch_assoc($result) ) {
-		  			$name = $row['Name'];
-		  			$phone = $row['Phone'];
-		  			$guest = $row['Guest'];
-		  			$status = $row['Status'];
-		  			if($status == 1){
-		  				$current_status = "Checked in";
-		  			}else if($status == 0){
-		  				$current_status = "Not Checked in";
-		  			}else {
-		  				$error = "Major Error";
-		  				break;
-		  			}
-		  			echo '<tr>
-	  				<td>'.$itter++.'</td>
-	  				<td>'.$row['Name'].'</td>
-	  				<td>'.$row['Phone'].'</td>
-	  				<td>'.$row['Guest'].'</td>
-            <td>'.$row['Email'].'</td>
-	  				<td><p class="text-success"> '.$current_status.' </p> </td>
-	  				<td>
-	  					<input type = "submit" class = "check btn btn-success btn-sm" id ='.$row['id'].' name = "check" value = "Check-in">
+            if($row['App_Date'] === $current_date) {
+            $name = $row['Name'];
+            $phone = $row['Phone'];
+            $time = $row['App_Time'];
+            $empl = $row['Per_stylist'];
+            echo '<tr>
+            <td>'.$itter++.'</td>
+            <td>'.$name.'</td>
+            <td>'.$phone.'</td>
+            <td>'.$time.'</td>
+            <td>'.$empl.'</td>
+            <td>
+              <input type = "submit" class = "check btn btn-success btn-sm" id ='.$row['id'].' name = "check" value = "Check-in">
               <input type = "submit" value ="Send Email" name = "email_send" id = '.$row['id'].' class = "email_send btn btn-info btn-sm">
-						  <input type="submit" value="Remove" name ="remove" id ='.$row['id'].' class ="remove btn btn-danger btn-sm">
-              
-					</td>
-	  			</tr>';
+              <input type="submit" value="Remove" name ="remove" id ='.$row['id'].' class ="remove btn btn-danger btn-sm">
+          </td>
+          </tr>';
+
+            }
+		  			
 		  		
 	  			}
 	  		} else {

@@ -11,13 +11,14 @@ if( isset($_POST['clicked']) ){
 	$date = $_POST['date'];
 	$employee = $_POST['empl'];
 	$null = NULL;
+	$status = 0;
 
 	if(empty($name) || empty($employee) || empty($date) || empty($time) || empty($email) || empty($phone) ){
 		echo "Empty, name, empl , date, time";
 		exit();
 	}
 
-	$sql = "INSERT INTO `client_upgrade` (`id`,`Email`,`Name`,`Phone`,`Per_stylist`,`App_Time`,`App_Date`) VALUES (NULL,'$email','$name','$phone','$employee','$time','$date'); ";
+	$sql = "INSERT INTO `client_upgrade` (`id`,`Email`,`Name`,`Phone`,`Per_stylist`,`App_Time`,`App_Date`) VALUES (NULL,'$email','$name','$phone','$employee','$time','$date','$status'); ";
 
 	if( $sql_result = mysqli_query($connection,$sql) ){
 		session_start();
