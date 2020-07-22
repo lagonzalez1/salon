@@ -137,17 +137,9 @@ include('server_connect.php');
     $date = date("l");
     $current_date = date("l, M-d-Y");
 
-  if($today == $_SESSION['day_off']){
-    echo '<h1 class="display-4" style = "color: #FFFFFF">Not accepting clients today, day off '.$date.'.</h1>
-          <h2 class = "display-6" style = "color: #FFFFFF"> '.$current_date.'</h2>
-    ';
-    die();
-  }else{
-      echo '<h1 class="display-4" style = "color: #FFFFFF">Hello, current list.</h1>
-
-      <h2 class = "display-6" style = "color: #FFFFFF"> '.$current_date.'</h2>
+    echo '<h1 class="display-4" style = "color: #FFFFFF">Hello, current list.</h1>
+     <h2 class = "display-6" style = "color: #FFFFFF"> '.$current_date.'</h2>
       ';
-  }
   ?>
 </div>
 
@@ -163,6 +155,10 @@ function reload_table() {
     data:{'value':value},
       success: function(responce){
        $("#table_id").html(responce);
+
+
+
+
        console.log("Reload pages Successfull");
       }, 
       error: function(){
@@ -193,6 +189,32 @@ $(function() {
     }
 
   });
+});
+
+
+
+
+$(document).ready(function() {
+  var init_req = $.ajax({
+        type:'POST',
+        url:'refresh_all_table.php',
+        timeout: 5000,
+        dataType: 'json',
+        data:{'initial_launch':'initial_launch'},
+          success: function(responce){
+            for (i = 0 ; i < responce.length; i ++){
+
+            }
+             
+        },
+          error: function(err, id){
+            console.log(err);
+            console.log(id);
+          //$("#timeout_error").modal("show");
+        }
+  });
+
+
 });
 
 $(function(){
@@ -319,6 +341,8 @@ $(function() {
 // Check if DB is correct by date. 
 // Modal shows if clients have been removed.
 // Imporovement:: show the list of removed users incase user want to keep them or add them.
+
+/*
 $(document).ready(function(){
   var db_check = "db_check";
   var xhr = $.ajax({
@@ -348,6 +372,7 @@ $(document).ready(function(){
   });
      
 });
+*/
 
 
 function show_modal(title,body){
@@ -496,55 +521,103 @@ function show_modal(title,body){
 </div>
 </div>
 
-<div class = main_table id = "table_id">
+<div class = main_table id = "s_0">
 	<table class="table table-hover">
 	  <thead class="thead-light">
 	    <tr>
 	      <th scope="col">#</th>
 	      <th scope="col">Name</th>
 	      <th scope="col">Phone Number</th>
-	      <th scope="col">Stylist</th>
         <th scope="col">Time</th>
+	      <th scope="col">Stylist</th>
+        <th scope="col">Date</th>
         <th scope="col">Actions</th>
 	    </tr>
 	  </thead>
 	  <tbody>
-	  	<?php
-      date_default_timezone_set("America/Los_Angeles");
-        $current_date = date("m/d/o");
-	  	  $itter = 1;
-	  		if( mysqli_num_rows($result) > 0){
-	  			while( $row = mysqli_fetch_assoc($result) ) {
-            if($row['App_Date'] === $current_date) {
-            $name = $row['Name'];
-            $phone = $row['Phone'];
-            $time = $row['App_Time'];
-            $empl = $row['Per_stylist'];
-            echo '<tr>
-            <td>'.$itter++.'</td>
-            <td>'.$name.'</td>
-            <td>'.$phone.'</td>
-            <td>'.$time.'</td>
-            <td>'.$empl.'</td>
-            <td>
-              <input type = "submit" class = "check btn btn-success btn-sm" id ='.$row['id'].' name = "check" value = "Check-in">
-              <input type = "submit" value ="Send Email" name = "email_send" id = '.$row['id'].' class = "email_send btn btn-info btn-sm">
-              <input type="submit" value="Remove" name ="remove" id ='.$row['id'].' class ="remove btn btn-danger btn-sm">
-          </td>
-          </tr>';
-
-            }
-		  			
-		  		
-	  			}
-	  		} else {
-	  			echo '
-	  			<tr>
-	  			<td>Empty list</td>
-	  			</tr>';
-	  		}
-	  	?>
+	  
 	  </tbody>
+</table>
+</div>
+
+
+
+<div class = main_table id = "s_1">
+  <table class="table table-hover">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">Time</th>
+        <th scope="col">Stylist</th>
+        <th scope="col">Date</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+    </tbody>
+</table>
+</div>
+
+
+<div class = main_table id = "s_2">
+  <table class="table table-hover">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">Time</th>
+        <th scope="col">Stylist</th>
+        <th scope="col">Date</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+    </tbody>
+</table>
+</div>
+
+
+<div class = main_table id = "s_3">
+  <table class="table table-hover">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">Time</th>
+        <th scope="col">Stylist</th>
+        <th scope="col">Date</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+    </tbody>
+</table>
+</div>
+
+
+<div class = main_table id = "s_4">
+  <table class="table table-hover">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">Time</th>
+        <th scope="col">Stylist</th>
+        <th scope="col">Date</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+  
+    </tbody>
 </table>
 </div>
 
