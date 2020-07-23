@@ -23,8 +23,8 @@ if(isset($_POST['del_id'])){
 if(isset($_POST['check_in'])){
 	$id = $_POST['check_in'];
 	$cc_ee = 1;
-	$update = "UPDATE `client_information` SET Status = '$cc_ee' WHERE id = '$id'; ";
-	
+	$update = "UPDATE `client_upgrade` SET Status = '$cc_ee' WHERE id = '$id'; ";
+
 	if ($result = mysqli_query($connection, $update) ) {
 		echo "Success";
 		die();
@@ -44,8 +44,8 @@ if(isset($_POST['check_in'])){
 if(isset($_POST['db_check'])){
 	date_default_timezone_set("America/Los_Angeles");
   	$current_date = date("o-m-d");
-  	$error_val = (array)null; 
-  	$stmt = "SELECT * FROM `client_information` ORDER BY `Time` ASC; ";
+  	$error_val = (array)null;
+  	$stmt = "SELECT * FROM `client_upgrade` ORDER BY `Time` ASC; ";
 	if ($result = mysqli_query($connection , $stmt) ){
 		if(mysqli_num_rows($result) > 0){
 			while($row = mysqli_fetch_assoc($result)){
@@ -55,13 +55,13 @@ if(isset($_POST['db_check'])){
 					echo 'id or date Null';
 					exit();
 				}
-				// 
+				//
 				if($current_date === $date){
 					continue;
 				}else{
 					array_push($error_val, $id);
 					continue;
-				} 
+				}
 			}
 		}else{
 			echo 'Error: Rows less than 0';
@@ -75,7 +75,7 @@ if(isset($_POST['db_check'])){
 
 	// Check size of array to delete rows.
 	if(sizeof($error_val) > 0){
-		$delStm = "DELETE FROM `client_information` WHERE id IN (";
+		$delStm = "DELETE FROM `client_upgrade` WHERE id IN (";
 		for ($i = 0; $i < sizeof($error_val); $i++){
 			$delStm .= $error_val[$i];
 			if($i == sizeof($error_val) - 1){
@@ -98,13 +98,13 @@ if(isset($_POST['db_check'])){
 
 }
 
-/* 
+/*
 T-Moblie == 2
 Verizon == 3
 Metro-PCS == 4
 Sprint == 5
 Boost-mobile == 6
-*/ 
+*/
 if(isset($_POST['cc_id'])){
 
 	$cc_id = $_POST['cc_id'];
@@ -137,25 +137,25 @@ if(isset($_POST['cc_id'])){
 		}
 	}else {
 		echo 'Not found';
-		
+
 		exit();
 	}
-} 
+}
 
 function send_email_phone($address, $name, $carrier_em) {
 	$body = 'Hello! Looks like you are next in line. Please make your way to our shop! Please act fast dont loose your place in line!';
 	$subject = "You Are Next In Line!";
 
-	
+
 	$sms_body = 'Hello! Looks like you are next in line. Please make your way to our shop!.Please act fast dont loose your place in line!';
-	
+
 
 	// Keep a different Email per guest
 	$headers = 'From: store_name_1@checkinservice.net' . "\r\n" .
     'Reply-To: NOREPLY' . "\r\n" .
     'X-Mailer: PHP/' . phpversion();
-    
-    $sms_header = 
+
+    $sms_header =
     'From: store_name_1@checkinservice.net' . "\r\n" .
     'Reply-To: NOREPLY' . "\r\n" .
     'X-Mailer: PHP/' . phpversion();

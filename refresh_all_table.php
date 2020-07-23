@@ -2,7 +2,6 @@
 
 include('server_connect.php');
 
-
 if(isset($_POST['initial_launch'])){
 	$stmt = "SELECT * FROM `client_upgrade` ORDER BY `Per_stylist` ASC; ";
 	$arr_value = (array)null;
@@ -13,14 +12,16 @@ if(isset($_POST['initial_launch'])){
 				array_push($arr_value, $row);
 			}
 		}
-
-		echo json_encode($arr_value);
 	}else {
 		echo 'Result: Error';
 		exit();
 	}
 
+echo json_encode($arr_value);
+exit();
+
 }
 
-
-
+echo "Restricted";
+header("Location: error_restricted.html");
+exit();

@@ -4,7 +4,7 @@
 // 2. We need to find a way to update all tables
 // 3. *Important to be able to scale up or down* EX: Depedning on how many employees
 // 4. empl1  empl2  empl3   empl4
-//    person person preson person 
+//    person person preson person
 // 5. Check glitch in the morning, For some reason it didnt want to show times early in the morning for a current date
 
 
@@ -22,7 +22,7 @@ error: function(xmlhttprequest, textstatus, message) {
 
 
 
-*/ 
+*/
 
 session_start();
 if(!isset($_SESSION['user-login-success'])){
@@ -43,11 +43,11 @@ include('server_connect.php');
 <html>
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>   
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-bootgrid/1.3.1/jquery.bootgrid.min.js"></script>             
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-bootgrid/1.3.1/jquery.bootgrid.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-bootgrid/1.3.1/jquery.bootgrid.css" />
   <link href="/salon/static/user_main_interface_style.css" rel="stylesheet">
 
@@ -66,20 +66,20 @@ include('server_connect.php');
 	}
   if(isset($_GET['email_match'])){
     echo'<script type="text/javascript">
-        $(function() { 
+        $(function() {
           $("#err_mail").modal("show");
-         }); 
+         });
 
         </script>';
   }
 
   if(isset($_GET['fatal_err'])){
     echo'<script type="text/javascript">
-        $(function() { 
+        $(function() {
           document.getElementById("exampleModalLabel").innerHTML = "Fatal Error: Adding client";
           document.getElementById("body_err").innerHTML = "Try login out and login back in.";
           $("#err_mail").modal("show");
-         }); 
+         });
 
         </script>';
   }
@@ -131,9 +131,9 @@ include('server_connect.php');
   	</div>
   </nav>
 
-  <div class="jumbotron"> <?php 
+  <div class="jumbotron"> <?php
     date_default_timezone_set('America/Los_Angeles');
-    $today = date("N"); 
+    $today = date("N");
     $date = date("l");
     $current_date = date("l, M-d-Y");
 
@@ -147,25 +147,41 @@ include('server_connect.php');
 <!-- Also attemt to reload the service -->
 <script type="text/javascript">
 function reload_table() {
-    var value = "value"; 
-    $.ajax({
-    type: 'POST',
-    timeout: 5000,
-    url: "refresh_current_table_ctd.php",
-    data:{'value':value},
-      success: function(responce){
-       $("#table_id").html(responce);
+    var init_req = $.ajax({
+        type:'POST',
+        url:'refresh_all_table.php',
+        timeout: 5000,
+        dataType: 'json',
+        data:{'initial_launch':'initial_launch'},
+          success: function(responce){
+            for (i = 0 ; i < responce.length; i ++){
+              switch(responce[i]['Per_stylist']){
+                case 'Karen':
+                  $('#s_0').find('tbody').append(add_row(responce[i]));
+                break;
+                case 'Mary':
+                  $('#s_1').find('tbody').append(add_row(responce[i]));
+                break;
+                case 'Sam':
+                  $('#s_2').find('tbody').append(add_row(responce[i]));
+                break;
+                case 'Stacy':
+                  $('#s_3').find('tbody').append(add_row(responce[i]));
+                break;
+                case 'Emily':
+                  $('#s_4').find('tbody').append(add_row(responce[i]));
+                break;
+              }
 
+            }
 
-
-
-       console.log("Reload pages Successfull");
-      }, 
-      error: function(){
-        $("#timeout_error").modal("show");
-        console.log("Timeout error");
-      }
-    }); 
+        },
+          error: function(err, id){
+            console.log(err);
+            console.log(id);
+          //$("#timeout_error").modal("show");
+        }
+  });
 }
 
 // 1 min = 60000
@@ -227,7 +243,7 @@ function add_row(obj){
     return "Empty Row";
   }
 
-  var row = '<tr> <td></td> <td></td> <td>'+name+'</td><td>'+phone+'</td><td>'+time+'</td><td>'+stylist+'</td><td>'+date+'</td><td><input type = "submit" class = "check btn btn-success btn-sm padding" id ='+id+' name = "check" value = "Check-in"><input type = "submit" value ="Send Email" name = "email_send" id = '+id+' class = "email_send btn btn-info btn-sm"><input type="submit" value="Remove" name ="remove" id ='+id+' class ="remove btn btn-danger btn-sm"></td>    </tr>';
+  var row = '<tr><td></td><td></td><td>'+name+'</td><td>'+phone+'</td><td>'+time+'</td><td>'+stylist+'</td><td>'+date+'</td><td><input type = "submit" class = "check btn btn-success btn-sm padding" id ='+id+' name = "check" value = "Check-in"><input type = "submit" value ="Send Email" name = "email_send" id = '+id+' class = "email_send btn btn-info btn-sm"><input type="submit" value="Remove" name ="remove" id ='+id+' class ="remove btn btn-danger btn-sm"></td></tr>';
 
   return row;
 }
@@ -262,7 +278,7 @@ $(document).ready(function() {
               }
 
             }
-             
+
         },
           error: function(err, id){
             console.log(err);
@@ -287,10 +303,10 @@ $(function(){
           	if(responce == "YES"){
           		//$ele.closest("tr").remove();
           		$ele.closest('tr').css('background','#ff2b2b');
-          		$ele.closest('tr').find('td').fadeOut(1000,function(){ 
+          		$ele.closest('tr').find('td').fadeOut(1000,function(){
               $ele.remove();
-              reload_table();        
-            }); 
+              reload_table();
+            });
           	}else if (responce == "Update Error"){
           		console.log("Error, PHP not able to add to remove or recived something other than YES");
           	}
@@ -312,7 +328,7 @@ $(function () {
       url: 'handle_clients.php',
       data: {'cc_id': cc_id },
       success: function (responce) {
-        
+
           if(responce == "Error: Email is empty"){
             show_modal("Error", "Email Is empty! Try another source of contact");
             console.log("Email Empty");
@@ -328,7 +344,7 @@ $(function () {
           }else {
             console.log(responce);
           }
-        
+
       }, error: function(err, id){
         console.log(err);
         console.log(id);
@@ -391,11 +407,11 @@ $(function() {
         $("#timeout_error").modal("show");
         console.log("Reload success");
       }
-      });  
+      });
     });
 });
 
-// Check if DB is correct by date. 
+// Check if DB is correct by date.
 // Modal shows if clients have been removed.
 // Imporovement:: show the list of removed users incase user want to keep them or add them.
 
@@ -427,7 +443,7 @@ $(document).ready(function(){
     }
 
   });
-     
+
 });
 */
 
@@ -581,7 +597,7 @@ function show_modal(title,body){
 
 <div class = main_table id = "s_0">
 	<table class="table table-hover">
-	  <thead class="thead-light">
+	  <thead class="thead-dark">
 	    <tr>
         <th scope="col">Karen</th>
 	      <th scope="col">#</th>
@@ -594,7 +610,7 @@ function show_modal(title,body){
 	    </tr>
 	  </thead>
 	  <tbody>
-	  
+
 	  </tbody>
 </table>
 </div>
@@ -603,7 +619,7 @@ function show_modal(title,body){
 
 <div class = main_table id = "s_1">
   <table class="table table-hover">
-    <thead class="thead-light">
+    <thead class="thead-dark">
       <tr>
         <th scope="col">Mary</th>
         <th scope="col">#</th>
@@ -616,7 +632,7 @@ function show_modal(title,body){
       </tr>
     </thead>
     <tbody>
-      
+
     </tbody>
 </table>
 </div>
@@ -624,7 +640,7 @@ function show_modal(title,body){
 
 <div class = main_table id = "s_2">
   <table class="table table-hover">
-    <thead class="thead-light">
+    <thead class="thead-dark">
       <tr>
         <th scope="col">Sam</th>
         <th scope="col">#</th>
@@ -637,7 +653,7 @@ function show_modal(title,body){
       </tr>
     </thead>
     <tbody>
-      
+
     </tbody>
 </table>
 </div>
@@ -645,7 +661,7 @@ function show_modal(title,body){
 
 <div class = main_table id = "s_3">
   <table class="table table-hover">
-    <thead class="thead-light">
+    <thead class="thead-dark">
       <tr>
         <th scope="col">Stacy</th>
         <th scope="col">#</th>
@@ -658,7 +674,7 @@ function show_modal(title,body){
       </tr>
     </thead>
     <tbody>
-      
+
     </tbody>
 </table>
 </div>
@@ -666,7 +682,7 @@ function show_modal(title,body){
 
 <div class = main_table id = "s_4">
   <table class="table table-hover">
-    <thead class="thead-light">
+    <thead class="thead-dark">
       <tr>
         <th scope="col">Emily</th>
         <th scope="col">#</th>
@@ -679,7 +695,7 @@ function show_modal(title,body){
       </tr>
     </thead>
     <tbody>
-  
+
     </tbody>
 </table>
 </div>
