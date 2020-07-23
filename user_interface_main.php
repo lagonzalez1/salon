@@ -146,40 +146,31 @@ include('server_connect.php');
 <!-- Handle client side removals and Check -->
 <!-- Also attemt to reload the service -->
 <script type="text/javascript">
+
+
+// Reload Button Click
+// Reloads Current Table
+$(function() {
+    var value = 'value';
+    $(document).on('click', '.reload', function(){
+        reload_table();
+    });
+});
+
 function reload_table() {
-    var init_req = $.ajax({
+     var init_req = $.ajax({
         type:'POST',
         url:'refresh_all_table.php',
         timeout: 5000,
-        dataType: 'json',
         data:{'initial_launch':'initial_launch'},
           success: function(responce){
-            for (i = 0 ; i < responce.length; i ++){
-              switch(responce[i]['Per_stylist']){
-                case 'Karen':
-                  $('#s_0').find('tbody').append(add_row(responce[i]));
-                break;
-                case 'Mary':
-                  $('#s_1').find('tbody').append(add_row(responce[i]));
-                break;
-                case 'Sam':
-                  $('#s_2').find('tbody').append(add_row(responce[i]));
-                break;
-                case 'Stacy':
-                  $('#s_3').find('tbody').append(add_row(responce[i]));
-                break;
-                case 'Emily':
-                  $('#s_4').find('tbody').append(add_row(responce[i]));
-                break;
-              }
-
-            }
-
+              $('#s_0').find('tbody').html(responce);
+              console.log("Reload Success");
         },
           error: function(err, id){
             console.log(err);
             console.log(id);
-          //$("#timeout_error").modal("show");
+          $("#timeout_error").modal("show");
         }
   });
 }
@@ -232,21 +223,7 @@ row order
 
 */
 
-function add_row(obj){
-  const id = obj['id'];
-  const name = obj['Name'];
-  const phone = obj['Phone'];
-  const time = obj['App_Time'];
-  const stylist = obj['Per_stylist'];
-  const date = obj['App_Date'];
-  if(name == "" || date == "" || time == "" || stylist == ""|| phone ==""){
-    return "Empty Row";
-  }
 
-  var row = '<tr><td></td><td></td><td>'+name+'</td><td>'+phone+'</td><td>'+time+'</td><td>'+stylist+'</td><td>'+date+'</td><td><input type = "submit" class = "check btn btn-success btn-sm padding" id ='+id+' name = "check" value = "Check-in"><input type = "submit" value ="Send Email" name = "email_send" id = '+id+' class = "email_send btn btn-info btn-sm"><input type="submit" value="Remove" name ="remove" id ='+id+' class ="remove btn btn-danger btn-sm"></td></tr>';
-
-  return row;
-}
 
 
 
@@ -255,30 +232,9 @@ $(document).ready(function() {
         type:'POST',
         url:'refresh_all_table.php',
         timeout: 5000,
-        dataType: 'json',
         data:{'initial_launch':'initial_launch'},
           success: function(responce){
-            for (i = 0 ; i < responce.length; i ++){
-              switch(responce[i]['Per_stylist']){
-                case 'Karen':
-                  $('#s_0').find('tbody').append(add_row(responce[i]));
-                break;
-                case 'Mary':
-                  $('#s_1').find('tbody').append(add_row(responce[i]));
-                break;
-                case 'Sam':
-                  $('#s_2').find('tbody').append(add_row(responce[i]));
-                break;
-                case 'Stacy':
-                  $('#s_3').find('tbody').append(add_row(responce[i]));
-                break;
-                case 'Emily':
-                  $('#s_4').find('tbody').append(add_row(responce[i]));
-                break;
-              }
-
-            }
-
+              $('#s_0').find('tbody').html(responce);
         },
           error: function(err, id){
             console.log(err);
@@ -384,32 +340,6 @@ $(function(){
     });
 });
 
-
-$(function() {
-    var value = 'value';
-    $(document).on('click', '.reload', function(){
-      var xhr = $.ajax({
-      type: 'POST',
-      timeout: 5000,
-      url: "refresh_current_table_ctd.php",
-      data:{'value':value},
-      beforeSend: function(){
-        $("#spinner").show();
-      },
-      complete: function(){
-        $("#spinner").hide();
-      },
-      success: function(responce){
-         $("#table_id").html(responce);
-         console.log("Reload success");
-      },
-      error: function(){
-        $("#timeout_error").modal("show");
-        console.log("Reload success");
-      }
-      });
-    });
-});
 
 // Check if DB is correct by date.
 // Modal shows if clients have been removed.
@@ -595,11 +525,12 @@ function show_modal(title,body){
 </div>
 
 
+<hr class="hr">
+
 <div class = main_table id = "s_0">
-	<table class="table table-hover">
-	  <thead class="thead-dark">
+	<table class="table table-hover table-bordered table-sm">
+	  <thead class="thead-light">
 	    <tr>
-        <th scope="col">Karen</th>
 	      <th scope="col">#</th>
 	      <th scope="col">Name</th>
 	      <th scope="col">Phone Number</th>
@@ -610,95 +541,18 @@ function show_modal(title,body){
 	    </tr>
 	  </thead>
 	  <tbody>
+      <?php
+
+
+
+      ?>
 
 	  </tbody>
 </table>
 </div>
 
+<hr class="hr">
 
-
-<div class = main_table id = "s_1">
-  <table class="table table-hover">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">Mary</th>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Phone Number</th>
-        <th scope="col">Time</th>
-        <th scope="col">Stylist</th>
-        <th scope="col">Date</th>
-        <th scope="col">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-
-    </tbody>
-</table>
-</div>
-
-
-<div class = main_table id = "s_2">
-  <table class="table table-hover">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">Sam</th>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Phone Number</th>
-        <th scope="col">Time</th>
-        <th scope="col">Stylist</th>
-        <th scope="col">Date</th>
-        <th scope="col">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-
-    </tbody>
-</table>
-</div>
-
-
-<div class = main_table id = "s_3">
-  <table class="table table-hover">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">Stacy</th>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Phone Number</th>
-        <th scope="col">Time</th>
-        <th scope="col">Stylist</th>
-        <th scope="col">Date</th>
-        <th scope="col">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-
-    </tbody>
-</table>
-</div>
-
-
-<div class = main_table id = "s_4">
-  <table class="table table-hover">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">Emily</th>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Phone Number</th>
-        <th scope="col">Time</th>
-        <th scope="col">Stylist</th>
-        <th scope="col">Date</th>
-        <th scope="col">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-
-    </tbody>
-</table>
-</div>
 
 
 </body>

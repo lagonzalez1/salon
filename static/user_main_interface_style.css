@@ -1,6 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500&family=Montserrat:wght@100&family=Nunito&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500&family=Montserrat:wght@100&family=Nunito:ital,wght@0,400;1,200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500&family=Montserrat:wght@100&family=Nunito:ital,wght@0,300;0,400;1,200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500&family=Montserrat:wght@100&family=Nunito:wght@200;400&family=Raleway:wght@300&display=swap');
 
 html {
-	background-color: #ECECEC;
+	background-color: #ffffff;
 }
 
 .navbar-expand-md {
@@ -12,7 +16,7 @@ html {
   margin: 0 auto;
   align-self: center;
   text-align: center;
-  background-color: #ECECEC;
+  background-color: #ffffff;
 }
 .button-holder button {
 	width: 300px;
@@ -54,4 +58,8 @@ html {
 	margin-bottom: 0px;
 	height: 100%;
 
+}
+
+tr th {
+	font-family: 'Nunito', sans-serif;
 }
