@@ -28,17 +28,20 @@ html {
 	background-color: #5DACC0;
 }
 
+.table.table-hover {
+	width: 100%;
+}
 
 .main_table {
   display: flex;
-  justify-content: center;
   background-color: #ECECEC;
   margin-top: 10px;
 }
 .main_table table {
 	margin: 0 auto;
 	align-self: center;
-	width: 85%;
+	text-align: left;
+	width: 100%;
 	background-color: #FFFFFF;
 }
 

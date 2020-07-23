@@ -72,6 +72,4 @@ $output .= '<table class="table table-hover">
 	return $output;
 }
 
-
-
 echo return_list();
