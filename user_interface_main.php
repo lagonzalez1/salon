@@ -173,7 +173,27 @@ function reload_table() {
           $("#timeout_error").modal("show");
         }
   });
+
+
+     var second_table = $.ajax({
+        type:'POST',
+        url:'general_table.php',
+        timeout: 5000,
+        data:{'initial_launch':'initial_launch'},
+          success: function(responce){
+              $('#s_1').find('tbody').html(responce);
+              console.log(responce);
+              console.log("second table refresh");
+        },
+          error: function(err, id){
+            console.log(err);
+            console.log(id);
+            console.log("Second table Fail reload");
+          $("#timeout_error").modal("show");
+        }
+  });
 }
+
 
 // 1 min = 60000
 // 3 min = 180000
@@ -224,27 +244,11 @@ row order
 */
 
 
-
-
-
 $(document).ready(function() {
-  var init_req = $.ajax({
-        type:'POST',
-        url:'refresh_all_table.php',
-        timeout: 5000,
-        data:{'initial_launch':'initial_launch'},
-          success: function(responce){
-              $('#s_0').find('tbody').html(responce);
-        },
-          error: function(err, id){
-            console.log(err);
-            console.log(id);
-          //$("#timeout_error").modal("show");
-        }
-  });
-
-
+    reload_table();
 });
+
+
 
 $(function(){
     $(document).on('click','.remove',function(){
@@ -457,7 +461,7 @@ function show_modal(title,body){
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Making Appointment</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Walkin Appointment</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -469,18 +473,14 @@ function show_modal(title,body){
             <input type="text" class="form-control" id="client-name" name ="client-name" required>
           </div>
           <div class="form-group">
-            <label for="recipient-name" class="control-label">Email:</label>
+            <label for="recipient-name" class="control-label">Email</label>
             <input type="text" class="form-control" id="client-email" name="client-email" required>
           </div>
           <div class="form-group">
-            <label for="recipient-name" class="control-label">Phone Number:</label>
+            <label for="recipient-name" class="control-label">Phone Number</label>
             <input type="phone-number" class="form-control" id="client-phone" name ="client-phone" required>
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="control-label"> Number of guest: </label>
-            <input type="number" class = "form-control" id="client-guest" min="0" max="7" name="client-guest" required>
-          </div>
-          <div class="form-group">
+          </div>  
+        <div class="form-group">
         <label for="carrier_id">Mobile Phone Carrier</label>
           <select class="form-control" id="carrier-id" name="carrier-id" required="">
             <option value="">Please select</option>
@@ -496,7 +496,11 @@ function show_modal(title,body){
             <option value="10">Not Available</option>
             </select>
         </div>
+        
+
+
       </div>
+    
       <div class="modal-footer">
         <input type="button" class="btn btn-secondary" data-dismiss="modal" value = "Close">
         <input type="submit" value= "Confirm Appointment" name = "clicked" class = "btn btn-primary">
@@ -528,30 +532,44 @@ function show_modal(title,body){
 <hr class="hr">
 
 <div class = main_table id = "s_0">
-	<table class="table table-hover table-bordered table-sm">
+	<table class="table table-hover table-bordered table">
 	  <thead class="thead-light">
 	    <tr>
 	      <th scope="col">#</th>
+        <th scope="col">Stylist</th>
 	      <th scope="col">Name</th>
 	      <th scope="col">Phone Number</th>
         <th scope="col">Time</th>
-	      <th scope="col">Stylist</th>
         <th scope="col">Date</th>
         <th scope="col">Actions</th>
 	    </tr>
 	  </thead>
 	  <tbody>
-      <?php
-
-
-
-      ?>
-
 	  </tbody>
 </table>
 </div>
 
 <hr class="hr">
+
+
+<div class = main_table id = "s_1">
+  <table class="table table-hover table-bordered table">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Stylist</th>
+        <th scope="col">Name</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">Time</th>
+        <th scope="col">Date</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+</div>
 
 
 
