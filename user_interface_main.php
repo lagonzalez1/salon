@@ -123,6 +123,9 @@ include('server_connect.php');
   			<li class = "nav-item">
   				<a class = "nav-link" href= "client_view.php?client_view_click=true" target="_newtab" style = "color: #787B7C">Launch Client View</a>
   			</li>
+        <li class="nav-item">
+          <a class="nav-link" href="" target="_newtab">All Appointments</a>
+        </li>
   			<li class="nav-item">
   				<a class="nav-link" href="#" style = "color: #787B7C">Help</a>
   			</li>
@@ -480,24 +483,6 @@ function show_modal(title,body){
             <label for="recipient-name" class="control-label">Phone Number</label>
             <input type="phone-number" class="form-control" id="client-phone" name ="client-phone" required>
           </div>  
-        <div class="form-group">
-        <label for="carrier_id">Mobile Phone Carrier</label>
-          <select class="form-control" id="carrier-id" name="carrier-id" required="">
-            <option value="">Please select</option>
-            <option value="1">AT&T</option>
-            <option value="2">T-Mobile</option>
-            <option value="3">Verizon</option>
-            <option value="4">Metro-PCS</option>
-            <option value="5">Sprint</option>
-            <option value="6">Boost-Mobile</option>
-            <option value="7">Google-Fi</option>
-            <option value="8">Cricket-Moblile</option>
-            <option value="9">Virgin-Mobile</option>
-            <option value="10">Not Available</option>
-            </select>
-        </div>
-        
-
 
       </div>
     

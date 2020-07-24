@@ -18,7 +18,7 @@ if( isset($_POST['clicked']) ){
 		exit();
 	}
 
-	$sql = "INSERT INTO `client_upgrade` (`id`,`Email`,`Name`,`Phone`,`Per_stylist`,`App_Time`,`App_Date`) VALUES (NULL,'$email','$name','$phone','$employee','$time','$date','$status'); ";
+	$sql = "INSERT INTO `client_upgrade` (`id`,`Email`,`Name`,`Phone`,`Per_stylist`,`App_Time`,`App_Date`,`Status`) VALUES (NULL,'$email','$name','$phone','$employee','$time','$date','$status'); ";
 
 	if( $sql_result = mysqli_query($connection,$sql) ){
 		session_start();

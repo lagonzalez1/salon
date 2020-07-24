@@ -30,6 +30,7 @@ if(isset($_GET['team_k'])){
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/fd1affcb0c.js" crossorigin="anonymous"></script>
   <link href= "/salon/static/confirmation_style.css" rel="stylesheet" type="text/css">
 
 </head>
@@ -90,10 +91,37 @@ if(isset($_GET['team_k'])){
 
 
   </div>
-
   <!-- Shop current Address Locaiton should be added here. -->
 
 </div>
+ <hr class="hr">
+<div class="container-fluid padding">
+  <h2 class="center-text-title text-center">Covid-19 Responce</h2>
+  <p class="lead text-center">Our responce</p>
+  <hr class="small_hr">
+  <div class="row d-flex text-center">
+      <div class=" col-sm">
+        <i class="fas fa-hand-sparkles fa-3x"></i>
+        <h3>Clean Facilties</h3>
+        <p>Distancing, Mask Required</p>
+      </div>
+      <div class=" col-sm">
+        <i class="fas fa-pump-medical fa-3x"></i>
+        <h3>Sanitized Equipment</h3>
+        <p>Clean Equipment From Each Use</p>
+      </div>
+      <div class=" col-sm">
+        <i class="fas fa-hand-holding-usd fa-3x"></i>
+        <h3>Contact Less Payments</h3>
+        <p>Contactless</p>
+
+        
+      </div>
+
+
+    </div>
+</div>
+
 
 <div class="container-fluid padding">
   

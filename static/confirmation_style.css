@@ -10,7 +10,7 @@
 
 .navbar {
   padding: .8rem;
-  background-color: transparent !important;
+  background-color:#252525 !important;
 }
 
 .navbar-nav li {
@@ -46,6 +46,13 @@ hr.light {
   width: 75%;
   margin-bottom: 1rem;
   margin-top: .8rem;
+}
+
+
+.center-text-title {
+  font-family: 'Nunito', sans-serif;
+  font-weight: lighter;
+  font-size: 24px;
 }
 
 #map-container-google-1 iframe {

@@ -1,12 +1,11 @@
 <?php
 
-
 include('server_connect.php');
 
 if(isset($_POST['initial_launch'])){
 	$stmt = "SELECT * FROM `client_upgrade` ORDER BY `App_Time` ASC; ";
 	$long_string = '';
-	$it = 0;
+	$it = 1;
 	if($result = mysqli_query($connection, $stmt)){
 		if(mysqli_num_rows($result) > 0){
 			while($row = mysqli_fetch_assoc($result)){
@@ -37,12 +36,19 @@ if(isset($_POST['initial_launch'])){
 			</tr>';
 
 				}
+				continue;
 			}
+		}else{
+			$long_string .= '<tr>
+                <td>Empty list</td>
+                </tr></tbody></table>';
+                echo $long_string;
+                exit();
 		}
 
 	}
-
-
+	echo $long_string;
+	exit();
 }
 
 
