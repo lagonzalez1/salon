@@ -1,13 +1,8 @@
 <?php
 
-if(isset($_GET['lost_spot'])){
-	echo('<script type="text/javascript">
-		$(function() {
-        $("#lost_spot_modal").modal("show");
-       });
-    </script>');
+date_default_timezone_set("America/Los_Angeles");
+$current_date = date("m/d/o");
 
-}
 
 
 ?>
@@ -33,6 +28,20 @@ if(isset($_GET['lost_spot'])){
   	<link href="static/main_style.css" rel="stylesheet">
 
 </head>
+
+<?php
+
+if(isset($_GET['lost_spot'])){
+	echo '<script type="text/javascript">
+		$(document).ready(function() {
+			$("#lost_spot_modal").modal("show");
+		});
+    </script>';
+
+}
+
+
+?>
 
 
 <nav class = "navbar navbar-expand-md navbar-dark ">
@@ -66,7 +75,7 @@ if(isset($_GET['lost_spot'])){
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Oh No!</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="refreshPage();">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -421,7 +430,7 @@ if(isset($_GET['lost_spot'])){
 
 
 function refreshPage() {
-	location.reload();
+	location.assign("main.php");
 	return false;
 
 }

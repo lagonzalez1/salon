@@ -12,7 +12,7 @@
 if(isset($_GET['home_k'])){
   session_destroy();
   unset($_SESSION);
-  header("Location: main.html");
+  header("Location: main.php");
 }
 if(isset($_GET['team_k'])){
   session_destroy();
