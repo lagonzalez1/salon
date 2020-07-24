@@ -1,11 +1,12 @@
 <?php
 
-if(isset($_GET['lost_spot'] )){
-	echo '<script type="text/javascript">
-     $(function() {
-        $("#err_mail").modal("show");
+if(isset($_GET['lost_spot'])){
+	echo('<script type="text/javascript">
+		$(function() {
+        $("#lost_spot_modal").modal("show");
        });
-    </script>';
+    </script>');
+
 }
 
 
@@ -32,7 +33,6 @@ if(isset($_GET['lost_spot'] )){
   	<link href="static/main_style.css" rel="stylesheet">
 
 </head>
-
 
 
 <nav class = "navbar navbar-expand-md navbar-dark ">
