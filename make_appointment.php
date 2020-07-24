@@ -18,6 +18,13 @@ if( isset($_POST['clicked']) ){
 		exit();
 	}
 
+
+	if(check_dead_time($time,$employee,$date)){
+		header('Location: main.php?lost_spot=true');
+		exit();
+	}
+
+
 	$sql = "INSERT INTO `client_upgrade` (`id`,`Email`,`Name`,`Phone`,`Per_stylist`,`App_Time`,`App_Date`,`Status`) VALUES (NULL,'$email','$name','$phone','$employee','$time','$date','$status'); ";
 
 	if( $sql_result = mysqli_query($connection,$sql) ){
@@ -38,10 +45,24 @@ if( isset($_POST['clicked']) ){
 	}else{
 		echo $sql_result;
 		exit();
-
 	}
+}
 
 
+
+function check_dead_time($time,$empl,$date){
+	global $connection;
+	$stmt = "SELECT * FROM `client_upgrade` WHERE Per_stylist = '$empl' AND App_Date = '$date' AND App_Time = '$time'; ";
+	$result = mysqli_query($connection, $stmt);
+	if(mysqli_num_rows($result) > 0){
+		// Someone must of gotten an app as soon as entered
+		// App Exist already for a specific time
+		// Row Exist
+		return true;
+	}else{
+		// Nothing showed up ok
+		return false;
+	}
 
 
 }

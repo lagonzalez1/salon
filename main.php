@@ -1,3 +1,17 @@
+<?php
+
+if(isset($_GET['lost_spot'] )){
+	echo '<script type="text/javascript">
+     $(function() {
+        $("#err_mail").modal("show");
+       });
+    </script>';
+}
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,6 +60,28 @@
 	</div>
 </nav>
 
+
+<div class="modal fade" id="lost_spot_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Oh No!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id = "body_err">
+       Looks like someone beat you for your appointment! Try another time, we are very popular!
+       Thanks!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="refreshPage();">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <div class="hero-image">
   <div class="hero-text">
   	<div class="icon">
@@ -58,34 +94,29 @@
   </div>
 </div>
 
-<hr class="hr">
-<div class="container-fluid padding">
+
+<div class="container-fluid padding" id="covid">
   <h2 class="center-text-title text-center">Covid-19 Responce</h2>
-  <p class="lead text-center">Our responce</p>
+  <p class="lead text-center">To Minimize The Spread We Pleadge Too</p>
   <hr class="small_hr">
   <div class="row d-flex text-center">
       <div class=" col-sm">
         <i class="fas fa-hand-sparkles fa-3x"></i>
         <h3>Clean Facilties</h3>
-        <p>Distancing, Mask Required</p>
+        <p>Distance From Other Guest, Mask Required</p>
       </div>
       <div class=" col-sm">
         <i class="fas fa-pump-medical fa-3x"></i>
         <h3>Sanitized Equipment</h3>
-        <p>Clean Equipment From Each Use</p>
+        <p>Clean Equipment & Sanitize From Each Use</p>
       </div>
       <div class=" col-sm">
         <i class="fas fa-hand-holding-usd fa-3x"></i>
         <h3>Contact Less Payments</h3>
         <p>Contactless</p>
-
-        
       </div>
-
-
     </div>
 </div>
-<hr class="hr">
 
 
 
@@ -101,14 +132,14 @@
 <!--- Containers Cards -->
 
 
-<div class="container-fluid">
+<div class="container-fluid" id="show_work">
 <div class="row padding">
 	<div class="col-md-3">
 		<div class="card">
 			<img class="card-img-top" src="static/img/work-2.jpg">
 			<div class="card-body">
 				<h4 class="card-title">Haircuts</h4>
-				<a href="#" class="btn btn-outline-light" id="men_1">Show Work</a>
+				<button href="#" class="btn btn-primary" id="work1">Show Work</button>
 			</div>
 		</div>
 	</div>
@@ -118,7 +149,7 @@
 			<img class="card-img-top" src= "static/img/work-3.jpg">
 			<div class="card-body">
 				<h4 class="card-title">Woman Styling</h4>
-				<a href="#" class="btn btn-outline-light" id="men_2">Show Work</a>
+				<button href="#" class="btn btn-primary" id="work2">Show Work</button>
 			</div>
 		</div>
 	</div>
@@ -128,7 +159,7 @@
 			<img class="card-img-top" src= "static/img/work-1.jpg">
 			<div class="card-body">
 				<h4 class="card-title">Women Color</h4>
-				<a href="#" class="btn btn-outline-light" id="woman_1">Show Work</a>
+				<button href="#" class="btn btn-primary" id="work3">Show Work</button>
 			</div>
 		</div>
 	</div>
@@ -139,7 +170,7 @@
 			<img class="card-img-top" src= "static/img/work-3.jpg">
 			<div class="card-body">
 				<h4 class="card-title">Waxing</h4>
-				<a href="#" class="btn btn-outline-light" id="men_2">Show Work</a>
+				<button href="#" class="btn btn-primary" id="work4">Show Work</button>
 			</div>
 		</div>
 	</div>
@@ -328,9 +359,8 @@
 	        	<div class="row form-group d-flex">
 	        		<div class="col-md-6">
 	        			<div class="form-group">
-	        				<button class="btn btn-primary" type="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample" id="check_tm">
-    								Check Available Times
-  							</button>
+	        				<input class="btn btn-primary" type="submit" value="Check Available Times" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample" id="check_tm">
+  							
 	        			</div>
 	        		</div>
 	        	</div>
@@ -358,7 +388,6 @@
   			
 			<div class="row btn-group d-flex">	
 				<div class="btn-group-vertical" role="group" id="available_times" aria-label="Basic example">
-
 				</div>	
 			</div>
 		
@@ -389,6 +418,13 @@
 
 
 <script type="text/javascript">
+
+
+function refreshPage() {
+	location.reload();
+	return false;
+
+}
 
 
     console.log("Working");
