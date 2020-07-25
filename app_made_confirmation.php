@@ -60,6 +60,7 @@ if(isset($_GET['team_k'])){
 
   <div class="jumbotron text-center">
   <h1 class="display-4">Appointment Made!</h1>
+  <hr class="small_hr">
 
     <div class="row d-flex">
 

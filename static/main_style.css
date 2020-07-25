@@ -7,6 +7,9 @@ body, html {
     height: 100%;
 }
 
+
+
+
 .animated {
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
@@ -132,7 +135,7 @@ body, html {
 }
 
 .form-control:valid {
-  background-color: #f74ed9;
+  background-color: #f74ed9 ! important;
 }
 
 .l-hr {
@@ -400,6 +403,12 @@ select {
   font-family: 'Nunito', sans-serif;
 
 }
+
+
+.display-4 {
+  font-family: 'Nunito', sans-serif;
+}
+
 .ftco-partner {
   padding: 2em 0;
   background-color: white;
@@ -427,6 +436,13 @@ footer p {
   color: white;
   font-weight: bolder;
   font-family: 'Nunito', sans-serif;
+}
+
+.bl_hr {
+  width: 50px;
+  max-width: 50px;
+  color: black;
+  background-color: black ! important;
 }
 
 .small_hr {

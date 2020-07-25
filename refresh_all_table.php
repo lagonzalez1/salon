@@ -1,6 +1,8 @@
 <?php
 
 include('server_connect.php');
+date_default_timezone_set("America/Los_Angeles");
+$current_date = date("m/d/o");
 
 if(isset($_POST['initial_launch'])){
 	$stmt = "SELECT * FROM `client_upgrade` ORDER BY `Per_stylist` ASC; ";
@@ -20,10 +22,32 @@ if(isset($_POST['initial_launch'])){
 				$style = $row['Per_stylist'];
 				$date = $row['App_Date'];
 				$time = $row['App_Time'];
+				$status = $row['Status'];
 
 				if($style == 'General'){
 					// Handle General Table somwhere else;
 					continue;
+				}
+				// Only viewing appointments today
+				if($current_date !== $date ){
+						continue;
+				}
+				$st_color = null;
+				$status_title = null;
+				switch ($status) {
+					case 0:
+						$st_color = "text-danger";
+						$status_title = "Not Checked in";
+						break;
+					case 1:
+						$st_color = "text-success";
+						$status_title = "Checked in";
+						break;
+					
+					default:
+						$st_color = "text-danger";
+						$status_title = "Not Checked in";
+						break;
 				}
 
 				switch ($style) {
@@ -54,6 +78,7 @@ if(isset($_POST['initial_launch'])){
 			<td>'.htmlentities($phone).'</td>
 			<td>'.htmlentities($time).'</td>
 			<td>'.htmlentities($date).'</td>
+			<td class="'.$st_color.'">'.htmlentities($status_title).'</td>
 			<td>
 			<input type = "submit" class = "check btn btn-success btn-sm" id ='.$id.' name = "check" value = "Check-in">
 			<input type = "submit" value ="Send Email" name = "email_send" id = '.$id.' class = "email_send btn btn-info btn-sm">

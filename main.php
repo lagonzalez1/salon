@@ -3,8 +3,6 @@
 date_default_timezone_set("America/Los_Angeles");
 $current_date = date("m/d/o");
 
-
-
 ?>
 
 
@@ -39,6 +37,8 @@ if(isset($_GET['lost_spot'])){
     </script>';
 
 }
+
+
 
 
 ?>
@@ -195,7 +195,7 @@ if(isset($_GET['lost_spot'])){
  </div>
 
 
- <div class="container-fluid">
+ <div class="container-fluid padding">
  	<div class="row padding">
  		<div class="col-md-4 ftco-animate fadeInUp ftco-animated">
 		<div class="card" id="card1">
@@ -325,17 +325,17 @@ if(isset($_GET['lost_spot'])){
 	    	<form action="make_appointment.php" method="post">
 	            <div class="row form-group d-flex">
 	            	<div class="col-md-6">
-	            		<input type="text" class="form-control no-border" placeholder="First & Last" id="name" name="name" required="">
+	            		<input type="text" class="form-control no-border" placeholder="First & Last" id="name" name="name" autocomplete="off" required="">
 	            		<hr class= "w-hr">
 	            	</div>
 	            	<div class="col-md-6">
-	            		<input type="text" class="form-control no-border" placeholder="Email" id="email" name="email" required="">
+	            		<input type="text" class="form-control no-border" placeholder="Email" id="email" name="email" autocomplete="off" required="">
 	            		<hr class= "w-hr">
 	            	</div>
 	            </div>
 	            <div class="row form-group d-flex">
 	            	<div class="col-md-6">
-	            		<input type="text" class="form-control no-border" placeholder="Phone" id="phone" name="phone" required="">
+	            		<input type="text" class="form-control no-border" placeholder="Phone" id="phone" name="phone" autocomplete="off" required="">
 	            		<hr class= "w-hr">
 	            	</div>
 	            	<div class="col-md-6">
@@ -358,7 +358,7 @@ if(isset($_GET['lost_spot'])){
 	            </div>
 		            <div class="col-md-6">
 		              <div class="form-group">
-	                    <input type="text" class="form-control no-border" placeholder="Date" id="calendar" name="date" required="">
+	                    <input type="text" class="form-control no-border" placeholder="Date" id="calendar" autocomplete="off" name="date" required="">
 
 		              <hr class= "w-hr">
 		            </div>
@@ -368,7 +368,7 @@ if(isset($_GET['lost_spot'])){
 	        	<div class="row form-group d-flex">
 	        		<div class="col-md-6">
 	        			<div class="form-group">
-	        				<input class="btn btn-primary" type="submit" value="Check Available Times" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample" id="check_tm">
+	        				<input class="btn btn-primary" type="button" value="Check Available Times" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample" id="check_tm">
   							
 	        			</div>
 	        		</div>
@@ -426,7 +426,43 @@ if(isset($_GET['lost_spot'])){
 </div>
 
 
+<div class="modal fade" id="check_existing" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Remove Myself From Appointment List</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="send_to_buisness.php" method="post">
+            <div class="form-group">
+                  <label for="client-email" class="control-label">Enter Email (case sensitive)</label>
+                  <input type="text" class="form-control" id="client-email" name="client-email" required = "" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,}">
+            </div>
+        </form>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <input type="submit" value= "Remove" name="remove_client" class = "btn btn-secondary" id="submitButton">
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <script type="text/javascript">
+
+function cancell_click(){
+	$(document).ready(function(){
+		$('#check_existing').modal('toggle');
+	});
+
+
+}
+
 
 
 function refreshPage() {
@@ -582,10 +618,6 @@ function remove_based_time(lastVal, currDate){
 	});
 
 
-
-  
-    
-
     function isEmpty(str) {
     	return (!str || 0 === str.length);
 	}
@@ -620,9 +652,7 @@ function show_modal(title,body){
 }
     	
 
-
-
-    </script>
+</script>
 
 
 
@@ -685,6 +715,7 @@ function show_modal(title,body){
               <h2 class="footer_title">About Us</h2>
               <hr class="small_hr">
               <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+              <p> View || Cancell Appoinment <a onclick="cancell_click();">Click Me</p>
             	<hr class="small_hr">
                 <a href="#"><img src="static/img/icons/twitter_icon.png" style="height: 50px; width: 50px;"></a>
                 <a href="#"><img src="static/img/icons/facebook_icon.png" style="height: 50px; width: 50px;"></a>
@@ -693,8 +724,6 @@ function show_modal(title,body){
             </div>
             <hr class="small_hr">
           </div>
-
-
 		</div>
 	</div>
 </footer>

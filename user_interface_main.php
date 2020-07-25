@@ -26,7 +26,7 @@ error: function(xmlhttprequest, textstatus, message) {
 
 session_start();
 if(!isset($_SESSION['user-login-success'])){
-	header('Location: main.html');
+	header('Location: main.php');
   die();
 }
 include('server_connect.php');
@@ -124,7 +124,7 @@ include('server_connect.php');
   				<a class = "nav-link" href= "client_view.php?client_view_click=true" target="_newtab" style = "color: #787B7C">Launch Client View</a>
   			</li>
         <li class="nav-item">
-          <a class="nav-link" href="" target="_newtab">All Appointments</a>
+          <a class="nav-link" href="show_entire_list.php" target="_newtab" name="all_app">All Appointments</a>
         </li>
   			<li class="nav-item">
   				<a class="nav-link" href="#" style = "color: #787B7C">Help</a>
@@ -526,6 +526,7 @@ function show_modal(title,body){
 	      <th scope="col">Phone Number</th>
         <th scope="col">Time</th>
         <th scope="col">Date</th>
+        <th scope="col">Status</th>
         <th scope="col">Actions</th>
 	    </tr>
 	  </thead>
@@ -547,6 +548,7 @@ function show_modal(title,body){
         <th scope="col">Phone Number</th>
         <th scope="col">Time</th>
         <th scope="col">Date</th>
+        <th scope="col">Status</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
