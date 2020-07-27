@@ -406,6 +406,10 @@ if(isset($_GET['lost_spot'])){
 
 
 
+
+
+
+
 <div class="modal" tabindex="-1" role="dialog" id="instructions">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -430,23 +434,38 @@ if(isset($_GET['lost_spot'])){
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Remove Myself From Appointment List</h5>
+        <h5 class="modal-title" id="title">Check Or Remove Appointment</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form action="send_to_buisness.php" method="post">
-            <div class="form-group">
+            <div class="form-group" id="remove_group">
                   <label for="client-email" class="control-label">Enter Email (case sensitive)</label>
-                  <input type="text" class="form-control" id="client-email" name="client-email" required = "" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,}">
-            </div>
-        </form>
-        
+                  <input type="text" class="form-control" name="client-email" required = "" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,}" id="check_app_cancell">
+			</div>
+
+			<div class="collapse" id="show_data">
+  				<div class="card card-body">
+					<div class="card card-title" id="time_title_message">
+						<h2 class="header" id="av_title">Appointment Details</h2>
+					</div>
+					<div class="row btn-group d-flex" id="inner_row">	
+						<div class="btn-group-vertical" role="group" id="inner_data" aria-label="Basic example">
+							<p id="i-name"></p>
+							<p id="i-date"></p>
+							<p id="i-time"></p>
+							<p id="i-stylist"></p>
+							<p id="i-email"></p>
+							<input type="submit" value="Remove Me" id="remove_me" class="btn btn-warning">
+						</div>	
+					</div>
+ 			 	</div>
+			</div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        <input type="submit" value= "Remove" name="remove_client" class = "btn btn-secondary" id="submitButton">
+        <input type="submit" value= "View/Remove" name="remove_client" class = "btn btn-warning" id="submitButton">
       </div>
     </div>
   </div>
@@ -454,6 +473,110 @@ if(isset($_GET['lost_spot'])){
 
 
 <script type="text/javascript">
+
+
+
+$(document).ready(function(){
+	$('#submitButton').on('click', function() {
+		// get input box on click
+		// make request
+		var em = $('#check_app_cancell').val();
+		console.log(em);
+		make_request(em);
+	});
+
+	$('#remove_me').on('click', function (){
+		var rem_emm = $("#i-email").text();
+		var final_string = rem_emm.replace('Email: ','');
+		console.log(final_string);
+		remove_based_email(final_string);
+	});
+});
+
+
+
+function remove_based_email(email){
+	var xhr = $.ajax({
+	type:'POST',
+	url:'handle_clients.php',
+	timeout: 5000,
+	data:{'email':email },
+	success: function(rdata) {
+		if(rdata == "YES"){
+			$('#show_data').collapse('toggle');
+			$('#check_existing').modal('toggle');
+			show_modal("Removal Success", "You have successfully removed yourself from the appointment line. Thanks have a good day!");
+		}else {
+			console.log("Err");
+			$('#show_data').collapse('toggle');
+			$('#check_existing').modal('toggle');
+			show_modal("Fatal Error", "We where not able to remove you from the line, please try later");
+		}
+	}, 
+	error: function(err, code) {
+		console.log(err);
+		console.log(code);
+		$('#time_out').modal('toggle');
+		
+		
+	}
+});	
+}
+
+function make_request(user_email){
+
+	var xhr = $.ajax({
+	type:'POST',
+	url:'handle_clients.php',
+	timeout: 5000,
+	dataType: 'json',
+	data:{'user_email':user_email },
+	success: function(rdata) {
+		if(rdata.responseText == 'SQL: Error'){
+			$('#check_existing').modal('toggle');
+			show_modal("Cannot Be found", "Remember this field is case sensitive.");
+
+		}else if(rdata.responseText == 'Error fatal'){
+			console.log('Fatal');
+			$('#check_existing').modal('toggle');
+			show_modal("Cannot Be found", "Remember this field is case sensitive.");
+		}else if(rdata.responseText == 'SQL: Rows'){
+			console.log('Rows');
+			$('#check_existing').modal('toggle');
+			show_modal("Cannot Be found", "Remember this field is case sensitive.");
+			
+		}else {
+			load_data(rdata);
+		}
+	}, 
+	error: function(err, code) {
+		console.log(err);
+		console.log(code);
+		$('#time_out').modal('toggle');
+		
+		
+	}
+});	
+}
+
+
+
+
+function load_data(rdata){
+	document.getElementById('i-name').innerHTML = 'Name: ' + rdata['Name'];
+	document.getElementById('i-time').innerHTML = 'Time: ' + rdata['App_Time'];
+	document.getElementById('i-date').innerHTML = 'Date: ' +rdata['App_Date'];
+	document.getElementById('i-stylist').innerHTML = 'Stylist: ' +rdata['Per_stylist'];
+	document.getElementById('i-email').innerHTML = 'Email: ' +rdata['Email'];
+	$('#show_data').collapse('toggle');
+
+
+}
+
+
+
+
+
 
 function cancell_click(){
 	$(document).ready(function(){
@@ -463,8 +586,6 @@ function cancell_click(){
 
 }
 
-
-
 function refreshPage() {
 	location.assign("main.php");
 	return false;
@@ -472,7 +593,7 @@ function refreshPage() {
 }
 
 
-    console.log("Working");
+    // Max Dates allowed up to 2 weeks and 5 days
     $(document).ready(function() {
     	$('#calendar').datepicker({
     		beforeShowDay: nonWorkingDates,
@@ -604,6 +725,8 @@ function remove_based_time(lastVal, currDate){
         			error: function(err, code) {
         				console.log(err);
         				console.log(code);
+						$('#time_out').modal('toggle');
+						
         				
         			}
     			});	
@@ -655,6 +778,26 @@ function show_modal(title,body){
 </script>
 
 
+<div class="modal fade" id="time_out" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="title_config">Refresh Error</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="refreshPage();">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id= "body_config">
+        Looks like we have a timeout error, please check if you are connected to the internet. Or try to refresh the entire page.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="refreshPage();">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 <div class="modal fade" id="configure_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -703,10 +846,10 @@ function show_modal(title,body){
 
 		</div>
 		<div class="col-md-3">
-			<h5 class="footer_title">Software Opportunities</h5>
+			<h5 class="footer_title">Interested in a website?</h5>
 			<hr class="small_hr">
-			<p>otfgonzalez@gmail.com</p>
-			<p>909-572-5474</p>
+			<p>lag.webservices@gmail.com</p>
+			<p>909-XXX-XXXX</p>
 			<hr class="small_hr">
 		</div>
 
@@ -715,7 +858,7 @@ function show_modal(title,body){
               <h2 class="footer_title">About Us</h2>
               <hr class="small_hr">
               <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-              <p> View || Cancell Appoinment <a onclick="cancell_click();">Click Me</p>
+              <p> View OR Cancell Appoinment <a onclick="cancell_click();">Click Me</p>
             	<hr class="small_hr">
                 <a href="#"><img src="static/img/icons/twitter_icon.png" style="height: 50px; width: 50px;"></a>
                 <a href="#"><img src="static/img/icons/facebook_icon.png" style="height: 50px; width: 50px;"></a>

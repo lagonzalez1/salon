@@ -1,6 +1,43 @@
 <?php
 
-include_once 'server_connect.php';
+include('server_connect.php');
+
+
+if(isset($_POST['user_email'])){
+	$emm = $_POST['user_email'];
+	$find_stm = "SELECT * FROM `client_upgrade` WHERE Email = '$emm'; ";
+	if($result = mysqli_query($connection, $find_stm)){
+
+		if(mysqli_num_rows($result) > 0 ){
+			$arr = mysqli_fetch_assoc($result);
+			echo (json_encode($arr));
+			exit();
+		}else{
+			echo 'SQL: Rows';
+			exit();
+		}
+	}else{
+		echo 'SQL: Error';
+		exit();
+	}
+
+}
+
+
+if(isset($_POST['email'])) {
+	$em = $_POST['email'];
+	$find = "DELETE FROM `client_upgrade` WHERE Email = '$emm'; ";
+	if ($result = mysqli_query($connection, $find) ) {
+		echo "YES";
+		exit();
+	}else{
+		echo "Error Delete";
+		mysqli_error($connection);
+		exit();
+	}
+
+
+}
 
 
 // Removal based on id.
@@ -183,7 +220,6 @@ function send_email_phone($address, $name, $carrier_em) {
 
 
 
-
-header("Location: error_restricted.html");
 echo 'Error fatal';
+header("Location: error_restricted.html");
 die();

@@ -6,8 +6,37 @@
 body, html {
     height: 100%;
 }
+.modal-title {
+  font-family: 'Nunito', sans-serif;
+}
 
+.control-label {
+  font-family: 'Nunito', sans-serif;
+}
 
+#inner_row {
+  background-color: white;
+
+}
+#inner_data p {
+  background-color: white;
+  color: black;
+}
+
+#remove_me {
+  color: white;
+
+}
+
+#inner_data {
+  background-color: white ! important;
+}
+
+#check_app_cancell {
+  background-color: whitesmoke ! important;
+  color: black ! important;
+  border-color: black ! important;
+}
 
 
 .animated {

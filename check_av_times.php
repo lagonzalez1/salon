@@ -36,8 +36,6 @@ $current_time = date("h:i:a");
  			echo ( json_encode(remove_past_times($arr_times_av, $ee_dat) ) );
  			exit();
  		}
-
-
  	}else{
  		echo $result;
  		exit();
