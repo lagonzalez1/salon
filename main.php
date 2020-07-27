@@ -435,7 +435,7 @@ if(isset($_GET['lost_spot'])){
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="title">Check Or Remove Appointment</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="clearField();">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -464,7 +464,7 @@ if(isset($_GET['lost_spot'])){
 			</div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="clearField();">Close</button>
         <input type="submit" value= "View/Remove" name="remove_client" class = "btn btn-warning" id="submitButton">
       </div>
     </div>
@@ -473,6 +473,12 @@ if(isset($_GET['lost_spot'])){
 
 
 <script type="text/javascript">
+
+
+function clearField() {
+	$('#show_data').collapse('toggle');
+	$('check_app_cancell').val('');
+}
 
 
 
@@ -500,8 +506,9 @@ function remove_based_email(email){
 	type:'POST',
 	url:'handle_clients.php',
 	timeout: 5000,
-	data:{'email':email },
+	data:{'email': email},
 	success: function(rdata) {
+		console.log(rdata);
 		if(rdata == "YES"){
 			$('#show_data').collapse('toggle');
 			$('#check_existing').modal('toggle');
@@ -524,7 +531,6 @@ function remove_based_email(email){
 }
 
 function make_request(user_email){
-
 	var xhr = $.ajax({
 	type:'POST',
 	url:'handle_clients.php',
@@ -532,28 +538,29 @@ function make_request(user_email){
 	dataType: 'json',
 	data:{'user_email':user_email },
 	success: function(rdata) {
-		if(rdata.responseText == 'SQL: Error'){
+		console.log(rdata["responseText"]);
+		if(rdata["responseText"] == "SQL:Error"){
 			$('#check_existing').modal('toggle');
 			show_modal("Cannot Be found", "Remember this field is case sensitive.");
-
-		}else if(rdata.responseText == 'Error fatal'){
+			xhr.abort();
+		}else if(rdata["responseText"] == "Error fatal"){
 			console.log('Fatal');
 			$('#check_existing').modal('toggle');
 			show_modal("Cannot Be found", "Remember this field is case sensitive.");
-		}else if(rdata.responseText == 'SQL: Rows'){
+			xhr.abort();
+		}else if(rdata["responseText"] == "SQL:Rows"){
 			console.log('Rows');
 			$('#check_existing').modal('toggle');
-			show_modal("Cannot Be found", "Remember this field is case sensitive.");
-			
+			show_modal("Cannot Be found", "Remember this field is case sensitive.");	
+			xhr.abort();
 		}else {
 			load_data(rdata);
 		}
 	}, 
-	error: function(err, code) {
+	error: function(err, code, dd) {
 		console.log(err);
 		console.log(code);
-		$('#time_out').modal('toggle');
-		
+		console.log(dd);
 		
 	}
 });	
@@ -572,9 +579,6 @@ function load_data(rdata){
 
 
 }
-
-
-
 
 
 
@@ -769,9 +773,10 @@ function remove_based_time(lastVal, currDate){
     }
 
 function show_modal(title,body){
-  document.getElementById('title_config').innerHTML = title;
-  document.getElementById('body_config').innerHTML = body;
-  $("#configure_modal").modal("show");
+
+  document.getElementById('title_config_err').innerHTML = title;
+  document.getElementById('body_config_err').innerHTML = body;
+  $("#configure_modal").modal("toggle");
 }
     	
 
@@ -803,12 +808,12 @@ function show_modal(title,body){
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="title_config">Refresh Error</h5>
+        <h5 class="modal-title" id="title_config_err">Refresh Error</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body" id= "body_config">
+      <div class="modal-body" id= "body_config_err">
         Looks like we have a timeout error, please check if you are connected to the internet. Or try to refresh the entire page.
       </div>
       <div class="modal-footer">

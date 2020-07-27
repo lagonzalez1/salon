@@ -10,7 +10,6 @@ $arr_times_av = array(
     '03:30:pm','04:00:pm', '04:30:pm','05:00:pm', 
 	'05:30:pm', '06:00:pm');
 
-
 $current_time = date("h:i:a");
 
  if(isset($_POST['date']) || isset($_POST['empl']) ){

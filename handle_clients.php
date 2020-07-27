@@ -13,20 +13,21 @@ if(isset($_POST['user_email'])){
 			echo (json_encode($arr));
 			exit();
 		}else{
-			echo 'SQL: Rows';
+			$a = array('responseText' => 'SQL:Rows');
+			echo json_encode($a);
 			exit();
 		}
 	}else{
-		echo 'SQL: Error';
+		$a = array('responseText' => 'SQL:Error');
+		echo json_encode($a);
 		exit();
 	}
 
 }
 
-
 if(isset($_POST['email'])) {
 	$em = $_POST['email'];
-	$find = "DELETE FROM `client_upgrade` WHERE Email = '$emm'; ";
+	$find = "DELETE FROM `client_upgrade` WHERE Email = '$em'; ";
 	if ($result = mysqli_query($connection, $find) ) {
 		echo "YES";
 		exit();
