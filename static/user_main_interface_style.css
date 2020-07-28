@@ -11,6 +11,10 @@ html {
 	background: #ECECEC! important;
 }
 
+h4 {
+	font-family: 'Nunito', sans-serif ! important;
+
+  }
 
 .button-holder {
   margin: 0 auto;

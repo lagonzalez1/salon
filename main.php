@@ -38,6 +38,14 @@ if(isset($_GET['lost_spot'])){
 
 }
 
+if(isset($_GET['duplicate'])) {
+	echo '<script type="text/javascript">
+		$(document).ready(function() {
+			$("#duplicate_error").modal("show");
+		});
+    </script>';
+}
+
 
 
 
@@ -82,6 +90,27 @@ if(isset($_GET['lost_spot'])){
       <div class="modal-body" id = "body_err">
        Looks like someone beat you for your appointment! Try another time, we are very popular!
        Thanks!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="refreshPage();">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="duplicate_error" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Error: Duplicate Email!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="refreshPage();">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id = "body_err">
+	   Hi! based on the email provided we have been able to find you on our database! This means you already have an appoinment with us. 
+	   If you wish to cancell please go to the bottom of this page.
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="refreshPage();">Close</button>
@@ -713,12 +742,15 @@ function remove_based_time(lastVal, currDate){
         				// Check Close time to make sure no values can be inserted before.
         				// Resolves glitch where php cannot handle
         				// php removes app and before app, but not closing hours.
-        				var checkLast = rdata.pop();
+						var checkLast = (rdata.length - 1);
+						console.log(rdata[0]);
         				if(remove_based_time(checkLast,date)){
         					add("No Times Available");
         					$('#check_av_times').collapse('toggle');
         				}else{
         					for (i = 0 ; i < rdata.length; i++){
+							console.log(rdata[i]);
+							
         					add(rdata[i]);
         				}
         					$('#check_av_times').collapse('toggle');

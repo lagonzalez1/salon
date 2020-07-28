@@ -511,8 +511,12 @@ function show_modal(title,body){
 </div>
 
 
-<hr class="hr">
 
+<hr class="hr">
+<div class="container-fluid">
+  <h4 class="small_title">Scheduled Appoinments</h4>
+</div>
+<hr class="hr">
 <div class = main_table id = "s_0">
 	<table class="table table-hover table-bordered table">
 	  <thead class="thead-light">
@@ -532,6 +536,10 @@ function show_modal(title,body){
 </table>
 </div>
 
+<hr class="hr">
+<div class="container-fluid">
+  <h4 class="small_title">Walkin General Line</h4>
+</div>
 <hr class="hr">
 
 

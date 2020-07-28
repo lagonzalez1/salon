@@ -40,6 +40,7 @@ if( isset($_POST['clicked']) ){
 	}else if(!$sql_result){
 		echo mysqli_error($connection);
 		echo "Error: Insert";
+		header("Location: main.php?duplicate=true");
 		echo $sql_result;
 		exit();
 	}else{
