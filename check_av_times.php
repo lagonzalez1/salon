@@ -17,16 +17,10 @@ $arr_times_av = array('09:00:am','09:30:am', '10:00:am','10:30:am','11:00:am','1
 $current_time = date("h:i:a");
 
 
+// Create objects of each employee
+// Each object has a time frame
+// Also days off
 
-switch($date_number){
-    case 6:
-
-        
-    break;
-    
-    default:
-    break;
-}
 
  if(isset($_POST['date']) || isset($_POST['empl']) ){
  	$return_arr = (array)null;
