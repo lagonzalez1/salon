@@ -4,7 +4,7 @@ date_default_timezone_set("America/Los_Angeles");
 
 class employee {
     var $empl;
-    var $app_date;
+    var $appointment_date;
     public $conflict_hours = array(); // Array of conflict hours, current appoinmtnets 
     public $current_time;
     public $arr_times_av = array('07:00 am','07:30 am','08:00 am','08:30 am','09:00 am','09:30 am', '10:00 am','10:30 am','11:00 am','11:30 am','12:00 pm','12:30 pm','01:00 pm','01:30 pm','02:00 pm','02:30 pm','03:00 pm',
@@ -13,23 +13,22 @@ class employee {
     public $day_off = array(); // 0 sunday -> 6 saturday
     public $date_num;
 
+
     /*
     1. OBJ -> EmployeeName, AppoinmentDate, Conflict Hours(DB Return), CurrentTime, EmployeeTimeFrame, EmployeeDaysOff, DateBasedNumberic
     2. 
-
-
-
     */
-
-
     function __construct($name,$date_app, $conflict_hours, $current_time, $empl_timeframe, $days_off, $day_num){
         $this->empl = $name;
-        $this->app_date = $date_app;
+        $this->appointment_date = $date_app;
         $this->time_frame = $empl_timeframe;
         $this->conflict_hours = $conflict_hours;
         $this->current_time = $current_time;
         $this->day_off = $days_off;
         $this->date_num = $day_num;
+         
+        // If this is false, Appointment is for another date
+        // If true, Appointment is for today and we need to remove times passed;
 
      }
 
@@ -42,39 +41,66 @@ class employee {
      function getHourSched() {return $this->hour_sched;}
 
      function correctArrayTimeFrame() {
-         if ($key = array_search($this->date_num, $this->day_off)){
-             // Current Date is day off
-             $var = array('Day off for employee, try another date');
-             return $var;
-         }
+        if ($key = array_search($this->date_num, $this->day_off)){
+            // Current Date is day off
+            $var = array('Day off for employee, try another date');
+            return $var;
+        }
 
-         // Check if day off
-         
-
-         for($i =0; $i < count($this->arr_times_av);$i++){
-             if(strtotime($this->arr_times_av[$i]) < strtotime($this->day_off[0]) ){
-                 // Times less than start time
-                 unset($this->arr_times_av[$i]);
-
-             }
-             if(strtotime($this->arr_times_av[$i]) < strtotime($this->day_off[0]) ){
-                 // Greater than
-                 unset($this->arr_times_av[$i]);
-             }
+       $copyArr = $this->arr_times_av;
+       $bad_times = (array)null;
+       
+        for($i =0; $i < count($copyArr);$i++){
+            if(strtotime($copyArr[$i]) < strtotime($this->time_frame[0]) ){
+                // Times less than start time
+               
+               array_push($bad_times,$copyArr[$i]);
+               continue;
 
             }
-         return array_values($this->arr_times_av);
-     }
+            if(strtotime($copyArr[$i]) > strtotime($this->time_frame[1]) ){
+                // Greater than
+                
+                array_push($bad_times,$copyArr[$i]);
+                continue;
+            }
+
+           }
+           
+        
+           for ($i=0; $i < count($bad_times) ;$i++){
+               $key = array_search($bad_times[$i],$copyArr);
+               if($key !== false){
+                   unset($copyArr[$key]);
+               }
+           }
+           
+           
+        return array_values($copyArr);
+    }
 
 
      function correctBasedOnCurrentDate() {
-        $corrected = correctArrayTimeFrame();
-        if($this->)
 
+        if($this->returnDate() === $this->appointment_date){
+            // We have to remove based on time;
+            $corrected = $this->correctArrayTimeFrame();
+            for($i= 0; $i < count($corrected);$i++){
+                if(strtotime($corrected[$i]) < strtotime($this->current_time) ){
+                    $key = array_search($corrected[$i], $corrected);
+                    if( $key !== false){
+                        unset($corrected[$key]);
+                        continue;
+                    }
+                }
+            }
 
-
-
-
+            return array_values($corrected);
+        }else {
+            // Appointment for another date
+            return array_values($corrected);
+        }
+        
      }
 
      function returnCorrectArray() {
