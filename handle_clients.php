@@ -75,30 +75,39 @@ if(isset($_POST['check_in'])){
 }
 
 
-// *To keep this we must be able to identify previous dates*
-// Link :https://stackoverflow.com/questions/19031235/php-check-if-date-is-past-to-a-certain-date-given-in-a-certain-format
-// Checks if Database contains Dates other than the current date.
-// DB clean up.
+
+
+
+// Main purpose to remove Dates in the pass
 if(isset($_POST['db_check'])){
 	date_default_timezone_set("America/Los_Angeles");
-  	$current_date = date("o-m-d");
-  	$error_val = (array)null;
-  	$stmt = "SELECT * FROM `client_upgrade` ORDER BY `Time` ASC; ";
+	$current_date = date("m/d/o");
+  	$to_remove = (array)null;
+  	$stmt = "SELECT * FROM `client_upgrade` ORDER BY `App_Date` ASC; ";
 	if ($result = mysqli_query($connection , $stmt) ){
 		if(mysqli_num_rows($result) > 0){
 			while($row = mysqli_fetch_assoc($result)){
 				$id = $row['id'];
-				$date = $row['Date'];
+				$date = $row['App_Date'];
 				if( empty($id) || empty($date) ){
 					echo 'id or date Null';
 					exit();
 				}
-				//
+				// Current date ignore
 				if($current_date === $date){
 					continue;
 				}else{
-					array_push($error_val, $id);
-					continue;
+					// If past date then add id to array
+					if( strtotime($date) < strtotime($current_date) ){
+						array_push($to_remove,$id);
+					}else if(strtotime($date) === strtotime($current_date)){
+						continue;
+						// This is equal to date
+					}else {
+						// Future date
+						continue;
+					}
+					// Work
 				}
 			}
 		}else{
@@ -107,28 +116,28 @@ if(isset($_POST['db_check'])){
 		}
 
 	}else{
-		echo 'Error: DB ';
+		echo 'Error: DB';
 		exit(0);
 	}
 
 	// Check size of array to delete rows.
-	if(sizeof($error_val) > 0){
+	if(sizeof($to_remove) > 0){
 		$delStm = "DELETE FROM `client_upgrade` WHERE id IN (";
-		for ($i = 0; $i < sizeof($error_val); $i++){
-			$delStm .= $error_val[$i];
-			if($i == sizeof($error_val) - 1){
+		for ($i = 0; $i < sizeof($to_remove); $i++){
+			$delStm .= $to_remove[$i];
+			if($i == sizeof($to_remove) - 1){
 				$delStm .= ");";
 			}else{
 				$delStm .= ",";
 			}
 		}
-	if($del_result = mysqli_query($connection,$delStm)){
-		echo 'Success';
-		exit();
-	}else{
-		echo 'Error: query';
-		exit();
-	}
+		if($del_result = mysqli_query($connection,$delStm)){
+			echo 'Success';
+			exit();
+		}else{
+			echo 'Error: query';
+			exit();
+		}
 	}else{
 		echo 'Success: No Changes';
 		exit(0);

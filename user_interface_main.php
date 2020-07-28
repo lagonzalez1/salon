@@ -5,24 +5,7 @@
 // 3. *Important to be able to scale up or down* EX: Depedning on how many employees
 // 4. empl1  empl2  empl3   empl4
 //    person person preson person
-// 5. Check glitch in the morning, For some reason it didnt want to show times early in the morning for a current date
-
-
-
-/*
-// How to handle timeout request
-// Please Add THIS!!!!!
-error: function(xmlhttprequest, textstatus, message) {
-        if(textstatus==="timeout") {
-            alert("got timeout");
-        } else {
-            alert(textstatus);
-        }
-    }
-
-
-
-*/
+// 5. Check glitch in the morning, For some reason it didnt want to show times early in the morning for a current dates
 
 session_start();
 if(!isset($_SESSION['user-login-success'])){
@@ -185,7 +168,6 @@ function reload_table() {
         data:{'initial_launch':'initial_launch'},
           success: function(responce){
               $('#s_1').find('tbody').html(responce);
-              console.log(responce);
               console.log("second table refresh");
         },
           error: function(err, id){
@@ -268,8 +250,9 @@ $(function(){
           		$ele.closest('tr').css('background','#ff2b2b');
           		$ele.closest('tr').find('td').fadeOut(1000,function(){
               $ele.remove();
-              reload_table();
+              
             });
+            reload_table();
           	}else if (responce == "Update Error"){
           		console.log("Error, PHP not able to add to remove or recived something other than YES");
           	}
@@ -351,8 +334,6 @@ $(function(){
 // Check if DB is correct by date.
 // Modal shows if clients have been removed.
 // Imporovement:: show the list of removed users incase user want to keep them or add them.
-
-/*
 $(document).ready(function(){
   var db_check = "db_check";
   var xhr = $.ajax({
@@ -360,17 +341,33 @@ $(document).ready(function(){
     timeout: 5000,
     url:"handle_clients.php",
     data: {'db_check':db_check},
-    success:function (responce){
-      if(responce == "Success"){
-        console.log(responce);
-        console.log("DB CHECK: cleaned");
-        show_modal("Database cleanup", "We removed clients who remained in the list overnight.");
-        reload_table();
-      }else if (responce == "Success: No Changes"){
-        console.log("No Changes");
-        reload_table();
-      }else if (responce == "Error: query"){
-        show_modal("Database Cleanup", "Query Error Fatal");
+    success:function (response){
+
+      switch(response){
+        case 'Success':
+          console.log(response);
+          console.log("DB CHECK: cleaned");
+          show_modal("Database cleanup", "We removed clients who remained in the list overnight.");
+          reload_table();
+          break;
+        case 'Success: No Changes':
+          console.log("No Changes");
+          reload_table();
+          break;
+        case 'Error: query':
+          show_modal("Database Cleanup", "Query Error Fatal");
+          reload_table();
+          break;
+        case 'Error: Rows less than 0':
+          console.log("Error: Rows less than 0");
+          break;
+        case 'Error: DB ':
+          console.log('Error: DB');
+          break;
+          default:
+          console.log('Error: DB Defualt');
+          break;
+
       }
     },
     error:function(error){
@@ -382,7 +379,7 @@ $(document).ready(function(){
   });
 
 });
-*/
+
 
 
 function show_modal(title,body){
