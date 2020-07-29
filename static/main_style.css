@@ -10,6 +10,12 @@ body, html {
   font-family: 'Nunito', sans-serif;
 }
 
+button {
+  color: white !important;
+  background-color: teal !important;
+
+}
+
 .control-label {
   font-family: 'Nunito', sans-serif;
 }
@@ -129,9 +135,6 @@ body, html {
   background-color: yellow ! important;
 }
 
-
-
-
 .btn-group-vertical {
   background-color: #f74ed9 ! important;
   color: white;
@@ -147,19 +150,11 @@ body, html {
   
 }
 
-.card-body button {
-  background-color: #f74ed9;
-  color: white ! important;
-  background: rgba(255, 255, 255, 0.1) ! important;
-  border-color: red;
-}
-
-
 .btn-primary {
   background-color: #f74ed9 ! important;
   color: white ! important;
   background: rgba(255, 255, 255, 0.1) ! important;
-  border-color: red;
+  border-color: #f74ed9;
 
 }
 

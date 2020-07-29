@@ -47,8 +47,6 @@ if(isset($_GET['duplicate'])) {
 }
 
 
-
-
 ?>
 
 
@@ -168,8 +166,6 @@ if(isset($_GET['duplicate'])) {
 
 
 <!--- Containers Cards -->
-
-
 <div class="container-fluid" id="show_work">
 <div class="row padding">
 	<div class="col-md-3">
