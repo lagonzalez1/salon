@@ -238,6 +238,10 @@ input {
 
 }
 
+.navbar-toggler i {
+  color: gray;
+}
+
 .navbar > .navbar-inner {
     background:transparent ! important;
 }

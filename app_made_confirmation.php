@@ -32,7 +32,6 @@ if(isset($_GET['team_k'])){
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script src="https://kit.fontawesome.com/fd1affcb0c.js" crossorigin="anonymous"></script>
   <link href= "/salon/static/confirmation_style.css" rel="stylesheet" type="text/css">
-
 </head>
 
 <body>
@@ -190,7 +189,7 @@ if(isset($_GET['team_k'])){
 
   function help() {
   var title = "Help";
-  var body = "For any questions or concerns about the website please email: l.gonzalez9778@student.sbccd.edu. ";
+  var body = "For any questions or concerns about the website please email: lag.webservices@gmail.com ";
   document.getElementById('img_about').src = "/updated_php_project/static/img/help.png";
   document.getElementById('title_config').innerHTML = title;
     document.getElementById('body_message').innerHTML = body;
@@ -212,10 +211,12 @@ if(isset($_GET['team_k'])){
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body" id= "body_config"> 
-        <img src="/updated_php_project/static/img/barbershop.jpg" id="img_about" style="height: 300px; margin-right: auto; margin-left: auto; display:block;">
+      <div class="modal-body" id= "body_config">
+      <div class="container-fluid"> 
+        <img src="/updated_php_project/static/img/barbershop.jpg" id="img_about" style="height: 300px; margin-right: auto; margin-left: auto; display:block;" class="img-responsive">
      
         <p class="lead text-center" id="body_message" style="padding-top: 7px;">Looks like we have a timeout error, please check if you are connected to the internet. Or try to refresh the entire page.</p>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>

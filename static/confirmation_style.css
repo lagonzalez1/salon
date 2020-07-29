@@ -7,6 +7,14 @@
 .jumbotron {
   background-color: white !important;
 }
+#img_about img {
+  overflow-x: auto;
+  overflow-y: auto;
+  width: 600px;
+}
+.modal-dialog {
+  overflow: auto;
+}
 
 .navbar {
   padding: .8rem;

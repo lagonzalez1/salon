@@ -17,7 +17,7 @@ class employee {
     1. OBJ -> EmployeeName, AppoinmentDate, CurrentTime, EmployeeDaysOff, DateBasedNumberic
     2. 
     */
-    function __construct($name,$date_app, $current_time, $days_off, $day_num){
+    function __construct($name, $date_app, $current_time, $days_off, $day_num){
         $this->empl = $name;
         $this->appointment_date = $date_app;
         $this->current_time = $current_time;
