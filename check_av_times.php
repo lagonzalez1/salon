@@ -2,118 +2,125 @@
 
 
 include('server_connect.php');
+include('employee_model.php');
 date_default_timezone_set("America/Los_Angeles");
+$current_time = date("h:i a");
 
-// Depending on store hours we need to be able to configure 
-// Example Monday-Friday 8am-7pm
-// Example saturday 10am-5pm
+//1. OBJ -> EmployeeName, AppoinmentDate, CurrentTime, EmployeeDaysOff, DateBasedNumberic
+/*
+<option value="None">Perferred stylist</option>
+<option value="Stacy">Stacy Carrol</option>
+<option value="Sam">Sam Jr</option>
+<option value="Mary">Mary Jane</option>
+<option value="Emily">Emily Valdovinos</option>
+<option value="Karen">Karen Mayne</option>
 
-// 6 (sat) -> Different Schedule 08:00:am end 04:00:pm
-// every other different
+*/
 $date_number = date('w');
-$arr_times_av = array('09:00:am','09:30:am', '10:00:am','10:30:am','11:00:am','11:30:am','12:00:pm','12:30:pm','01:00:pm','01:30:pm','02:00:pm','02:30:pm','03:00:pm',
-    '03:30:pm','04:00:pm','04:30:pm','05:00:pm','05:30:pm', '06:00:pm');
 
-$current_time = date("h:i:a");
-
-
-// Create objects of each employee
-// Each object has a time frame
-// Also days off
 
 
  if(isset($_POST['date']) || isset($_POST['empl']) ){
- 	$return_arr = (array)null;
+    
+    $conflict_array = (array)null;
+    $emptyArr = array('No Times Available');
  	$ee_empl = $_POST['empl'];
  	$ee_dat = $_POST['date'];
- 	$current_date = date("m/d/o");
+    $current_date = date("m/d/o");
+    global $current_time;
+    switch($ee_empl){
+        case 'Stacy':
+            $stacy = ['09:00 am', '07:00 pm'];
+            $day_off = [0,7];
+            $obj = new employee($ee_empl,$ee_dat,$current_time,$day_off,$date_number );
+            $obj->setTimeFrame($stacy);
+        break;
+        case 'Sam':
+            $sam = ['07:30 am', '04:30 pm'];
+            $day_off = [0,7];
+            $obj = new employee($ee_empl,$ee_dat,$current_time,$day_off,$date_number );
+            $obj->setTimeFrame($sam);
+        break;
+        case 'Mary':
+            $mary = ['08:00 am', '06:00 pm'];
+            $day_off = [0,7];
+            $obj = new employee($ee_empl,$ee_dat,$current_time,$day_off,$date_number );
+            $obj->setTimeFrame($mary);
+        break;
+        case 'Emily':
+            $emily = ['08:00 am', '06:00 pm'];
+            $day_off = [0,7];
+            $obj = new employee($ee_empl,$ee_dat,$current_time,$day_off,$date_number );
+            $obj->setTimeFrame($emily);
+        break;
+        case 'Karen':
+            $karen = ['08:00 am', '06:00 pm'];
+            $day_off = [0,2];
+            $obj = new employee($ee_empl,$ee_dat,$current_time,$day_off,$date_number );
+            $obj->setTimeFrame($karen);
+        break;
+    }
  	$stmt = "SELECT * FROM `client_upgrade` WHERE Per_stylist='$ee_empl' AND App_Date='$ee_dat';";
-
  	if($result = mysqli_query($connection, $stmt)) {
  		if(mysqli_num_rows($result) > 0){
  			while($row = mysqli_fetch_assoc($result)){
  				$conflict_t = $row['App_Time'];
-                // Remove from array
-                /*
-                You can use strtotime() to be able to compare times
-
-                */
- 				if ($key = array_search($conflict_t, $arr_times_av) ){
- 					unset($arr_times_av[$key]);
- 					continue;
-                }
-                 continue;
+                array_push($conflict_array,$conflict_t);
+                continue;
  			}
  		}else{
  			// No Affected rows
- 			// Everything is open for this Date and Person.
- 			echo ( json_encode(remove_past_times($arr_times_av, $ee_dat) ) );
- 			exit();
- 		}
+             // Everything is open for this Date and Person.
+            switch($obj->appIsToday()){
+                case 0:
+                    // Passed last hour on same day
+                    echo (json_encode($obj->correctBasedOnCurrentDate() ));
+                    exit();
+                break;
+                case 1:
+                    // Today Appointment toCorrect
+                    echo(json_encode($emptyArr));
+                    exit();
+                break;
+                case 2:
+                    // Future date
+                    echo (json_encode($obj->correctArrayTimeFrame() ));
+                    exit();
+                break;
+            }
+         }
+         // Add to examine Array
+         $obj->setConflictArray($conflict_array);
+         switch($obj->appIsToday()){
+            case 0:
+                // Passed last hour on same day
+                echo (json_encode($obj->correctBasedOnCurrentDate() ));
+                exit();
+            break;
+            case 1:
+                // Today Appointment toCorrect
+                echo(json_encode(['Appointments Have Passed']));
+                exit();
+            break;
+            case 2:
+                // Future date
+                echo (json_encode($obj->correctArrayTimeFrame() ));
+                exit();
+            break;
+        }
  	}else{
- 		echo json_encode($result);
+         // Query Error
+ 		echo json_encode(['']);
  		exit();
- 	}
-
- 	echo ( json_encode(remove_past_times($arr_times_av, $ee_dat) ));
+     }
+     
+ 	echo ( json_encode(['q']));
  	exit();
 
  }
 
 
- function remove_past_times($array, $app_date) {
-    $var_set_array = array_values($array);
- 	$current_date = date("m/d/o");
-    global $current_time;
-
-    // Make sure remove past time only affectst current day
-    if($current_date != $app_date ){
-        return $var_set_array;
-    }
-
-    $arr_time = explode(":",$current_time);
-    $hour = $arr_time[0];
-    $minute_tt = $arr_time[1];
-    $am_pm = $arr_time[2];
-    $keys = (array)null;
-
-    for ($i = 0 ; $i < count($var_set_array); $i++){
-        // Check current hour with hours in array
-        if($hour === $app_hour = explode(":", $var_set_array[$i])[0] ){
-            // Check current am-pm to array values, 
-            // This will call twice
-            if($am_pm === $app_am_pm = explode(":", $var_set_array[$i])[2] ){
-            
-                if($minute_tt < 30){
-                   if($arr_min = explode(":", $var_set_array[$i])[1]  == 00){
-                        array_push($keys, $i);
-                   }else{
-                       continue;
-                   }       
-                }else if($minute_tt > 30){
-                   
-                   if($arr_min = explode(":", $var_set_array[$i])[1]  == 30){
-                       array_push($keys, $i);
-                   }
-                   
-               }
-            }
-        }
-    }
-
-    if(count($keys) == 0 ){
-       return array_values($var_set_array);
-    }
-
-    $var_remove = $keys[0];
-
-    for ($i=0; $i < $var_remove; $i++){
-        unset($var_set_array[$i]);
-    }
-
-    return array_values($var_set_array);
- }
-
+ 
 
 
 

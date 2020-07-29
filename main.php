@@ -435,10 +435,6 @@ if(isset($_GET['duplicate'])) {
 
 
 
-
-
-
-
 <div class="modal" tabindex="-1" role="dialog" id="instructions">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -742,6 +738,7 @@ function remove_based_time(lastVal, currDate){
         				// Check Close time to make sure no values can be inserted before.
         				// Resolves glitch where php cannot handle
         				// php removes app and before app, but not closing hours.
+						/*
 						var checkLast = (rdata.length - 1);
 						console.log(rdata[0]);
         				if(remove_based_time(checkLast,date)){
@@ -756,6 +753,15 @@ function remove_based_time(lastVal, currDate){
         					$('#check_av_times').collapse('toggle');
 
         				}
+						*/
+						for (i = 0 ; i < rdata.length; i++){
+							console.log(rdata[i]);
+							
+        					add(rdata[i]);
+        				}
+						console.log(rdata);
+						$('#check_av_times').collapse('toggle');
+						
         			    
         			}, 
         			error: function(err, code) {
