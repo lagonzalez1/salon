@@ -1,6 +1,6 @@
 <?php
 
-
+date_default_timezone_set("America/Los_Angeles");
 
 class employee {
     var $empl;
@@ -32,7 +32,7 @@ class employee {
      public function setConflictArray($c_array) {$this->conflict_hours = $c_array;}
      public function setTimeFrame($timeFrame){$this->time_frame = $timeFrame;}
 
-     function returnDate(){return date_default_timezone_set("America/Los_Angeles"); date("m/d/o");}
+     function returnDate(){return date("m/d/o");}
      function returnTime(){return date("h:i:a");}
      
      function getEmpl() {return $this->empl;}
@@ -85,10 +85,13 @@ class employee {
         if( ($this->returnDate() == $this->appointment_date) && $this->checkIfPassed() ){
             return 1; // CURRENT TIME > ALL TIMES Empty Array
         }
-        if($this->returnDate() === $this->appointment_date){
+        if($this->returnDate() == $this->appointment_date){
             return 0;// Still within
         }
-        return 2;        
+        if($this->returnDate() != $this->appointment_date){
+            return 2; 
+        }
+               
     }
 
      function correctBasedOnCurrentDate() {
