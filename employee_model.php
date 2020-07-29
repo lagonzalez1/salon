@@ -32,7 +32,7 @@ class employee {
 
      }
 
-
+     function setConflictArray($c_array) {$c_array = $conflict_hours; return $c_array;}
      function returnDate(){return date("m/d/o");}
      function returnTime(){return date("h:i:a");}
      
@@ -66,8 +66,6 @@ class employee {
             }
 
            }
-           
-        
            for ($i=0; $i < count($bad_times) ;$i++){
                $key = array_search($bad_times[$i],$copyArr);
                if($key !== false){
@@ -75,37 +73,56 @@ class employee {
                }
            }
            
-           
-        return array_values($copyArr);
+        
+        return returnCorrectFinalArray($copyArr);
     }
 
+    function appIsToday(){
+        if($this->returnDate() === $this->appointment_date &&  strtotime($this->current_time) > strtotime( end($this->correctBasedOnCurrentDate()) )  ){
+            return 1;
+        }
+        if($this->returnDate() === $this->appointment_date){
+            return 0;
+        }
+        return 2;
+    }
 
      function correctBasedOnCurrentDate() {
-
-        if($this->returnDate() === $this->appointment_date){
             // We have to remove based on time;
-            $corrected = $this->correctArrayTimeFrame();
-            for($i= 0; $i < count($corrected);$i++){
-                if(strtotime($corrected[$i]) < strtotime($this->current_time) ){
-                    $key = array_search($corrected[$i], $corrected);
-                    if( $key !== false){
-                        unset($corrected[$key]);
-                        continue;
-                    }
-                }
+        $counter = 0;
+        $corrected = $this->correctArrayTimeFrame();
+        for($i= 0; $i < count($corrected);$i++){
+                //echo $corrected[$i];    
+            if(strtotime($corrected[$i]) < strtotime($this->current_time)){
+                //echo $corrected[$i];
+                $counter ++;
+                continue;
             }
-
-            return array_values($corrected);
-        }else {
-            // Appointment for another date
-            return array_values($corrected);
+                
         }
-        
+        $vv = array_slice($corrected, $counter);
+        return array_values($vv);  
      }
 
-     function returnCorrectArray() {
-         // Return array of dates available
-         // Examine the array pushed into this
+
+     // return conflict hours, where db exist
+     function returnCorrectFinalArray($array_corrected) {
+         // Check array of conflicted hours
+         // If greater than 0 we remov
+        array_values($array_corrected);
+         if(count($this->conflict_hours) > 0){
+            for($i =0 ; $i < count($this->conflict_hours);$i++){
+                $key = array_search($this->conflict_hours[$i], $array_corrected);
+                if($key !== false){
+                    unset($array_corrected[$key]);
+                    continue;
+                }
+            }
+            return array_values($array_corrected);
+         }else {
+             return array_value($array_corrected);
+         }
+         
      }
 
 
