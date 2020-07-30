@@ -168,43 +168,43 @@ if(isset($_GET['duplicate'])) {
 <!--- Containers Cards -->
 <div class="container-fluid" id="show_work">
 <div class="row padding">
-	<div class="col-md-3">
+	<div class="col-md-3 py-2">
 		<div class="card">
 			<img class="card-img-top" src="static/img/work-2.jpg">
 			<div class="card-body">
 				<h4 class="card-title">Haircuts</h4>
-				<button href="#" class="btn btn-primary" id="work1">Show Work</button>
+				<button href="#" class="btn btn-secondary" id="work1">Show Work</button>
 			</div>
 		</div>
 	</div>
 
-<div class="col-md-3">
+<div class="col-md-3 py-2">
 		<div class="card">
 			<img class="card-img-top" src= "static/img/work-3.jpg">
 			<div class="card-body">
 				<h4 class="card-title">Woman Styling</h4>
-				<button href="#" class="btn btn-primary" id="work2">Show Work</button>
+				<button href="#" class="btn btn-secondary" id="work2">Show Work</button>
 			</div>
 		</div>
 	</div>
 
-	<div class="col-md-3">
+	<div class="col-md-3 py-2">
 		<div class="card">
 			<img class="card-img-top" src= "static/img/work-1.jpg">
 			<div class="card-body">
 				<h4 class="card-title">Women Color</h4>
-				<button href="#" class="btn btn-primary" id="work3">Show Work</button>
+				<button href="#" class="btn btn-secondary" id="work3">Show Work</button>
 			</div>
 		</div>
 	</div>
 
 
-	<div class="col-md-3">
+	<div class="col-md-3 py-2">
 		<div class="card">
 			<img class="card-img-top" src= "static/img/work-3.jpg">
 			<div class="card-body">
 				<h4 class="card-title">Waxing</h4>
-				<button href="#" class="btn btn-primary" id="work4">Show Work</button>
+				<button href="#" class="btn btn-secondary" id="work4">Show Work</button>
 			</div>
 		</div>
 	</div>
@@ -221,11 +221,10 @@ if(isset($_GET['duplicate'])) {
 
 
  <div class="container-fluid padding">
- 	<div class="row padding">
- 		<div class="col-md-4 ftco-animate fadeInUp ftco-animated">
-		<div class="card" id="card1">
+ 	<div class="row padding d-flex">
+ 		<div class="col-sm-4 ftco-animate fadeInUp ftco-animated py-2">
+		<div class="card h-100" id="card1">
 			<div class="card-body">
-			
 				<div class="text-center">
 					<h3 class="subthindark">Basic</h3>
 	        		<p><span class="price">$24.50</span> <span class="per">/ one trip</span></p>
@@ -234,17 +233,14 @@ if(isset($_GET['duplicate'])) {
         			<li class="list-group-item text-center">Nail Cutting &amp; Styling</li>
 					<li class="list-group-item text-center">Hair Trimming</li>
 					<li class="list-group-item text-center">Spa Therapy</li>
-					<li class="list-group-item text-center">Body Massage</li>
-					<li class="list-group-item text-center">Manicure</li>
+					
         		</ul>
 			</div>
 		</div>
 	</div>
-	<div class="col-md-4 ftco-animate fadeInUp ftco-animated">
-		<div class="card" id="card2">
-			
+	<div class="col-sm-4 ftco-animate fadeInUp ftco-animated py-2">
+		<div class="card h-100" id="card2">
 			<div class="card-body">
-				
 				<div class="text-center">
 					<h3 class="subthindark">Standard</h3>
 	        		<p><span class="price">$44.50</span> <span class="per">/ one trip</span></p>
@@ -254,16 +250,13 @@ if(isset($_GET['duplicate'])) {
 					<li class="list-group-item text-center">Hair Trimming</li>
 					<li class="list-group-item text-center">Spa Therapy</li>
 					<li class="list-group-item text-center">Body Massage</li>
-					<li class="list-group-item text-center">Manicure</li>
         		</ul>
 			</div>
 		</div>
 	</div>
-	<div class="col-md-4 ftco-animate fadeInUp ftco-animated">
-		<div class="card" id="card3">
-			
+	<div class="col-sm-4 ftco-animate fadeInUp ftco-animated py-2">
+		<div class="card h-100" id="card3">
 			<div class="card-body">
-			
 				<div class="text-center">
 					<h3 class="subthindark">Premium</h3>
 	        		<p><span class="price">$64.50</span> <span class="per">/ one trip</span></p>
@@ -281,8 +274,6 @@ if(isset($_GET['duplicate'])) {
 
  	</div>	
 </div>
-
-
 <section class="ftco-partner bg-light">
     	<div class="container">
     		<div class="row partner justify-content-center">

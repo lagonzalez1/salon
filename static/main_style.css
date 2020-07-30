@@ -10,10 +10,13 @@ body, html {
   font-family: 'Nunito', sans-serif;
 }
 
-button {
+#time {
+  background-color: hsl(311, 89%, 63%) ;
+}
+
+.btn >.btn-primary button {
   color: white !important;
   background-color: teal !important;
-
 }
 
 .control-label {
@@ -121,7 +124,6 @@ button {
   position: relative;
 }
 
-
 #covid {
   background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url('img/covid_2.jpg');
   padding-top: 20px;
@@ -131,42 +133,72 @@ button {
 }
 
 
-.btn-primary:hover {
-  background-color: yellow ! important;
-}
+/*Secondary Color*/
 
+.btn-secondary {
+  background-color:  #f54dd6c7 !important;
+  color: white !important;
+  border-color: dimgrey !important
+}
+.btn-secondary:hover {
+  background-color: #f286de8f ! important;
+}
+/*End of Secondary Color*/
+
+/*Primary Button*/
+.btn-primary:hover {
+  background-color: #f54dd6c7 ! important;
+}
+.btn-primary {
+  background-color: #f74ed8c4 ! important;
+  color: white ! important;
+  background: #f286de8f !important;
+  border-color: white;
+}
+/* End Primary Button*/
+
+/*Button Group*/
 .btn-group-vertical {
   background-color: #f74ed9 ! important;
   color: white;
 }
-
 .btn-group {
   border-radius: 0;
   
 }
 
+/*EndButton Group*/
+
 #time_title_message {
   border-color: white ! important;
   
 }
-
-.btn-primary {
-  background-color: #f74ed9 ! important;
-  color: white ! important;
-  background: rgba(255, 255, 255, 0.1) ! important;
-  border-color: #f74ed9;
-
-}
-
 .form-control:valid {
   background-color: #f74ed9 ! important;
 }
-
+/*HR */
 .l-hr {
   max-width: 500px;
   background-color: white ! important;
   color: white;
 }
+.w-hr {
+  color: white;
+}
+.bl_hr {
+  width: 50px;
+  max-width: 50px;
+  color: black;
+  background-color: black ! important;
+}
+
+.small_hr {
+  width: 50px;
+  max-width: 50px;
+  color: white;
+  background-color: white ! important;
+}
+/*End of HR*/
 
 input[type=text] {
   background-color: transparent ! important;
@@ -175,9 +207,7 @@ input[type=text] {
   color: white ! important;
 }
 
-.w-hr {
-  color: white;
-}
+
 
 input::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     color: white ! important;
@@ -227,10 +257,9 @@ input {
   transform: translate(-50%, -50%);
   color: white;
 }
-
+/*Navbar*/
 .navbar {
   padding: .8rem;
-
 }
 
 .navbar-toggler i {
@@ -249,6 +278,10 @@ input {
   font-family: 'Nunito', sans-serif;
 }
 
+/*End of navbar*/
+
+
+/*Text options*/
 .mb-4 {
   font-size: 150%;
   font-weight: bold;
@@ -286,8 +319,38 @@ input {
   font-family: 'Nunito', sans-serif;
 
 }
+.headthin {
+  font-size: 21px;
+  color: white;
+  font-weight: lighter;
+  font-family: 'Nunito', sans-serif;
+}
 
+.subthin {
+  font-size: 20px;
+  color: white;
+  font-family: 'Raleway', sans-serif;
+}
+.subthindark {
+  font-size: 23px;
+  color: black;
+  font-weight: bolder;
+  font-family: 'Nunito', sans-serif;
+}
 
+.footer_title {
+  padding-top: 30px;
+  font-size: 18px;
+  color: white;
+  font-weight: lighter;
+  font-family: 'Nunito', sans-serif;
+}
+
+p {
+  font-weight: bold;
+  font-size: 15px;
+  font-family: 'Nunito', sans-serif;
+}
 .apt_title {
   font-family: 'Nunito', sans-serif;
   color: white ! important;
@@ -303,20 +366,33 @@ input {
   font-weight: lighter;
   margin-top: 0px;
 }
+.sub_header {
+  font-size: 15px;
+  font-weight: lighter;
+  font-family: 'Nunito', sans-serif;
 
-#card1 {
-  border-color: #f74ed9;
-  border-width: 0.5px;
 }
 
-#card2 {
-  border-color: #f74ed9;
-  border-width: 0.5px;
+
+.card-title {
+  font-size: 25px;
+  font-family: 'Nunito', sans-serif;
 }
-#card3 {
-  border-color: #f74ed9;
-  border-width: 0.5px;
+
+.address{
+  font-size: 17px;
+  color: white;
+  font-family: 'Nunito', sans-serif;
 }
+.header_title {
+  font-size: 25px;
+  padding-bottom: 20px;
+  color: white;
+  font-weight: bolder;
+  font-family: 'Nunito', sans-serif;
+}
+/*End of text options*/
+
 
 #appointments{
   background-color: #f74ed9;
@@ -330,15 +406,6 @@ input {
   padding-top: 5px;
   padding-bottom: 5px;
 }
-
-.sub_header {
-  font-size: 15px;
-  font-weight: lighter;
-  font-family: 'Nunito', sans-serif;
-
-}
-
-
 
 .appointment-info {
   width: 100%;
@@ -367,11 +434,6 @@ input {
   font-family: 'Nunito', sans-serif;
 }
 
-.card-title {
-  font-size: 25px;
-  font-family: 'Nunito', sans-serif;
-}
-
 select {
   border: none;
   color: white ! important;
@@ -383,8 +445,6 @@ select {
   *width: 350px;
   *background: white;
 }
-
-
 
 .row {
   display: -webkit-box;
@@ -432,13 +492,11 @@ select {
 
 }
 
-
-
 .ftco-partner {
   padding: 2em 0;
   background-color: white;
 }
-
+/*Footer*/
 footer{
   background-color: #252525;
 }
@@ -448,70 +506,10 @@ footer p {
   font-family: 'Nunito', sans-serif;
   color: white;
 }
+/*End of header*/
 
-.address{
-  font-size: 17px;
-  color: white;
-  font-family: 'Nunito', sans-serif;
-}
-
-.header_title {
-  font-size: 25px;
-  padding-bottom: 20px;
-  color: white;
-  font-weight: bolder;
-  font-family: 'Nunito', sans-serif;
-}
-
-.bl_hr {
-  width: 50px;
-  max-width: 50px;
-  color: black;
-  background-color: black ! important;
-}
-
-.small_hr {
-  width: 50px;
-  max-width: 50px;
-  color: white;
-  background-color: white ! important;
-}
-
-.headthin {
-  font-size: 21px;
-  color: white;
-  font-weight: lighter;
-  font-family: 'Nunito', sans-serif;
-}
-
-
-.subthin {
-  font-size: 20px;
-  color: white;
-  font-family: 'Raleway', sans-serif;
-}
-.subthindark {
-  font-size: 22px;
-  color: black;
-  font-weight: lighter;
-  font-family: 'Nunito', sans-serif;
-}
-
-.footer_title {
-  padding-top: 30px;
-  font-size: 18px;
-  color: white;
-  font-weight: lighter;
-  font-family: 'Nunito', sans-serif;
-}
 
 .f-1 {
   background-color: white;
 }
 
-
-p {
-  font-weight: bold;
-  font-size: 15px;
-  font-family: 'Nunito', sans-serif;
-}

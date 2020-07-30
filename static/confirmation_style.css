@@ -21,6 +21,14 @@
   background-color:#252525 !important;
 }
 
+#covid {
+  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url('img/covid_2.jpg');
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: white;
+  font-family: 'Nunito', sans-serif;
+}
+
 .navbar-nav li {
   padding-right: 20px;
 }

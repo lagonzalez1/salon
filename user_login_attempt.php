@@ -5,7 +5,13 @@ include_once 'server_connect.php';
 
 // SELECT * FROM `user_login_permissions`
 // Table : user_login_permissions
-// col : 1. id 2. user_email 3.user_password
+// col : 1. id 2. user_email 3.user_password 
+
+
+// This can be optimzed
+// No error_message_login.html 
+// We can sedn a php?ss=true
+// then refresh the page
 
 if( isset($_POST['click']) ) {
 	$username = $_POST['login'];

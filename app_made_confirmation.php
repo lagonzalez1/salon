@@ -95,30 +95,26 @@ if(isset($_GET['team_k'])){
 
 </div>
  <hr class="hr">
-<div class="container-fluid padding">
+ <div class="container-fluid padding" id="covid">
   <h2 class="center-text-title text-center">Covid-19 Responce</h2>
-  <p class="lead text-center">Our responce</p>
+  <p class="lead text-center">To Minimize The Spread We Pleadge Too</p>
   <hr class="small_hr">
   <div class="row d-flex text-center">
       <div class=" col-sm">
         <i class="fas fa-hand-sparkles fa-3x"></i>
         <h3>Clean Facilties</h3>
-        <p>Distancing, Mask Required</p>
+        <p>Distance From Other Guest, Mask Required</p>
       </div>
       <div class=" col-sm">
         <i class="fas fa-pump-medical fa-3x"></i>
         <h3>Sanitized Equipment</h3>
-        <p>Clean Equipment From Each Use</p>
+        <p>Clean Equipment & Sanitize From Each Use</p>
       </div>
       <div class=" col-sm">
         <i class="fas fa-hand-holding-usd fa-3x"></i>
         <h3>Contact Less Payments</h3>
         <p>Contactless</p>
-
-        
       </div>
-
-
     </div>
 </div>
 
