@@ -61,17 +61,22 @@ $date_number = date('w');
                     // Passed last hour on same day
                     echo (json_encode($obj->correctBasedOnCurrentDate() ));
                     exit();
-                break;
+                    break;
                 case 1:
                     // Today Appointment toCorrect
                     echo(json_encode($emptyArr));
                     exit();
-                break;
+                    break;
                 case 2:
                     // Future date
                     echo (json_encode($obj->correctArrayTimeFrame() ));
                     exit();
                 break;
+                case 3:
+                    // Future date
+                    echo (json_encode(['Completely Booked!']));
+                    exit();
+                    break;
             }
          }
          // Add to examine Array
@@ -81,17 +86,22 @@ $date_number = date('w');
                 // Passed last hour on same day
                 echo (json_encode($obj->correctBasedOnCurrentDate() ));
                 exit();
-            break;
+                break;
             case 1:
                 // Today Appointment toCorrect
                 echo(json_encode(['No Appoinments Available for today']));
                 exit();
-            break;
+                break;
             case 2:
                 // Future date
                 echo (json_encode($obj->correctArrayTimeFrame() ));
                 exit();
-            break;
+                break;
+            case 3:
+                // Future date
+                echo (json_encode(['Completely Booked!']));
+                exit();
+                break;
         }
  	}else{
          // Query Error

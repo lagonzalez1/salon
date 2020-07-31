@@ -72,9 +72,13 @@ class employee {
         return $this->returnCorrectFinalArray($copyArr);
     }
 
+    // Check if current time is greater than the last item in array
     public function checkIfPassed(){
         $ll = $this->correctBasedOnCurrentDate();
         $ss = $this->current_time;
+        $checker = strtotime(end($ll));
+        // Check if array is empty -> Will return false
+        if(!$checker){ return 0; }
         return (strtotime($ss) > strtotime(end($ll)) );
     }
 
@@ -88,7 +92,10 @@ class employee {
         }
         if($this->returnDate() != $this->appointment_date){
             return 2; 
-        }        
+        }  
+        if( ($this->returnDate() == $this->appointment_date) && $this->checkIfPassed() == 0 ){
+            return 3; // Appointments are booked!
+        }     
     }
 
     function correctBasedOnCurrentDate() {
@@ -101,13 +108,11 @@ class employee {
                 //echo $corrected[$i];
                 $counter ++;
                 continue;
-            }
-                
+            }     
         }
         $vv = array_slice($corrected, $counter);
         return array_values($vv);  
     }
-
 
      // return conflict hours, where db exist
     function returnCorrectFinalArray($array_corrected) {

@@ -12,9 +12,9 @@ $current_date = date("m/d/o");
 <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Company Name</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>   
-  	<link href = "https://code.jquery.com/ui/1.10.4/themes/cupertino/jquery-ui.css" rel = "stylesheet">
+	<link href = "https://code.jquery.com/ui/1.10.4/themes/cupertino/jquery-ui.css" rel = "stylesheet">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">  
   	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-bootgrid/1.3.1/jquery.bootgrid.css" />
@@ -515,10 +515,10 @@ if(isset($_GET['duplicate'])) {
 						<img src="" id="4" class="img-responsive"/>
 					</div>
 					<!-- Left and right controls -->
-					<a class="carousel-control-prev" href="#show_work" role="button" data-slide="prev">
+					<a class="carousel-control-prev" role="button" data-slide="prev">
 					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 					</a>
-					<a class="carousel-control-next" href="#show_work" role="button" data-slide="next">
+					<a class="carousel-control-next" role="button" data-slide="next">
 					<span class="carousel-control-next-icon" aria-hidden="true"></span>
 					</a>
 				</div>
