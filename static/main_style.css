@@ -138,10 +138,10 @@ body, html {
 .btn-secondary {
   background-color:  #f54dd6c7 !important;
   color: white !important;
-  border-color: dimgrey !important
+  border-color: #f54dd6c7 !important
 }
 .btn-secondary:hover {
-  background-color: #f286de3b ! important;
+  background-color: #f367d9a6 ! important;
 }
 /*End of Secondary Color*/
 
@@ -166,9 +166,6 @@ body, html {
   border-radius: 0;  
 }
 
-.btn-group:hover {
-  background-color:#f74ed87c !important;
-}
 
 /*EndButton Group*/
 

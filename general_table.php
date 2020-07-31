@@ -56,9 +56,9 @@ if(isset($_POST['initial_launch'])){
 			<td class="'.$st_color.'">'.htmlentities($status_title).'</td>
 			<td>
 			<input type = "submit" class = "check btn btn-success btn-sm" id ='.$id.' name = "check" value = "Check-in">
-			<input type = "submit" value ="Send Email" name = "email_send" id = '.$id.' class = "email_send btn btn-info btn-sm">
-			<input type="submit" value="Remove" name ="remove" id ='.$id.' class ="remove btn btn-danger btn-sm">
+			<input type = "submit" value ="Notify" name = "email_send" id = '.$id.' class = "email_send btn btn-info btn-sm">
 			<input type="submit" value="Move Time" name="Time" id='.$id.' class = "btn btn-warning btn-sm">
+			<input type="submit" value="Remove" name ="remove" id ='.$id.' class ="remove btn btn-danger btn-sm">
 			</td>
 			</tr>';
 

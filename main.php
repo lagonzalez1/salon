@@ -45,10 +45,7 @@ if(isset($_GET['duplicate'])) {
 		});
     </script>';
 }
-
-
 ?>
-
 
 <nav class = "navbar navbar-expand-md navbar-dark ">
 	<div class="container-fluid">
@@ -122,11 +119,11 @@ if(isset($_GET['duplicate'])) {
   <div class="hero-text">
   	<div class="icon">
   		<a href="main.html" class="logo">
-  			<img src="static/img/icons/flower.png" style="height: 90px; width: 90px;">
+  			<img src="static/img/icons/flower.png" style="height: 90px; width: 90px;" class="ftco-animate fadeInUp ftco-animated">
   		</a>
      </div>
-    <h1 class="display-4">Store Name</h1>
-    <h1 class="display-4">BEAUTY SALON</h1>
+    <h1 class="display-4 ftco-animate fadeInUp ftco-animated">Store Name</h1>
+    <h1 class="display-4 ftco-animate fadeInUp ftco-animated">BEAUTY SALON</h1>
   </div>
 </div>
 
@@ -480,15 +477,100 @@ if(isset($_GET['duplicate'])) {
 </div>
 
 
+
+<div class="modal fade bd-example-modal-lg" id= "picture_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+	<div class="modal-content">
+
+	<div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Pictures</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick = "close()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class= "modal-body co-inner">
+      	<div id="show_work" class="carousel slide" data-ride = "carousel">
+		<ul class ="carousel-indicators">
+			<li data-target="#show_work" data-slide-to="0" class = "active"></li>
+			<li data-target="#show_work" data-slide-to="1"> </li>
+			<li data-target="#show_work" data-slide-to="2"> </li>
+			<li data-target="#show_work" data-slide-to="3"> </li>
+		</ul>
+      	<div class="carousel-inner show">
+			<div class="carousel-item active">
+				<img src="" id="1" class="img-responsive"/>
+			</div>
+
+      		<div class="carousel-item">
+				<img src=""id="2" class="img-responsive"/>
+			</div>
+
+			<div class="carousel-item">
+				<img src="" id="3" class="img-responsive"/>
+			</div>
+
+			<div class="carousel-item">
+				<img src="" id="4" class="img-responsive"/>
+			</div>
+
+      	</div>
+      </div>
+      </div>
+  </div>
+  </div>
+</div>
+
+
 <script type="text/javascript">
+
+
+$(document).ready(function (){
+	$('#work1').on('click', function(){
+		var path = "model_hair";
+		var extention = "men_fade_";
+		load_images(path, extention);
+	});
+	$('#work2').on('click', function(){
+		var path = "model_color";
+		var extention = "shave_";
+		load_images(path, extention);
+	});
+
+	$('#work3').on('click', function() {
+		var path = "model_nails";
+		var extention = "color_woman_";
+		load_images(path, extention);
+	});
+
+	$('#work4').on('click', function() {
+		var path = "model_style";
+		var extention = "woman_style_";
+		load_images(path, extention);
+	});
+});
+
+// Load images based on max of 4
+// Given, Path & extention assume : jpg
+function load_images(path, ext){
+	var SIZE = 4;
+	var iter = 1;
+	for(i =0 ; i < SIZE;  i++){
+		var id = (i + 1).toString();
+		var pathToCheck = "/salon/static/img/"+path+"/"+ext+i+".jpg";
+		if(!UrlExists(pathToCheck)){
+			document.getElementById(id).src = "/salon/static/img/not_found.jpg";
+		}else{
+			document.getElementById(id).src = "/salon/static/img/"+path+"/"+ext+i+".jpg";
+		}
+	}
+	$("#picture_modal").modal('show');
+}
 
 
 function clearField() {
 	$('#show_data').collapse('toggle');
 	$('check_app_cancell').val('');
 }
-
-
 
 $(document).ready(function(){
 	$('#submitButton').on('click', function() {
