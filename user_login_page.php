@@ -1,6 +1,13 @@
+<?php 
+
+date_default_timezone_set("America/Los_Angeles");
+$current_date = date("m/d/o");
+
+
+?>
+
 
 <!DOCTYPE html>
-
 <html>
 <head>
 
@@ -16,6 +23,77 @@
 <!------ Include the above in your HEAD tag ---------->
 
 </head>
+
+<?php
+
+if(isset($_GET['user_not_found'])){
+  echo '<script type="text/javascript">
+		$(document).ready(function() {
+			$("#loginError").modal("show");
+		});
+    </script>';
+}
+
+
+
+if(isset($_GET['db_error'])){
+  echo '<script type="text/javascript">
+		$(document).ready(function() {
+			$("#db_error").modal("show");
+		});
+    </script>';
+}
+
+
+?>
+
+<div class="modal fade" id="db_error" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Trouble Connecting to database</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="refreshPage();">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id = "body_err">
+	    Please try again later. If problem continues please call webprovider via lag.webservices@gmail.com.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="refreshPage();">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="loginError" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Login Error</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="refreshPage();">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id = "body_err">
+	    Please try again. Wrong email or password.      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="refreshPage();">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+function refreshPage() {
+	location.assign("user_login_page.php");
+	return false;
+
+}
+
+</script>
 
 <div class="wrapper fadeInDown">
   <div id="formContent">

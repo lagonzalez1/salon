@@ -10,8 +10,8 @@ body, html {
   font-family: 'Nunito', sans-serif;
 }
 
-#time {
-  background-color: hsl(311, 89%, 63%) ;
+#time input {
+  color: #4ef76c !important;
 }
 
 .btn >.btn-primary button {
@@ -141,7 +141,7 @@ body, html {
   border-color: dimgrey !important
 }
 .btn-secondary:hover {
-  background-color: #f286de8f ! important;
+  background-color: #f286de3b ! important;
 }
 /*End of Secondary Color*/
 
@@ -163,8 +163,11 @@ body, html {
   color: white;
 }
 .btn-group {
-  border-radius: 0;
-  
+  border-radius: 0;  
+}
+
+.btn-group:hover {
+  background-color:#f74ed87c !important;
 }
 
 /*EndButton Group*/

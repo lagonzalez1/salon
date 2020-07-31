@@ -52,19 +52,17 @@ class employee {
         for($i =0; $i < count($copyArr);$i++){
             if(strtotime($copyArr[$i]) < strtotime($this->time_frame[0]) ){
                 // Times less than start time
-               
                array_push($bad_times,$copyArr[$i]);
                continue;
 
             }
             if(strtotime($copyArr[$i]) > strtotime($this->time_frame[1]) ){
                 // Greater than
-                
                 array_push($bad_times,$copyArr[$i]);
                 continue;
             }
 
-           }
+        }
            for ($i=0; $i < count($bad_times) ;$i++){
                $key = array_search($bad_times[$i],$copyArr);
                if($key !== false){
@@ -90,11 +88,10 @@ class employee {
         }
         if($this->returnDate() != $this->appointment_date){
             return 2; 
-        }
-               
+        }        
     }
 
-     function correctBasedOnCurrentDate() {
+    function correctBasedOnCurrentDate() {
             // We have to remove based on time;
         $counter = 0;
         $corrected = $this->correctArrayTimeFrame();
@@ -109,13 +106,13 @@ class employee {
         }
         $vv = array_slice($corrected, $counter);
         return array_values($vv);  
-     }
+    }
 
 
      // return conflict hours, where db exist
-     function returnCorrectFinalArray($array_corrected) {
+    function returnCorrectFinalArray($array_corrected) {
          // Check array of conflicted hours
-         // If greater than 0 we remov
+         // If greater than 0 we remove
         array_values($array_corrected);
          if(count($this->conflict_hours) > 0){
             for($i =0 ; $i < count($this->conflict_hours);$i++){
@@ -130,7 +127,7 @@ class employee {
              return array_values($array_corrected);
          }
          
-     }
+    }
 
 
 

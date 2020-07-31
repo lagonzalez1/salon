@@ -35,6 +35,7 @@ if( isset($_POST['clicked']) ){
 		$_SESSION['time'] = $time;
 		$_SESSION['date'] = $date;
 		$_SESSION['empl'] = $employee;
+		$_SESSION['phone'] = $phone;
 		exit();
 
 	}else if(!$sql_result){

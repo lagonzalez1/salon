@@ -1,25 +1,10 @@
  <?php
-
-
 include('server_connect.php');
 include('employee_model.php');
 date_default_timezone_set("America/Los_Angeles");
 $current_time = date("h:i a");
 
-//1. OBJ -> EmployeeName, AppoinmentDate, CurrentTime, EmployeeDaysOff, DateBasedNumberic
-/*
-<option value="None">Perferred stylist</option>
-<option value="Stacy">Stacy Carrol</option>
-<option value="Sam">Sam Jr</option>
-<option value="Mary">Mary Jane</option>
-<option value="Emily">Emily Valdovinos</option>
-<option value="Karen">Karen Mayne</option>
-
-*/
 $date_number = date('w');
-
-
-
  if(isset($_POST['date']) || isset($_POST['empl']) ){
     
     $conflict_array = (array)null;
@@ -99,7 +84,7 @@ $date_number = date('w');
             break;
             case 1:
                 // Today Appointment toCorrect
-                echo(json_encode(['Appointments Have Passed']));
+                echo(json_encode(['No Appoinments Available for today']));
                 exit();
             break;
             case 2:
@@ -110,7 +95,7 @@ $date_number = date('w');
         }
  	}else{
          // Query Error
- 		echo json_encode(['']);
+ 		echo json_encode(['Query Error']);
  		exit();
      }
      

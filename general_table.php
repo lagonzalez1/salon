@@ -41,7 +41,7 @@ if(isset($_POST['initial_launch'])){
 							break;
 					}
 
-
+					// Skip other dates
 					if($current_date !== $date ){
 						continue;
 					}

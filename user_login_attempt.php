@@ -24,7 +24,7 @@ if( isset($_POST['click']) ) {
 		$stmt = mysqli_stmt_init($connection);
 		if( !mysqli_stmt_prepare($stmt, $sql) )
 		{
-			header("Location: error_message_login.html");
+			header("Location: user_login_page.php?db_error=true");
 			exit();
 		} else {
 			mysqli_stmt_bind_param($stmt, "s", $username);
@@ -41,12 +41,12 @@ if( isset($_POST['click']) ) {
 					exit();
 				
 				} else {
-				header("Location: error_message_login.html");
+				header("Location: user_login_page.php?user_not_found=true");
 				exit();
 				}
 
 			} else {
-				header("Location: error_message_login.html");
+				header("Location: user_login_page.php?user_not_found=true");
 				exit();
 			}
 			// placing into Assosiative array

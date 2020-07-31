@@ -41,7 +41,7 @@ include('server_connect.php');
     $_SESSION=array();
     unset($_SESSION);
 		session_destroy();
-		header('Location: user_login_page.html');
+		header('Location: user_login_page.php');
 	}
 	if(isset($_GET['logout_click'] )){
 		exit_user();
@@ -103,11 +103,8 @@ include('server_connect.php');
         <li class="nav-item">
           <a class="nav-link" href= "user_interface_main.php" style = "color: #787B7C">Reload Page</a>
         </li>
-  			<li class = "nav-item">
-  				<a class = "nav-link" href= "client_view.php?client_view_click=true" target="_newtab" style = "color: #787B7C">Launch Client View</a>
-  			</li>
         <li class="nav-item">
-          <a class="nav-link" href="show_entire_list.php" target="_newtab" name="all_app">All Appointments</a>
+          <a class="nav-link" name="all_app" onclick="return showAllAppointments();">All Appointments</a>
         </li>
   			<li class="nav-item">
   				<a class="nav-link" href="#" style = "color: #787B7C">Help</a>
@@ -129,10 +126,69 @@ include('server_connect.php');
   ?>
 </div>
 
+
+<div class="modal fade" id="showAllAppointments" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">All Appointments</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id = "body">
+      <table class="table table-sm">
+	      <thead class="thead-light">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Stylist</th>
+            <th scope="col">Name</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Email</th>
+            <th scope="col">Time</th>
+            <th scope="col">Date</th>
+          </tr>
+	      </thead>
+	    <tbody>
+
+	  </tbody>
+    </table>
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <!-- Handle client side removals and Check -->
 <!-- Also attemt to reload the service -->
 <script type="text/javascript">
 
+
+function showAllAppointments(){
+  var xhr = $.ajax({
+    type: 'POST',
+    url: 'refresh_all_table.php',
+    timeout: 5000,
+    data: {'all_app_view':'all_app_view'},
+    success: function(htmlRes){
+      if(htmlRes == "Result: Error"){
+        $("#timeout_error").modal("show");
+      }
+      $('#showAllAppointments').modal('toggle');
+      $('#showAllAppointments').find('tbody').html(htmlRes);
+      console.log('Reloading All Appointments Modal');
+    },
+    error: function(err,id){
+      console.log(err);
+      console.log(id);
+      $("#timeout_error").modal("show");
+    }
+  });
+}
 
 // Reload Button Click
 // Reloads Current Table
@@ -159,8 +215,6 @@ function reload_table() {
           $("#timeout_error").modal("show");
         }
   });
-
-
      var second_table = $.ajax({
         type:'POST',
         url:'general_table.php',
@@ -233,8 +287,6 @@ $(document).ready(function() {
     reload_table();
 });
 
-
-
 $(function(){
     $(document).on('click','.remove',function(){
       var del_id= $(this).attr('id');
@@ -250,12 +302,11 @@ $(function(){
           		$ele.closest('tr').css('background','#ff2b2b');
           		$ele.closest('tr').find('td').fadeOut(1000,function(){
               $ele.remove();
-              
             });
             reload_table();
           	}else if (responce == "Update Error"){
           		console.log("Error, PHP not able to add to remove or recived something other than YES");
-          	}
+          	} 
          },
          error: function(){
           $("#timeout_error").modal("show");
@@ -380,16 +431,11 @@ $(document).ready(function(){
 
 });
 
-
-
 function show_modal(title,body){
   document.getElementById('title_config').innerHTML = title;
   document.getElementById('body_config').innerHTML = body;
   $("#configure_modal").modal("show");
 }
-
-
-
 
 
 </script>
@@ -461,7 +507,7 @@ function show_modal(title,body){
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Walkin Appointment</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Walk-in Appointment</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -517,7 +563,7 @@ function show_modal(title,body){
   <h4 class="small_title">Scheduled Appoinments</h4>
 </div>
 <hr class="hr">
-<div class = main_table id = "s_0">
+<div class="container-fluid" id = "s_0">
 	<table class="table table-hover table-bordered table">
 	  <thead class="thead-light">
 	    <tr>
@@ -543,7 +589,7 @@ function show_modal(title,body){
 <hr class="hr">
 
 
-<div class = main_table id = "s_1">
+<div class="container-fluid" id = "s_1">
   <table class="table table-hover table-bordered table">
     <thead class="thead-light">
       <tr>

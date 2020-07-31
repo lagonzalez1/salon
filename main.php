@@ -164,7 +164,6 @@ if(isset($_GET['duplicate'])) {
  </div>
 
 
-
 <!--- Containers Cards -->
 <div class="container-fluid" id="show_work">
 <div class="row padding">
@@ -173,7 +172,7 @@ if(isset($_GET['duplicate'])) {
 			<img class="card-img-top" src="static/img/work-2.jpg">
 			<div class="card-body">
 				<h4 class="card-title">Haircuts</h4>
-				<button href="#" class="btn btn-secondary" id="work1">Show Work</button>
+				<button href="#" class="btn btn-secondary" id="work1">Take a Look</button>
 			</div>
 		</div>
 	</div>
@@ -183,7 +182,7 @@ if(isset($_GET['duplicate'])) {
 			<img class="card-img-top" src= "static/img/work-3.jpg">
 			<div class="card-body">
 				<h4 class="card-title">Woman Styling</h4>
-				<button href="#" class="btn btn-secondary" id="work2">Show Work</button>
+				<button href="#" class="btn btn-secondary" id="work2">Take a Look</button>
 			</div>
 		</div>
 	</div>
@@ -193,7 +192,7 @@ if(isset($_GET['duplicate'])) {
 			<img class="card-img-top" src= "static/img/work-1.jpg">
 			<div class="card-body">
 				<h4 class="card-title">Women Color</h4>
-				<button href="#" class="btn btn-secondary" id="work3">Show Work</button>
+				<button href="#" class="btn btn-secondary" id="work3">Take a Look</button>
 			</div>
 		</div>
 	</div>
@@ -204,7 +203,7 @@ if(isset($_GET['duplicate'])) {
 			<img class="card-img-top" src= "static/img/work-3.jpg">
 			<div class="card-body">
 				<h4 class="card-title">Waxing</h4>
-				<button href="#" class="btn btn-secondary" id="work4">Show Work</button>
+				<button href="#" class="btn btn-secondary" id="work4">Take a Look</button>
 			</div>
 		</div>
 	</div>
@@ -380,7 +379,6 @@ if(isset($_GET['duplicate'])) {
 		            </div>
 		        	</div>
 	        	</div>
-
 	        	<div class="row form-group d-flex">
 	        		<div class="col-md-6">
 	        			<div class="form-group">
@@ -389,8 +387,6 @@ if(isset($_GET['duplicate'])) {
 	        			</div>
 	        		</div>
 	        	</div>
-
-
 	            <div class="form-group">
 	              <input type="submit" value="Make Appointment" class="btn btn-primary" id="create_app" name="clicked">
 	            </div>
@@ -588,18 +584,12 @@ function load_data(rdata){
 	document.getElementById('i-stylist').innerHTML = 'Stylist: ' +rdata['Per_stylist'];
 	document.getElementById('i-email').innerHTML = 'Email: ' +rdata['Email'];
 	$('#show_data').collapse('toggle');
-
-
 }
-
-
 
 function cancell_click(){
 	$(document).ready(function(){
 		$('#check_existing').modal('toggle');
 	});
-
-
 }
 
 function refreshPage() {
@@ -607,20 +597,18 @@ function refreshPage() {
 	return false;
 
 }
-
-
     // Max Dates allowed up to 2 weeks and 5 days
-    $(document).ready(function() {
-    	$('#calendar').datepicker({
-    		beforeShowDay: nonWorkingDates,
-        	numberOfMonths: 1,
-        	minDate: '0',
-        	maxDate: '2w+5d',
-        	firstDay: 1
-        	
-    	});
+$(document).ready(function() {
+	$('#calendar').datepicker({
+		beforeShowDay: nonWorkingDates,
+		numberOfMonths: 1,
+		minDate: '0',
+		maxDate: '2w+5d',
+		firstDay: 1
+		
+	});
 
-    });
+});
    
 
 // You need to make the button smaller, to large to fit 
@@ -629,7 +617,7 @@ function add(id) {
   //Create an input type dynamically.   
   var element = document.createElement("Button");
   //Assign different attributes to the element. 
-  element.type = "button";
+  element.type = "radio";
   element.value = id; // Really? You want the default value to be the type string?
   element.name = id; // And the name too?
   element.innerHTML = id;
@@ -722,25 +710,7 @@ function remove_based_time(lastVal, currDate){
         			data:{'date': date, 'empl': stls},
 
         			success: function(rdata) {
-        				// Check Close time to make sure no values can be inserted before.
-        				// Resolves glitch where php cannot handle
-        				// php removes app and before app, but not closing hours.
-						/*
-						var checkLast = (rdata.length - 1);
-						console.log(rdata[0]);
-        				if(remove_based_time(checkLast,date)){
-        					add("No Times Available");
-        					$('#check_av_times').collapse('toggle');
-        				}else{
-        					for (i = 0 ; i < rdata.length; i++){
-							console.log(rdata[i]);
-							
-        					add(rdata[i]);
-        				}
-        					$('#check_av_times').collapse('toggle');
-
-        				}
-						*/
+        				
 						for (i = 0 ; i < rdata.length; i++){
 							console.log(rdata[i]);
 							
@@ -759,22 +729,15 @@ function remove_based_time(lastVal, currDate){
         				
         			}
     			});	
-    		}
-    		
+    		}	
     	});
-    		
     });
-
     $('#check_av_times').on('show.bs.collapse', function () {
 
 	});
-
-
     function isEmpty(str) {
     	return (!str || 0 === str.length);
 	}
-
-
      function nonWorkingDates(date){
         var day = date.getDay(), Sunday = 0, Monday = 1, Tuesday = 2, Wednesday = 3, Thursday = 4, Friday = 5, Saturday = 6;
         var closedDates = [[7, 29, 2009], [8, 25, 2010]];
@@ -783,9 +746,7 @@ function remove_based_time(lastVal, currDate){
             if (day == closedDays[i][0]) {
                 return [false];
             }
-
         }
-
         for (i = 0; i < closedDates.length; i++) {
             if (date.getMonth() == closedDates[i][0] - 1 &&
             date.getDate() == closedDates[i][1] &&
@@ -793,7 +754,6 @@ function remove_based_time(lastVal, currDate){
                 return [false];
             }
         }
-
         return [true];
     }
 
@@ -802,11 +762,8 @@ function show_modal(title,body){
   document.getElementById('title_config_err').innerHTML = title;
   document.getElementById('body_config_err').innerHTML = body;
   $("#configure_modal").modal("toggle");
-}
-    	
-
+}    	
 </script>
-
 
 <div class="modal fade" id="time_out" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">

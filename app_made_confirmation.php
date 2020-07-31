@@ -55,45 +55,41 @@ if(isset($_GET['team_k'])){
   		</ul>
   	</div>
   	</div>
-  </nav>
+  </nav> 
 
-  <div class="jumbotron text-center">
-  <h1 class="display-4">Appointment Made!</h1>
-  <hr class="small_hr">
+  
 
-    <div class="row d-flex">
-
-      <div class="col-md-6">
-      <hr class="small_hr">
-      <?php 
-        echo '<p class="lead"> <mark>'.htmlentities($_SESSION['name']).'</mark> your appointment has been set, with <mark>'.htmlentities($_SESSION['empl']).'</mark></p>'; 
-      ?>
-      <p class="lead">Please Arrive 10 Minutes Early to Ensure Your Appointment. </p>
-      <p class="lead">Hope to see you soon!</p>
-      <p class="lead">-Arriving later than 10 minutes can result in your spot being lost!</p>
-      <hr class="small_hr">
-    </div>
-
-
-
-    <div class="col-md-6">
+  <div class="jumbotron container text-center">
+      <h1 class="display-4">Appointment Made!</h1>
     <hr class="small_hr">
-    <?php    
-        echo '<p class="lead"><ins>Appointment Details</ins></p>';
-        echo '<p class="lead"> - Date: '.htmlentities($_SESSION['date']).' </p>';
-        echo '<p class="lead"> - Time: '.htmlentities($_SESSION['time']).' </p>';
-        echo '<p class="lead"> - Stylist: '.htmlentities($_SESSION['empl']).' </p>';  
-    ?>
-    <hr class="small_hr">
-    </div>
-    
-
-
-
   </div>
+
+<div class="container">
+  <div class="row d-flex justify-content-center" id="app_details">
+        <div class="col-sm-2">
+        <i class="fas fa-check-circle fa-7x"></i>
+      </div>
+        <div class="col-sm-8">
+          <div class="text text-left">
+            <?php 
+              echo '<p class="lead"><ins>Appointment Details</ins></p>';
+              echo '<p class="lead"> - Name: '.htmlentities($_SESSION['name']).' </p>';
+              echo '<p class="lead"> - Phone: '.htmlentities($_SESSION['phone']).' </p>';
+              echo '<p class="lead"> - Date: '.htmlentities($_SESSION['date']).' </p>';
+              echo '<p class="lead"> - Time: '.htmlentities($_SESSION['time']).' </p>';
+              echo '<p class="lead"> - Stylist: '.htmlentities($_SESSION['empl']).' </p>'; 
+              echo '<p class="lead"><ins>Important</ins></p>';
+              echo 'Please arrive 10 minutes early to ensure your spot in line. Thanks see you soon!';
+
+            ?>
+          </div>
+        </div>
+    </div>
+</div>
+
   <!-- Shop current Address Locaiton should be added here. -->
 
-</div>
+
  <hr class="hr">
  <div class="container-fluid padding" id="covid">
   <h2 class="center-text-title text-center">Covid-19 Responce</h2>
