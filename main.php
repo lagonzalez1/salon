@@ -479,7 +479,7 @@ if(isset($_GET['duplicate'])) {
 
 
 <div class="modal fade bd-example-modal-lg" id= "picture_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-lg" role="document">
+	<div class="modal-dialog" role="document">
 	<div class="modal-content">
 
 	<div class="modal-header">
@@ -487,35 +487,43 @@ if(isset($_GET['duplicate'])) {
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick = "close()">
           <span aria-hidden="true">&times;</span>
         </button>
-      </div>
-      <div class= "modal-body co-inner">
-      	<div id="show_work" class="carousel slide" data-ride = "carousel">
-		<ul class ="carousel-indicators">
-			<li data-target="#show_work" data-slide-to="0" class = "active"></li>
-			<li data-target="#show_work" data-slide-to="1"> </li>
-			<li data-target="#show_work" data-slide-to="2"> </li>
-			<li data-target="#show_work" data-slide-to="3"> </li>
-		</ul>
-      	<div class="carousel-inner show">
-			<div class="carousel-item active">
-				<img src="" id="1" class="img-responsive"/>
-			</div>
+    </div>
 
-      		<div class="carousel-item">
-				<img src=""id="2" class="img-responsive"/>
-			</div>
 
-			<div class="carousel-item">
-				<img src="" id="3" class="img-responsive"/>
-			</div>
+		<div class= "modal-body co-inner text-center">
+			<div id="show_work" class="carousel slide" data-ride="carousel">
+				<ul class ="carousel-indicators">
+					<li data-target="#show_work" data-slide-to="0" class="active"></li>
+					<li data-target="#show_work" data-slide-to="1"> </li>
+					<li data-target="#show_work" data-slide-to="2"> </li>
+					<li data-target="#show_work" data-slide-to="3"> </li>
+				</ul>
+				<div class="carousel-inner show">
+					<div class="carousel-item active">
+						<img src="" id="1" class="img-responsive"/>
+					</div>
 
-			<div class="carousel-item">
-				<img src="" id="4" class="img-responsive"/>
-			</div>
+					<div class="carousel-item">
+						<img src=""id="2" class="img-responsive"/>
+					</div>
 
-      	</div>
-      </div>
-      </div>
+					<div class="carousel-item">
+						<img src="" id="3" class="img-responsive"/>
+					</div>
+
+					<div class="carousel-item">
+						<img src="" id="4" class="img-responsive"/>
+					</div>
+					<!-- Left and right controls -->
+					<a class="carousel-control-prev" href="#show_work" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					</a>
+					<a class="carousel-control-next" href="#show_work" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					</a>
+				</div>
+			</div>
+		</div>
   </div>
   </div>
 </div>
@@ -527,24 +535,24 @@ if(isset($_GET['duplicate'])) {
 $(document).ready(function (){
 	$('#work1').on('click', function(){
 		var path = "model_hair";
-		var extention = "men_fade_";
+		var extention = "h_";
 		load_images(path, extention);
 	});
 	$('#work2').on('click', function(){
 		var path = "model_color";
-		var extention = "shave_";
+		var extention = "c_";
 		load_images(path, extention);
 	});
 
 	$('#work3').on('click', function() {
 		var path = "model_nails";
-		var extention = "color_woman_";
+		var extention = "n_";
 		load_images(path, extention);
 	});
 
 	$('#work4').on('click', function() {
 		var path = "model_style";
-		var extention = "woman_style_";
+		var extention = "s_";
 		load_images(path, extention);
 	});
 });
@@ -560,10 +568,27 @@ function load_images(path, ext){
 		if(!UrlExists(pathToCheck)){
 			document.getElementById(id).src = "/salon/static/img/not_found.jpg";
 		}else{
-			document.getElementById(id).src = "/salon/static/img/"+path+"/"+ext+i+".jpg";
+			document.getElementById(id).src = pathToCheck;
 		}
 	}
 	$("#picture_modal").modal('show');
+}
+
+
+// Retuns Boolean: True-> 200 
+// Code cleanup : Switch case!
+function UrlExists(url) {
+    var http = new XMLHttpRequest();
+    http.open('HEAD', url, false);
+    http.send();
+    if(http.status == 404){
+    	return false;
+    }else if(http.status == 200){
+    	return true;
+    }else{
+    	return false;
+    }
+    return false;
 }
 
 

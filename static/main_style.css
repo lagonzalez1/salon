@@ -6,6 +6,20 @@
 body, html {
     height: 100%;
 }
+
+
+/*Carousel for pictures*/
+.img-responsive {
+  max-height: 600px ! important;
+  object-fit: contain;
+}
+
+.carousel > .slide {
+  max-height: 600px ! important;
+  width: auto;
+  overflow: hidden;
+}
+/*End*/
 .modal-title {
   font-family: 'Nunito', sans-serif;
 }
