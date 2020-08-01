@@ -950,7 +950,7 @@ function show_modal(title,body){
               <h2 class="footer_title">About Us</h2>
               <hr class="small_hr">
               <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-              <p> View OR Cancell Appoinment <a onclick="cancell_click();">Click Me</p>
+              <p style="color: #4ed9f7;"> View OR Cancell Appoinment <a onclick="cancell_click();">Click Me</p>
             	<hr class="small_hr">
                 <a href="#"><img src="static/img/icons/twitter_icon.png" style="height: 50px; width: 50px;"></a>
                 <a href="#"><img src="static/img/icons/facebook_icon.png" style="height: 50px; width: 50px;"></a>

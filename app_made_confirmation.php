@@ -179,7 +179,7 @@ if(isset($_GET['team_k'])){
   $('#configure_modal').modal('show');
   }
 
-  function help() {
+function help() {
   var title = "Help";
   var body = "For any questions or concerns about the website please email: lag.webservices@gmail.com ";
   document.getElementById('img_about').src = "/updated_php_project/static/img/help.png";
