@@ -371,7 +371,6 @@ if(isset($_GET['duplicate'])) {
 		            <div class="col-md-6">
 		              <div class="form-group">
 	                    <input type="text" class="form-control no-border" placeholder="Date" id="calendar" autocomplete="off" name="date" required="">
-
 		              <hr class= "w-hr">
 		            </div>
 		        	</div>
@@ -379,18 +378,15 @@ if(isset($_GET['duplicate'])) {
 	        	<div class="row form-group d-flex">
 	        		<div class="col-md-6">
 	        			<div class="form-group">
-	        				<input class="btn btn-primary" type="button" value="Check Available Times" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample" id="check_tm">
-  							
+	        				<input class="btn btn-primary" type="button" value="Check Available Times" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample" id="check_tm">		
 	        			</div>
 	        		</div>
 	        	</div>
 	            <div class="form-group">
 	              <input type="submit" value="Make Appointment" class="btn btn-primary" id="create_app" name="clicked">
 	            </div>
-
 	          </form>
 	    		</div>  
-
     		</div>
     	</div>
     </div>
