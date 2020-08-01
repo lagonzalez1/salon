@@ -176,7 +176,7 @@ if(isset($_POST['cc_id'])){
 			$phone = $row['Phone'];
 			$carrier = $row['Carrier'];
 			$send_sms = $phone.$array_carrier[$carrier];
-			send_email_phone($email,$name,$send_sms);
+			send_email_phone($email,$name,"");
 
 		}else {
 			echo 'Error: Email is empty';
@@ -192,22 +192,27 @@ if(isset($_POST['cc_id'])){
 function send_email_phone($address, $name, $carrier_em) {
 	$body = 'Hello! Looks like you are next in line. Please make your way to our shop! Please act fast dont loose your place in line!';
 	$subject = "You Are Next In Line!";
-
-
 	$sms_body = 'Hello! Looks like you are next in line. Please make your way to our shop!.Please act fast dont loose your place in line!';
-
-
 	// Keep a different Email per guest
 	$headers = 'From: store_name_1@checkinservice.net' . "\r\n" .
     'Reply-To: NOREPLY' . "\r\n" .
     'X-Mailer: PHP/' . phpversion();
 
     $sms_header =
-    'From: store_name_1@checkinservice.net' . "\r\n" .
+    'From: store_name_1@checkinservice.net' . "\r\n" . // This need to change based on server
     'Reply-To: NOREPLY' . "\r\n" .
     'X-Mailer: PHP/' . phpversion();
 
-    $mail_st = mail($address, $subject, $body, $headers);
+
+	// Incase we dont have carrier array
+	if($carrier_em == ""){
+		$mail_st = mail($address, $subject, $body, $headers);
+		if($mail_st){
+			echo 'Success: Email';
+			exit();
+		}
+		
+	}
     $sms = mail($carrier_em, $subject, $sms_body, $sms_header);
 
     if($mail_st || $sms){

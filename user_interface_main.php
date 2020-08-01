@@ -107,7 +107,7 @@ include('server_connect.php');
           <a class="nav-link" name="all_app" onclick="return showAllAppointments();">All Appointments</a>
         </li>
   			<li class="nav-item">
-  				<a class="nav-link" href="#" style = "color: #787B7C">Help</a>
+  				<a class="nav-link" onclick="return help();">Help</a>
   			</li>
   		</ul>
   	</div>
@@ -258,29 +258,14 @@ $(function() {
 });
 
 
-/*
-row order
-
-        <th scope="col">Karen</th>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Phone Number</th>
-        <th scope="col">Time</th>
-        <th scope="col">Stylist</th>
-        <th scope="col">Date</th>
-        <th scope="col">Actions</th>
-- Stylist
- -- #
- -- Name
- -- Phone Number
- -- Time
- -- Stylist
- -- Date
- -- Actions
-
-
-
-*/
+function help() {
+  var title = "Help";
+  var body = "For any questions or concerns about the website please email: lag.webservices@gmail.com ";
+  document.getElementById('img_about').src = "/salon/static/img/help.png";
+  document.getElementById('title_config').innerHTML = title;
+    document.getElementById('body_message').innerHTML = body;
+  $('#configure_modal').modal('show');
+}
 
 
 $(document).ready(function() {
@@ -434,7 +419,7 @@ $(document).ready(function(){
 function show_modal(title,body){
   document.getElementById('title_config').innerHTML = title;
   document.getElementById('body_config').innerHTML = body;
-  $("#configure_modal").modal("show");
+  $("#configure_modal").modal("toggle");
 }
 
 
