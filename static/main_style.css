@@ -8,6 +8,12 @@ body, html {
 }
 
 
+
+#picture_modal {
+  object-fit: contain;
+}
+
+
 /*Carousel for pictures*/
 .img-responsive {
   max-height: 600px ! important;

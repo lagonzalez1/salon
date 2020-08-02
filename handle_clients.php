@@ -13,7 +13,7 @@ if(isset($_POST['user_email'])){
 			echo (json_encode($arr));
 			exit();
 		}else{
-			$a = array('responseText' => 'SQL:Rows');
+			$a = array('responseText' => 'Not Found');
 			echo json_encode($a);
 			exit();
 		}

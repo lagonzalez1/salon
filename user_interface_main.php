@@ -350,7 +350,7 @@ $(function(){
         data:{'check_in':check_in},
         success: function(responce){
           	if(responce == "Success"){
-          		//$ele.closest("tr").remove();
+          		$ele.closest("tr").remove();
           		$ele.closest('tr').find('td').fadeIn(1000, function(){
           		});
               reload_table();
@@ -411,9 +411,7 @@ $(document).ready(function(){
       console.log(error);
       show_modal("Database cleanup", "Fatal error removing past clients.");
     }
-
   });
-
 });
 
 function show_modal(title,body){

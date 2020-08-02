@@ -306,8 +306,9 @@ if(isset($_GET['duplicate'])) {
 
 <div class="jumbotron">
 	<h1 class="header">Save Time, Check In Online</h1>
-    <h1 class="sub_header">- Same day appointments avaiable, depending on how booked a stylist.</h1>
-    <h1 class="sub_header">- Please arrive 10 mintues before appointment time.</h1>
+    <h1 class="sub_header">- Same day appointments available, depending on how booked a stylist is.</h1>
+	<h1 class="sub_header">- Please arrive 10 mintues before appointment time.</h1>
+	<h1 class="sub_header">- We also offer a walk in line, but keep in mind we follow appoinments first.</h1>
 </div>
 
 
@@ -435,7 +436,7 @@ if(isset($_GET['duplicate'])) {
 
 
 <div class="modal fade" id="check_existing" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="title">Check Or Remove Appointment</h5>
@@ -446,7 +447,7 @@ if(isset($_GET['duplicate'])) {
       <div class="modal-body">
             <div class="form-group" id="remove_group">
                   <label for="client-email" class="control-label">Enter Email (case sensitive)</label>
-                  <input type="text" class="form-control" name="client-email" required = "" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,}" id="check_app_cancell">
+                  <input type="text" class="form-control" name="client-email" required = "" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,}" id="check_app_cancell" autocomplete="off">
 			</div>
 
 			<div class="collapse" id="show_data">
@@ -480,20 +481,19 @@ if(isset($_GET['duplicate'])) {
 <div class="modal fade" id="picture_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        
-        <div class="modal-body">
+        <div class="modal-body" id="modal_body_pictures">
 		<div class="modal-header">
           <h5 class="modal-title" id="title">Images</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                   <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                   <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+				  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+				  <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
                 </ol>
                 <div class="carousel-inner">
                   <div class="carousel-item active">
@@ -594,7 +594,7 @@ function UrlExists(url) {
 
 
 function clearField() {
-	$('#show_data').collapse('toggle');
+	$('#show_data').collapse('hide');
 	$('check_app_cancell').val('');
 }
 
@@ -654,20 +654,19 @@ function make_request(user_email){
 	dataType: 'json',
 	data:{'user_email':user_email },
 	success: function(rdata) {
-		console.log(rdata["responseText"]);
-		if(rdata["responseText"] == "SQL:Error"){
+		if(rdata["responseText"] == "Not Found"){
 			$('#check_existing').modal('toggle');
-			show_modal("Cannot Be found", "Remember this field is case sensitive.");
+			show_modal("Cannot Be found", "The email used cannot be found in our system. Tip: this field is case sensitive so be exact!");
 			xhr.abort();
-		}else if(rdata["responseText"] == "Error fatal"){
+		}else if(rdata["responseText"] == "SQL:Error"){
 			console.log('Fatal');
 			$('#check_existing').modal('toggle');
-			show_modal("Cannot Be found", "Remember this field is case sensitive.");
+			show_modal("Cannot Be found", "SQL Error was found. Please reload the page or call the buisness number to check your appointment manualy.");
 			xhr.abort();
-		}else if(rdata["responseText"] == "SQL:Rows"){
+		}else if(rdata["responseText"] == "Error Fatal"){
 			console.log('Rows');
 			$('#check_existing').modal('toggle');
-			show_modal("Cannot Be found", "Remember this field is case sensitive.");	
+			show_modal("Cannot Be found", "Error Fatal");	
 			xhr.abort();
 		}else {
 			load_data(rdata);
