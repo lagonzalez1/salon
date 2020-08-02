@@ -13,14 +13,15 @@ $current_date = date("m/d/o");
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Company Name</title>
 
-	<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/> 
+	
 	
 
 
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" type="text/javascript"></script>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">	 
 	<!-- Styling dont remove -->   
 	<link href = "https://code.jquery.com/ui/1.10.4/themes/cupertino/jquery-ui.css" rel = "stylesheet"> 
 	<script src="https://kit.fontawesome.com/fd1affcb0c.js" crossorigin="anonymous"></script>
@@ -476,55 +477,54 @@ if(isset($_GET['duplicate'])) {
 
 
 
-<div class="modal fade bd-example-modal-lg" id= "picture_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-	<div class="modal-content">
+<div class="modal fade" id="picture_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        
+        <div class="modal-body">
+		<div class="modal-header">
+          <h5 class="modal-title" id="title">Images</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
 
-	<div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Pictures</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick = "close()">
-          <span aria-hidden="true">&times;</span>
-        </button>
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img class="d-block w-100 h-80" src="/salon/static/img/emp_3/i_1.jpg" alt="First slide" id="1">
+                  </div>
+                  <div class="carousel-item">
+                    <img class="d-block w-100 h-80" src="/salon/static/img/emp_3/i_1.jpg" alt="Second slide" id="2">
+                  </div>
+                  <div class="carousel-item">
+                    <img class="d-block w-100 h-80" src="/salon/static/img/emp_3/i_1.jpg" alt="Third slide"id="3">
+				  </div>
+				  <div class="carousel-item">
+                    <img class="d-block w-100 h-80" src="/salon/static/img/emp_3/i_1.jpg" alt="Fourth slide"id="4">
+                  </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
     </div>
-
-
-		<div class= "modal-body co-inner text-center">
-			<div id="show_work" class="carousel slide" data-ride="carousel">
-				<ul class ="carousel-indicators">
-					<li data-target="#show_work" data-slide-to="0" class="active"></li>
-					<li data-target="#show_work" data-slide-to="1"> </li>
-					<li data-target="#show_work" data-slide-to="2"> </li>
-					<li data-target="#show_work" data-slide-to="3"> </li>
-				</ul>
-				<div class="carousel-inner show">
-					<div class="carousel-item active">
-						<img src="" id="1" class="img-responsive"/>
-					</div>
-
-					<div class="carousel-item">
-						<img src=""id="2" class="img-responsive"/>
-					</div>
-
-					<div class="carousel-item">
-						<img src="" id="3" class="img-responsive"/>
-					</div>
-
-					<div class="carousel-item">
-						<img src="" id="4" class="img-responsive"/>
-					</div>
-					<!-- Left and right controls -->
-					<a class="carousel-control-prev" role="button" data-slide="prev">
-					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					</a>
-					<a class="carousel-control-next" role="button" data-slide="next">
-					<span class="carousel-control-next-icon" aria-hidden="true"></span>
-					</a>
-				</div>
-			</div>
-		</div>
   </div>
-  </div>
-</div>
 
 
 <script type="text/javascript">
@@ -557,7 +557,7 @@ $(document).ready(function (){
 
 // Load images based on max of 4
 // Given, Path & extention assume : jpg
-function load_images(path, ext){
+function load_images(path, ext, title){
 	var SIZE = 4;
 	var iter = 1;
 	for(i =0 ; i < SIZE;  i++){
@@ -569,6 +569,7 @@ function load_images(path, ext){
 			document.getElementById(id).src = pathToCheck;
 		}
 	}
+	document.getElementById("title").innerHTML = title;
 	$("#picture_modal").modal('show');
 }
 
@@ -910,8 +911,7 @@ function show_modal(title,body){
   </div>
 </div>
 
-
-    <footer>
+<footer>
 	<div class="container-fluid padding">
 		<div class="row text-center">
 			<div class="col-md-3">
