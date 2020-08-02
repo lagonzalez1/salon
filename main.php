@@ -526,6 +526,7 @@ if(isset($_GET['duplicate'])) {
       </div>
     </div>
 </div>
+</div>
 
 
 <script type="text/javascript">
