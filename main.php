@@ -50,7 +50,7 @@ if(isset($_GET['duplicate'])) {
 }
 ?>
 
-<nav class = "navbar navbar-expand-md navbar-dark ">
+<nav class = "navbar navbar-expand-md navbar-light">
 	<div class="container-fluid">
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
 		<span class="navbar-toggler-icon"> </span>
@@ -121,7 +121,7 @@ if(isset($_GET['duplicate'])) {
 <div class="hero-image">
   <div class="hero-text">
   	<div class="icon">
-  		<a href="main.html" class="logo">
+  		<a href="main.php" class="logo">
   			<img src="static/img/icons/flower.png" style="height: 90px; width: 90px;" class="ftco-animate fadeInUp ftco-animated">
   		</a>
      </div>
@@ -136,17 +136,17 @@ if(isset($_GET['duplicate'])) {
   <p class="lead text-center">To Minimize The Spread We Pleadge Too</p>
   <hr class="small_hr">
   <div class="row d-flex text-center">
-      <div class=" col-sm">
+      <div class="col-sm py-2">
         <i class="fas fa-hand-sparkles fa-3x"></i>
         <h3>Clean Facilties</h3>
         <p>Distance From Other Guest, Mask Required</p>
       </div>
-      <div class=" col-sm">
+      <div class="col-sm py-2">
         <i class="fas fa-pump-medical fa-3x"></i>
         <h3>Sanitized Equipment</h3>
         <p>Clean Equipment & Sanitize From Each Use</p>
       </div>
-      <div class=" col-sm">
+      <div class="col-sm py-2">
         <i class="fas fa-hand-holding-usd fa-3x"></i>
         <h3>Contact Less Payments</h3>
         <p>Contactless</p>
@@ -168,30 +168,33 @@ if(isset($_GET['duplicate'])) {
 <div class="container-fluid" id="show_work">
 <div class="row padding">
 	<div class="col-md-3 py-2">
-		<div class="card">
+		<div class="card h-100">
 			<img class="card-img-top" src="static/img/work-2.jpg">
 			<div class="card-body">
 				<h4 class="card-title">Haircuts</h4>
+				<p class="sub_header">From a simple haircut to admire worthy haircuts!</p>
 				<button href="#" class="btn btn-secondary" id="work1">Take a Look</button>
 			</div>
 		</div>
 	</div>
 
 <div class="col-md-3 py-2">
-		<div class="card">
+		<div class="card h-100">
 			<img class="card-img-top" src= "static/img/work-3.jpg">
 			<div class="card-body">
-				<h4 class="card-title">Woman Styling</h4>
+				<h4 class="card-title">Woman Beauty Styling</h4>
+				<p class="sub_header">Styling from our experts</p>
 				<button href="#" class="btn btn-secondary" id="work2">Take a Look</button>
 			</div>
 		</div>
 	</div>
 
 	<div class="col-md-3 py-2">
-		<div class="card">
+		<div class="card h-100">
 			<img class="card-img-top" src= "static/img/work-1.jpg">
 			<div class="card-body">
-				<h4 class="card-title">Women Color</h4>
+				<h4 class="card-title">Women Color Match</h4>
+				<p class="sub_header">Best in the buisness color matching. We are the experts at hair color.</p>
 				<button href="#" class="btn btn-secondary" id="work3">Take a Look</button>
 			</div>
 		</div>
@@ -199,10 +202,11 @@ if(isset($_GET['duplicate'])) {
 
 
 	<div class="col-md-3 py-2">
-		<div class="card">
+		<div class="card h-100">
 			<img class="card-img-top" src= "static/img/work-3.jpg">
 			<div class="card-body">
 				<h4 class="card-title">Waxing</h4>
+				<p class="sub_header">We currently offer Eyebrows and full face!</p>
 				<button href="#" class="btn btn-secondary" id="work4">Take a Look</button>
 			</div>
 		</div>

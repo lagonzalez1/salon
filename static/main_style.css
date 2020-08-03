@@ -282,9 +282,6 @@ input {
   padding: .8rem;
 }
 
-.navbar-toggler i {
-  color: gray;
-}
 
 .navbar > .navbar-inner {
     background:transparent ! important;
