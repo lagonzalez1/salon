@@ -59,7 +59,7 @@ if(isset($_GET['team_k'])){
   	</div>
   </nav> 
 
-  <div class="jumbotron container text-center">
+  <div class="jumbotron container text-center" id="app_made">
       <h1 class="display-4">Appointment Made!</h1>
     <hr class="small_hr">
   </div>
@@ -79,18 +79,49 @@ if(isset($_GET['team_k'])){
               echo '<p class="lead"> - Time: '.htmlentities($_SESSION['time']).' </p>';
               echo '<p class="lead"> - Stylist: '.htmlentities($_SESSION['empl']).' </p>'; 
               echo '<p class="lead"><ins>Important</ins></p>';
-              echo 'Please arrive 10 minutes early to ensure your spot in line. Thanks see you soon!';
+              echo '<p class="lead">Please arrive 10 minutes early to ensure your spot in line. Thanks see you soon!</p>';
 
             ?>
           </div>
         </div>
     </div>
 </div>
+<hr class="small_hr">
 
-  <!-- Shop current Address Locaiton should be added here. -->
+<div class="container-fluid padding" id="guide">
+  <h2 class="center-text-title text-center small_header">Next Steps</h2>
+  <p class="lead text-center">Our Appointments Are Simple</p>
+  <hr class="small_hr">
+
+  <div class="col-md-12">
+    <div class="row d-flex text-center">
+        <div class="col-md-6 py-2">
+        <i class="fas fa-desktop fa-3x"></i>
+          <h3>Check in</h3>
+          <p>Check into the front desk. 10 minutes prior to appointments time.</p>
+        </div>
+        <div class="col-md-6 py-2">
+        <i class="fas fa-headphones-alt fa-3x"></i>
+          <h3>Wait Your Turn</h3>
+          <p>Wait untill your station is clean and ready to use.</p>
+        </div>
+      </div>
+  </div>
 
 
- <hr class="hr">
+  
+    <div class="row d-flex justify-content-center">
+          <div class=" col-md-4 py-2 text-center">
+          <i class="fas fa-cut fa-3x"></i>
+            <h3>Relax</h3>
+            <p>Let our stylist take care of you!</p>
+          </div>
+    </div>
+
+  
+
+</div>
+
  <div class="container-fluid padding" id="covid">
   <h2 class="center-text-title text-center">Covid-19 Responce</h2>
   <p class="lead text-center">To Minimize The Spread We Pleadge Too</p>
@@ -118,9 +149,7 @@ if(isset($_GET['team_k'])){
 <div class="container-fluid padding">
   
   <hr class="my-4">
-
   <div class=" container-fluid text-center">
-
     <p class="lead" id="hover_click">Address: 900 University Ave, Riverside, CA 92521.</p>
   </div>
   <div id="map-container-google-1" class="container-fluid">
@@ -275,10 +304,10 @@ $(function(){
 
     </div>
     <div class="col-md-3">
-      <h5 class="footer_title">Software Opportunities</h5>
+      <h5 class="footer_title">Website help?</h5>
       <hr class="small_hr">
-      <p>otfgonzalez@gmail.com</p>
-      <p>909-572-5474</p>
+      <p>lag.webservices@gmail.com</p>
+      <p>909-xxx-xxxx</p>
       <hr class="small_hr">
     </div>
 

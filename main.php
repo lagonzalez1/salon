@@ -16,7 +16,6 @@ $current_date = date("m/d/o");
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/> 
 	
 	
@@ -115,18 +114,18 @@ if(isset($_GET['duplicate'])) {
 </div>
 
 
-<div class="modal fade" id="lost_spot_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="lost_spot_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Oh No!</h5>
+        <h5 class="modal-title small_header" id="exampleModalLabel">Oh No!</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="refreshPage();">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body" id = "body_err">
-       Looks like someone beat you for your appointment! Try another time, we are very popular!
-       Thanks!
+       <p class="sub_header text-center">Looks like someone beat you for your appointment! Try the next best available time, we are very popular and our time slots fill out fast!
+       Thanks!</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="refreshPage();">Close</button>
@@ -800,54 +799,7 @@ function remove_leftover(){
 }
 
 
-function convert_time(hour, min){
-	var h = hour;
-	var m = min;
-	var del_val = null;
-	if(hour >= 12){
-		h = h - 12;
-		del_val = "pm";
-	}
-	if(hour == 0){ h = 12; }
-	if(hour < 12){ del_val = "am"; }
-	return [h,min,del_val];
-}
 
-function get_today(){
-	var today = new Date();
-	var dd = String(today.getDate()).padStart(2, '0');
-	var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-	var yyyy = today.getFullYear();
-
-	return today = mm + '/' + dd + '/' + yyyy;
-}
-
-
-function remove_based_time(lastVal, currDate){
-	if(currDate == get_today()) {
-		var date = new Date();
-		var h = date.getHours();
-		var m = date.getMinutes();
-		var complete = convert_time(h,m);
-
-		if(lastVal == null){
-			return false;
-		}
-		// Last Array value
-		var splitArr = lastVal.split(":");
-		var hhr = splitArr[0]; // Last Array Value Hour EX: 6:00:pm
-		var mmr = splitArr[1]; // Last Array Value Minute
-		var ap = splitArr[2]; // No Need to check
-
-		if(complete[0] > hhr && complete[3] == ap){
-			return true;
-		}else{
-			return false;
-		}
-	}else{
-		return false;
-	}	
-}
     
 
     $(document).ready(function(){
@@ -899,8 +851,8 @@ function remove_based_time(lastVal, currDate){
 	}
      function nonWorkingDates(date){
         var day = date.getDay(), Sunday = 0, Monday = 1, Tuesday = 2, Wednesday = 3, Thursday = 4, Friday = 5, Saturday = 6;
-        var closedDates = [[7, 29, 2009], [8, 25, 2010]];
-        var closedDays = [[Sunday], [Saturday]];
+        var closedDates = [[8, 5, 2009], [8, 25, 2010]]; // This can be used for Holidays
+        var closedDays = [[Saturday]];
         for (var i = 0; i < closedDays.length; i++) {
             if (day == closedDays[i][0]) {
                 return [false];

@@ -11,7 +11,7 @@ class employee {
     '03:30 pm','04:00 pm','04:30 pm','05:00 pm','05:30 pm','06:00 pm','06:30 pm','07:00 pm'); // Might need to include breaks and lunch breaks;
     public $diff_interval = array('07:00 am', '07:45 am', '08:30 am', '09:15 am', '10:00 am', '10:45 am','11:30 am','12:15 pm','01:00 pm','01:45','02:30 pm','03:15 pm','04:00 pm','04:45 pm','05:30 pm','06:15 pm','07:00 pm','07:45 pm');
     public $time_frame = array();
-    public $day_off = array(); // 0 sunday -> 6 saturday
+    public $day_off = array(); // 0 sunday -> 7 saturday
     public $date_num;
     public $lunch_start;
     public $lunch_end;
@@ -92,7 +92,9 @@ class employee {
      function getHourSched() {return $this->hour_sched;}
 
      public function correctArrayTimeFrame() {
-        if ($key = array_search($this->date_num, $this->day_off)){
+
+        $key = array_search($this->date_num, $this->day_off);
+        if($key !== false){
             // Current Date is day off
             $var = array('Day off for employee, try another date');
             return $var;
@@ -167,6 +169,9 @@ class employee {
         $counter = 0;
         // Return array from class Based on time frame
         $corrected = $this->correctArrayTimeFrame();
+        if($corrected[0] == 'Day off for employee, try another date'){
+            return ['Day Off for Employee'];
+        }
         for($i= 0; $i < count($corrected);$i++){
                 //echo $corrected[$i];    
             if(strtotime($corrected[$i]) < strtotime($this->current_time)){

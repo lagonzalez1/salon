@@ -2,7 +2,7 @@
 
 include('server_connect.php');
 
-
+// Check for appointments 
 if(isset($_POST['user_email'])){
 	$emm = $_POST['user_email'];
 	$find_stm = "SELECT * FROM `client_upgrade` WHERE Email = '$emm'; ";
@@ -24,7 +24,7 @@ if(isset($_POST['user_email'])){
 	}
 
 }
-
+// Delete if needed based on email
 if(isset($_POST['email'])) {
 	$em = $_POST['email'];
 	$find = "DELETE FROM `client_upgrade` WHERE Email = '$em'; ";

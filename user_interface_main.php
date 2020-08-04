@@ -25,13 +25,15 @@ include('server_connect.php');
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>   
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-bootgrid/1.3.1/jquery.bootgrid.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-bootgrid/1.3.1/jquery.bootgrid.min.js"></script>             
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-bootgrid/1.3.1/jquery.bootgrid.css" />
+
   <link href="/salon/static/user_main_interface_style.css" rel="stylesheet">
 
 </head>
@@ -41,7 +43,8 @@ include('server_connect.php');
     $_SESSION=array();
     unset($_SESSION);
 		session_destroy();
-		header('Location: user_login_page.php');
+    header('Location: user_login_page.php');
+    exit();
 	}
 	if(isset($_GET['logout_click'] )){
 		exit_user();
@@ -107,7 +110,7 @@ include('server_connect.php');
           <a class="nav-link" name="all_app" onclick="return showAllAppointments();">All Appointments</a>
         </li>
   			<li class="nav-item">
-  				<a class="nav-link" onclick="return help();">Help</a>
+  				<a class="nav-link" id="help">Help</a>
   			</li>
   		</ul>
   	</div>
@@ -120,7 +123,7 @@ include('server_connect.php');
     $date = date("l");
     $current_date = date("l, M-d-Y");
 
-    echo '<h1 class="display-4" style = "color: #FFFFFF">Hello, current list.</h1>
+    echo '<h1 class="display-4" style = "color: #FFFFFF">Hello, Showing Today&#39s Appointments.</h1>
      <h2 class = "display-6" style = "color: #FFFFFF"> '.$current_date.'</h2>
       ';
   ?>
@@ -258,14 +261,9 @@ $(function() {
 });
 
 
-function help() {
-  var title = "Help";
-  var body = "For any questions or concerns about the website please email: lag.webservices@gmail.com ";
-  document.getElementById('img_about').src = "/salon/static/img/help.png";
-  document.getElementById('title_config').innerHTML = title;
-    document.getElementById('body_message').innerHTML = body;
-  $('#configure_modal').modal('show');
-}
+$('#help').on('click', function(){
+        $('#help_modal').modal('toggle');
+  });
 
 
 $(document).ready(function() {
@@ -414,14 +412,41 @@ $(document).ready(function(){
   });
 });
 
+
+$(function(){
+  $(document).on('click','.change_time', function(){
+    show_modal('New Feature', 'The feature you have selected has not yet been added. Please wait for future updates.');
+  });
+});
+
 function show_modal(title,body){
   document.getElementById('title_config').innerHTML = title;
   document.getElementById('body_config').innerHTML = body;
   $("#configure_modal").modal("toggle");
 }
-
-
 </script>
+
+
+<div class="modal fade" id="help_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+        </div>
+        <div class="modal-body" id = "body_err">
+            <p class="header text-center">Salon Help</p>
+            <p class="sub_header text-center">If you need help with salon services please feel free to call the establishment via: 909-XXX-XXXX.</p>
+            <hr class="hr">
+            <p class="header text-center">Website Help</p>
+            <p class="sub_header text-center">If you need help with anything related to this website, please feel free to email use at: lag.webservices@gmail.com</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+</div>
 
 
 <div class="modal fade" id="configure_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

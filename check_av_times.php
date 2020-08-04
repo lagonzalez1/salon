@@ -22,7 +22,7 @@ Last appointment : 05:30 pm [End Shift at 6:00pm]
 
 */
 
-$date_number = date('w');
+
  if(isset($_POST['date']) || isset($_POST['empl']) ){
     
     $conflict_array = (array)null;
@@ -30,11 +30,13 @@ $date_number = date('w');
  	$ee_empl = $_POST['empl'];
  	$ee_dat = $_POST['date'];
     $current_date = date("m/d/o");
+    //$date_number = date('w'); // Convert this to appointment date of number
+    $date_number = date('w', strtotime($ee_dat));
     global $current_time;
     switch($ee_empl){
         case 'Stacy':
             $stacy = ['09:00 am', '07:00 pm']; // Work schedule
-            $day_off = [0,7];
+            $day_off = [1,7];
             $obj = new employee($ee_empl,$ee_dat,$current_time,$day_off,$date_number,true);
             $obj->setTimeFrame($stacy);
             $obj->setLunchBreak('01:00 pm','01:30 pm',30);
