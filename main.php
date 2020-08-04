@@ -399,7 +399,7 @@ if(isset($_GET['duplicate'])) {
 	            	</div>
 	            	<div class="col-md-6">
 	            		
-	              		<input type="text" value="" class="form-control no-border" id="time" name="time" readonly required="">
+	              		<input type="text" value="" class="form-control no-border" id="time" name="time" maxlength="8" readonly required="">
 	           			<hr class="w-hr">
 	            	</div>
 	            </div>

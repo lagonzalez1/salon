@@ -59,8 +59,6 @@ if(isset($_GET['team_k'])){
   	</div>
   </nav> 
 
-  
-
   <div class="jumbotron container text-center">
       <h1 class="display-4">Appointment Made!</h1>
     <hr class="small_hr">

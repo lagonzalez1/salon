@@ -35,7 +35,7 @@ $date_number = date('w');
         case 'Stacy':
             $stacy = ['09:00 am', '07:00 pm']; // Work schedule
             $day_off = [0,7];
-            $obj = new employee($ee_empl,$ee_dat,$current_time,$day_off,$date_number );
+            $obj = new employee($ee_empl,$ee_dat,$current_time,$day_off,$date_number,true);
             $obj->setTimeFrame($stacy);
             $obj->setLunchBreak('01:00 pm','01:30 pm',30);
             
@@ -43,7 +43,7 @@ $date_number = date('w');
         case 'Sam':
             $sam = ['07:30 am', '04:30 pm'];
             $day_off = [0,7];
-            $obj = new employee($ee_empl,$ee_dat,$current_time,$day_off,$date_number );
+            $obj = new employee($ee_empl,$ee_dat,$current_time,$day_off,$date_number, false);
             $obj->setTimeFrame($sam);
             $obj->setLunchBreak('12:00 pm','01:00 pm', 1);
             
@@ -51,7 +51,7 @@ $date_number = date('w');
         case 'Mary':
             $mary = ['08:00 am', '06:00 pm'];
             $day_off = [0,7];
-            $obj = new employee($ee_empl,$ee_dat,$current_time,$day_off,$date_number );
+            $obj = new employee($ee_empl,$ee_dat,$current_time,$day_off,$date_number, false);
             $obj->setTimeFrame($mary);
             $obj->setLunchBreak('11:30 am','12:00 pm', 30);
             
@@ -59,7 +59,7 @@ $date_number = date('w');
         case 'Emily':
             $emily = ['08:00 am', '06:00 pm'];
             $day_off = [0,7];
-            $obj = new employee($ee_empl,$ee_dat,$current_time,$day_off,$date_number );
+            $obj = new employee($ee_empl,$ee_dat,$current_time,$day_off,$date_number,false);
             $obj->setTimeFrame($emily);
             $obj->setLunchBreak('01:00 pm','01:30 pm',30);
             
@@ -67,7 +67,7 @@ $date_number = date('w');
         case 'Karen':
             $karen = ['08:00 am', '06:00 pm']; // Start time , Last appointment 
             $day_off = [0,2];
-            $obj = new employee($ee_empl,$ee_dat,$current_time,$day_off,$date_number );
+            $obj = new employee($ee_empl,$ee_dat,$current_time,$day_off,$date_number,false);
             $obj->setTimeFrame($karen);
             $obj->setLunchBreak('01:00 pm','01:30 pm',30);
             
