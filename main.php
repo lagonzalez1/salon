@@ -76,6 +76,45 @@ if(isset($_GET['duplicate'])) {
 </nav>
 
 
+<div class="modal fade" id="about_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <img src="static/img/storefront.jpg" class="img-responsive" style="max-width: 100%;">
+        </div>
+        <div class="modal-body" id = "body_err">
+            <p class="header text-center">About Us</p>
+            <p class="sub_header text-center">We are a small company located on 988 W something Drive, Beverly hills Ca, 90000. Our promise to our clients is to ensure every service is to the highest standard.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="modal fade" id="help_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+        </div>
+        <div class="modal-body" id = "body_err">
+            <p class="header text-center">Salon Help</p>
+            <p class="sub_header text-center">If you need help with salon services please feel free to call the establishment via: 909-XXX-XXXX.</p>
+            <hr class="hr">
+            <p class="header text-center">Website Help</p>
+            <p class="sub_header text-center">If you need help with anything related to this website, please feel free to email use at: lag.webservices@gmail.com</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+
 <div class="modal fade" id="lost_spot_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -194,7 +233,7 @@ if(isset($_GET['duplicate'])) {
 			<img class="card-img-top" src= "static/img/work-1.jpg">
 			<div class="card-body">
 				<h4 class="card-title">Women Color Match</h4>
-				<p class="sub_header">Best in the buisness color matching. We are the experts at hair color.</p>
+				<p class="sub_header">Best in the buisness for color matching.</p>
 				<button href="#" class="btn btn-secondary" id="work3">Take a Look</button>
 			</div>
 		</div>
@@ -466,7 +505,7 @@ if(isset($_GET['duplicate'])) {
 							<p id="i-time"></p>
 							<p id="i-stylist"></p>
 							<p id="i-email"></p>
-							<input type="submit" value="Remove Me" id="remove_me" class="btn btn-warning">
+							<input type="submit" value="Remove Me" id="remove_me" class="btn btn-danger">
 						</div>	
 					</div>
  			 	</div>
@@ -534,6 +573,15 @@ if(isset($_GET['duplicate'])) {
 
 
 <script type="text/javascript">
+
+$(function(){
+    $('#about').on('click', function(){
+        $('#about_modal').modal('toggle');
+    });
+    $('#help').on('click', function(){
+        $('#help_modal').modal('toggle');
+    });
+});
 
 
 $(document).ready(function (){

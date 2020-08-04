@@ -4,6 +4,24 @@ include('employee_model.php');
 date_default_timezone_set("America/Los_Angeles");
 $current_time = date("h:i a");
 
+
+/* Example Employee: 
+Start Time: 9:00 am
+[Lunch from 01:00 pm, 30 min -> 1:30 pm] 
+Last appointment : 05:30 pm [End Shift at 6:00pm]
+*/
+
+/*
+ 45 minute interval MUST match END times and START Times;
+ ALSO: LUNCH BREAKS
+ This interval might have an exeption because 45 minutes will cover lunch
+ We would just remove at the start time
+
+ S: 01:45 pm 
+ E: 30min or 45min 1hr(might need to alter code)
+
+*/
+
 $date_number = date('w');
  if(isset($_POST['date']) || isset($_POST['empl']) ){
     
@@ -15,34 +33,44 @@ $date_number = date('w');
     global $current_time;
     switch($ee_empl){
         case 'Stacy':
-            $stacy = ['09:00 am', '07:00 pm'];
+            $stacy = ['09:00 am', '07:00 pm']; // Work schedule
             $day_off = [0,7];
             $obj = new employee($ee_empl,$ee_dat,$current_time,$day_off,$date_number );
             $obj->setTimeFrame($stacy);
+            $obj->setLunchBreak('01:00 pm','01:30 pm',30);
+            
         break;
         case 'Sam':
             $sam = ['07:30 am', '04:30 pm'];
             $day_off = [0,7];
             $obj = new employee($ee_empl,$ee_dat,$current_time,$day_off,$date_number );
             $obj->setTimeFrame($sam);
+            $obj->setLunchBreak('12:00 pm','01:00 pm', 1);
+            
         break;
         case 'Mary':
             $mary = ['08:00 am', '06:00 pm'];
             $day_off = [0,7];
             $obj = new employee($ee_empl,$ee_dat,$current_time,$day_off,$date_number );
             $obj->setTimeFrame($mary);
+            $obj->setLunchBreak('11:30 am','12:00 pm', 30);
+            
         break;
         case 'Emily':
             $emily = ['08:00 am', '06:00 pm'];
             $day_off = [0,7];
             $obj = new employee($ee_empl,$ee_dat,$current_time,$day_off,$date_number );
             $obj->setTimeFrame($emily);
+            $obj->setLunchBreak('01:00 pm','01:30 pm',30);
+            
         break;
         case 'Karen':
-            $karen = ['08:00 am', '06:00 pm'];
+            $karen = ['08:00 am', '06:00 pm']; // Start time , Last appointment 
             $day_off = [0,2];
             $obj = new employee($ee_empl,$ee_dat,$current_time,$day_off,$date_number );
             $obj->setTimeFrame($karen);
+            $obj->setLunchBreak('01:00 pm','01:30 pm',30);
+            
         break;
     }
  	$stmt = "SELECT * FROM `client_upgrade` WHERE Per_stylist='$ee_empl' AND App_Date='$ee_dat';";

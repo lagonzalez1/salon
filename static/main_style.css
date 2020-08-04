@@ -185,6 +185,9 @@ body, html {
 .btn-group {
   border-radius: 0;  
 }
+.btn-warning {
+  color: white !important;
+}
 
 
 /*EndButton Group*/
