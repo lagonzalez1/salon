@@ -352,6 +352,9 @@ if(isset($_GET['duplicate'])) {
 	<h1 class="sub_header">- Please arrive 10 mintues before appointment time.</h1>
 	<h1 class="sub_header">- We also offer a walk in line, but keep in mind we follow appoinments first.</h1>
 </div>
+<div class="container-fluid" id="closed">
+	<h3 class="header text-center"> Sorry Appointments are closed as of now</h3>
+</div>
 
 
 <div class="container-fluid"id="appointments">
@@ -397,7 +400,6 @@ if(isset($_GET['duplicate'])) {
 	            		<hr class= "w-hr">
 	            	</div>
 	            	<div class="col-md-6">
-	            		
 	              		<input type="text" value="" class="form-control no-border" id="time" name="time" maxlength="8" readonly required="">
 	           			<hr class="w-hr">
 	            	</div>
@@ -424,12 +426,13 @@ if(isset($_GET['duplicate'])) {
 	        	<div class="row form-group d-flex">
 	        		<div class="col-md-6">
 	        			<div class="form-group">
-	        				<input class="btn btn-primary" type="button" value="Check Available Times" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample" id="check_tm">		
+							
+	        				<input class="btn btn-primary" type="button" disabled value="Check Available Times" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample" id="check_tm">		
 	        			</div>
 	        		</div>
 	        	</div>
 	            <div class="form-group">
-	              <input type="submit" value="Make Appointment" class="btn btn-primary" id="create_app" name="clicked">
+	              <input type="submit" value="Make Appointment" class="btn btn-primary" id="create_app" name="clicked" disabled>
 	            </div>
 	          </form>
 	    		</div>  
@@ -573,6 +576,11 @@ if(isset($_GET['duplicate'])) {
 
 <script type="text/javascript">
 
+
+$(document).ready(function(){
+	//$('#closed').remove();
+});
+
 $(function(){
     $('#about').on('click', function(){
         $('#about_modal').modal('toggle');
@@ -696,6 +704,7 @@ function remove_based_email(email){
 	}
 });	
 }
+
 
 function make_request(user_email){
 	var xhr = $.ajax({
