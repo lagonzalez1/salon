@@ -174,8 +174,8 @@ if(isset($_POST['cc_id'])){
 			$email = $row['Email'];
 			$name = $row['Name'];
 			$phone = $row['Phone'];
-			$carrier = $row['Carrier'];
-			$send_sms = $phone.$array_carrier[$carrier];
+			//$carrier = $row['Carrier'];
+			//$send_sms = $phone.$array_carrier[$carrier];
 			send_email_phone($email,$name,"");
 
 		}else {
