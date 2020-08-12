@@ -255,7 +255,7 @@ if(isset($_GET['duplicate'])) {
 
  <div class="container-fluid">
  	<div class="title text-center">
-        <h2 class="mb-4">Our Pricing</h2>
+        <h2 class="mb-4">What We Offer</h2>
         <p class="mb-3">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
     </div>
  </div>
@@ -312,9 +312,47 @@ if(isset($_GET['duplicate'])) {
 			</div>
 		</div>
 	</div>
-
  	</div>	
 </div>
+<div class="container-fluid" id="cost">
+	<h2 class="mb-4 text-center">Our Pricing</h2>
+	<div class="row d-flex justify-content-center">
+		<div class="col-md-12">
+			<div class="row d-flex justify-content-center text-center">
+				<div class="col-md-3">
+					<p class="subthindark">Coloring Services</p>
+					<hr class="bl_hr">
+					<p class="sub_header">Complete Color Change: 70$ & up</p>
+					<p class="sub_header">Partial Color Change: 50$ & up</p>
+					<p class="sub_header">Highlights: 40$ & up</p>
+				</div>
+				<div class="col-md-3">
+					<p class="subthindark">Styling</p>
+					<hr class="bl_hr">
+					<p class="sub_header">Simple: 50$ & up</p>
+					<p class="sub_header">Wedding: 70$ & up</p>
+					<p class="sub_header">Flat: 40$ & up</p>
+				</div>
+				<div class="col-md-3">
+					<p class="subthindark">Woman Cuts</p>
+					<hr class="bl_hr">
+					<p class="sub_header">Normal Cut: 50$ & up</p>
+					<p class="sub_header">Fancy Cut: 70$ & up</p>
+				</div>
+				<div class="col-md-3">
+					<p class="subthindark">Luxury Nails</p>
+					<hr class="bl_hr">
+					<p class="sub_header">Color: 20$ & up</p>
+					<p class="sub_header">Filling: 20$ & up</p>
+					<p class="sub_header">New Set: 30$ & up</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
 <section class="ftco-partner bg-light">
     	<div class="container">
     		<div class="row partner justify-content-center">

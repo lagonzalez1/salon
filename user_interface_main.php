@@ -6,6 +6,8 @@
 // 4. empl1  empl2  empl3   empl4
 //    person person preson person
 // 5. Check glitch in the morning, For some reason it didnt want to show times early in the morning for a current dates
+$lifetime = strtotime('+4 hours', 0);
+session_set_cookie_params($lifetime);
 
 session_start();
 if(!isset($_SESSION['user-login-success'])){
