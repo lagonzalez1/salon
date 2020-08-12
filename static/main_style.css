@@ -130,9 +130,13 @@ body, html {
 
 /* New Addition*/
 
-
+#cost{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
 
 /* End of new Addition */
+
 
 
 /* The hero image */

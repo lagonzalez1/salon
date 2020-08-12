@@ -314,6 +314,8 @@ if(isset($_GET['duplicate'])) {
 	</div>
  	</div>	
 </div>
+
+
 <div class="container-fluid" id="cost">
 	<h2 class="mb-4 text-center">Our Pricing</h2>
 	<div class="row d-flex justify-content-center">
@@ -912,6 +914,11 @@ function remove_leftover(){
         return [true];
     }
 
+
+function send_message(){
+	// Make a modal to send a message
+}
+
 function show_modal(title,body){
 
   document.getElementById('title_config_err').innerHTML = title;
@@ -999,7 +1006,8 @@ function show_modal(title,body){
               <h2 class="footer_title">About Us</h2>
               <hr class="small_hr">
               <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-              <p style="color: #4ed9f7;"> View OR Cancell Appoinment <a onclick="cancell_click();">Click Me</p>
+			  <p style="color: #4ed9f7;"> View OR Cancell Appoinment <a onclick="cancell_click();">Click Me</p>
+			  <p><a onclick="send_message();">Send Message <i class="far fa-envelope fa-lg"></p>
             	<hr class="small_hr">
                 <a href="#"><img src="static/img/icons/twitter_icon.png" style="height: 50px; width: 50px;"></a>
                 <a href="#"><img src="static/img/icons/facebook_icon.png" style="height: 50px; width: 50px;"></a>
