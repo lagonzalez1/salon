@@ -865,18 +865,13 @@ function remove_leftover(){
         			timeout: 5000,
         			dataType: 'json',
         			data:{'date': date, 'empl': stls},
-
         			success: function(rdata) {
-        				
 						for (i = 0 ; i < rdata.length; i++){
 							console.log(rdata[i]);
-							
         					add(rdata[i]);
         				}
 						console.log(rdata);
-						$('#check_av_times').collapse('toggle');
-						
-        			    
+						$('#check_av_times').collapse('toggle');  
         			}, 
         			error: function(err, code) {
         				console.log(err);
@@ -916,8 +911,66 @@ function remove_leftover(){
 
 
 function send_message(){
-	// Make a modal to send a message
+	$('#send_message').modal('toggle');
+	$('#send_message_btn').on('click', function(){
+		var static cc_email = "lag.webservices@gmail.com"; // Email to foward to
+		var send_message = 'send_message';
+		var email = $('#email_send').val();
+		var body = $('#body_message').val();
+
+		if(email  == "" && body == ""){
+			
+		}
+
+
+		var aj = $.ajax({
+			type: 'GET',
+			url: 'handle_clients.php',
+			data: {'send_message':send_message,
+					email: email,
+					body: body,
+			},
+			timeout: 5000,
+		success: function(data){
+
+			// Handle data send back Aug 14 2020
+
+		},
+		error: function(id, er, ll){
+			console.log(id + er + ll);
+		}
+
+		});
+	});
+
 }
+
+<div class="modal fade" id="send_message" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="title_config">Message Us</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="refreshPage();">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id= "body">
+	  	<label for="email_send">Email:</label>
+	  	<input type="text" value="email_send" class="form-control" id="email_send" name="Email" maxlength="20" required="">
+
+		  <label for="body_message">Body:</label>
+		<textarea type="text" value="Message Body" class="form-control" id="body_message" name="body_message" required=""></textarea>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+		<button type="input" class="btn btn-primary" data-dismiss="modal" id="send_message_btn">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 function show_modal(title,body){
 
