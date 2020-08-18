@@ -209,6 +209,9 @@ body, html {
 .form-control:valid {
   background-color: #f74ed9 ! important;
 }
+
+
+
 /*HR */
 .l-hr {
   max-width: 500px;
@@ -455,12 +458,9 @@ p {
   margin-bottom: 50px;
 }
 
-#carrier-id {
-  background-color: transparent;
-  border: 0;
-}
+
 #employee-id {
-  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.1);;
   border: 0;
 }
 
@@ -549,3 +549,10 @@ footer p {
   background-color: white;
 }
 
+
+
+#email_send .form-control:valid {
+  background-color: transparent !important;
+  border-color: gray !important;
+  color: black !important;
+}

@@ -6,17 +6,17 @@ include('server_connect.php');
 
 
 // August 14 2020 Test this
-if(isset($_GET['send_message'])){
+if(isset($_GET['send_message']) && isset($_GET['email'])){
 	$body = $_GET['body'];
 	$cc_email = $_GET['email'];
 
 	if($body == "" && $cc_email == ""){
-		echo 'String Empty';
+		echo 'E String';
 		exit();
 	}
 	if(send_email_to_owner($body,$cc_email)){
 		// True
-		echo 'Send Succesfully';
+		echo 'Send Succesfull';
 		exit();
 	}else{
 		echo 'Error: Sending';
@@ -30,14 +30,14 @@ if(isset($_GET['send_message'])){
 function send_email_to_owner($bod,$from_email){
 	$stat = False;
 	$const_email = "lag.webservices@gmail.com";
-	$subject = "Customer Questions";
+	$subject = "Customer Feedback";
 
 	// Keep a different Email per guest
-	$headers = 'From: store_name_1@checkinservice.net' . "\r\n" .
+	$headers = 'From: '.$from_email.'' . "\r\n" .
     'Reply-To: NOREPLY' . "\r\n" .
     'X-Mailer: PHP/' . phpversion();
 
-	$mail_st = mail($from_email, $subject, $bod, $headers);
+	$mail_st = mail($const_email, $subject, $bod, $headers);
 	if(!$mail_st) {return $stat;}
 	else {
 		$stat = True;

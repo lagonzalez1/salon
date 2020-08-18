@@ -913,17 +913,15 @@ function remove_leftover(){
 function send_message(){
 	$('#send_message').modal('toggle');
 	$('#send_message_btn').on('click', function(){
-		var static cc_email = "lag.webservices@gmail.com"; // Email to foward to
+		const cc_email = "lag.webservices@gmail.com"; 
 		var send_message = 'send_message';
 		var email = $('#email_send').val();
 		var body = $('#body_message').val();
 
 		if(email  == "" && body == ""){
-			
-		}
-
-
-		var aj = $.ajax({
+			return;
+		}else{
+			var aj = $.ajax({
 			type: 'GET',
 			url: 'handle_clients.php',
 			data: {'send_message':send_message,
@@ -932,6 +930,26 @@ function send_message(){
 			},
 			timeout: 5000,
 		success: function(data){
+			switch(data){
+				case 'Send Succesfull':
+					console.log('Sent!');
+				break;
+				case 'E String':
+					console.log('Sent Empty String!')
+				break;
+
+				case 'Error: Sending':
+					console.log('Sent Error!')
+				break;
+
+				case 'Func Fail':
+					console.log('Func Fail!')
+				break;
+
+				default:
+					console.log('Default!')
+					break;
+			}
 
 			// Handle data send back Aug 14 2020
 
@@ -941,9 +959,22 @@ function send_message(){
 		}
 
 		});
+
+		}
+		
 	});
 
 }
+
+
+function show_modal(title,body){
+
+  document.getElementById('title_config_err').innerHTML = title;
+  document.getElementById('body_config_err').innerHTML = body;
+  $("#configure_modal").modal("toggle");
+}    	
+</script>
+
 
 <div class="modal fade" id="send_message" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -956,29 +987,19 @@ function send_message(){
       </div>
       <div class="modal-body" id= "body">
 	  	<label for="email_send">Email:</label>
-	  	<input type="text" value="email_send" class="form-control" id="email_send" name="Email" maxlength="20" required="">
+	  		<input type="text" placeholder="Email" class="form-control" id="email_send" name="Email" maxlength="20" required="">
 
 		  <label for="body_message">Body:</label>
-		<textarea type="text" value="Message Body" class="form-control" id="body_message" name="body_message" required=""></textarea>
+			<textarea type="text" placeholder="Body" class="form-control" id="body_message" name="body_message" required=""></textarea>
         
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-		<button type="input" class="btn btn-primary" data-dismiss="modal" id="send_message_btn">Send</button>
+		<button type="input" class="btn btn-info" data-dismiss="modal" id="send_message_btn">Send</button>
       </div>
     </div>
   </div>
 </div>
-
-
-
-function show_modal(title,body){
-
-  document.getElementById('title_config_err').innerHTML = title;
-  document.getElementById('body_config_err').innerHTML = body;
-  $("#configure_modal").modal("toggle");
-}    	
-</script>
 
 <div class="modal fade" id="time_out" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -1059,8 +1080,8 @@ function show_modal(title,body){
               <h2 class="footer_title">About Us</h2>
               <hr class="small_hr">
               <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-			  <p style="color: #4ed9f7;"> View OR Cancell Appoinment <a onclick="cancell_click();">Click Me</p>
-			  <p><a onclick="send_message();">Send Message <i class="far fa-envelope fa-lg"></p>
+			  <p style="color: #4ed9f7;"> View OR Cancell Appoinment <a onclick="cancell_click();">Click Me</a></p>
+			  <p>Feedback? Send us a message <a onclick="send_message();"><i class="far fa-envelope fa-lg"></a></p>
             	<hr class="small_hr">
                 <a href="#"><img src="static/img/icons/twitter_icon.png" style="height: 50px; width: 50px;"></a>
                 <a href="#"><img src="static/img/icons/facebook_icon.png" style="height: 50px; width: 50px;"></a>
