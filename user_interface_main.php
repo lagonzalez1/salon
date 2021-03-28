@@ -279,7 +279,7 @@ $(function(){
       $.ajax({
         type:'POST',
         url:'handle_clients.php',
-        timeout: 5000,
+        timeout: 10000,
         data:{'del_id':del_id},
         success: function(responce){
           	if(responce == "YES"){
@@ -306,7 +306,7 @@ $(function () {
     console.log(cc_id);
     $.ajax({
       type: 'POST',
-      timeout: 5000,
+      timeout: 10000,
       url: 'handle_clients.php',
       data: {'cc_id': cc_id },
       success: function (responce) {
@@ -346,7 +346,7 @@ $(function(){
       $.ajax({
         type:'POST',
         url:'handle_clients.php',
-        timeout: 5000,
+        timeout: 10000,
         data:{'check_in':check_in},
         success: function(responce){
           	if(responce == "Success"){

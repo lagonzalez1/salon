@@ -717,7 +717,7 @@ function remove_based_email(email){
 	var xhr = $.ajax({
 	type:'POST',
 	url:'handle_clients.php',
-	timeout: 5000,
+	timeout: 10000,
 	data:{'email': email},
 	success: function(rdata) {
 		console.log(rdata);
@@ -747,7 +747,7 @@ function make_request(user_email){
 	var xhr = $.ajax({
 	type:'POST',
 	url:'handle_clients.php',
-	timeout: 5000,
+	timeout: 10000,
 	dataType: 'json',
 	data:{'user_email':user_email },
 	success: function(rdata) {
@@ -862,7 +862,7 @@ function remove_leftover(){
     			var xhr = $.ajax({
     				type:'POST',
         			url:'check_av_times.php',
-        			timeout: 5000,
+        			timeout: 10000,
         			dataType: 'json',
         			data:{'date': date, 'empl': stls},
         			success: function(rdata) {
@@ -928,7 +928,7 @@ function send_message(){
 					email: email,
 					body: body,
 			},
-			timeout: 5000,
+			timeout: 10000,
 		success: function(data){
 			switch(data){
 				case 'Send Succesfull':
