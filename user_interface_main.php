@@ -177,7 +177,7 @@ function showAllAppointments(){
   var xhr = $.ajax({
     type: 'POST',
     url: 'refresh_all_table.php',
-    timeout: 5000,
+    timeout: 10000,
     data: {'all_app_view':'all_app_view'},
     success: function(htmlRes){
       if(htmlRes == "Result: Error"){
@@ -208,7 +208,7 @@ function reload_table() {
      var init_req = $.ajax({
         type:'POST',
         url:'refresh_all_table.php',
-        timeout: 5000,
+        timeout: 10000,
         data:{'initial_launch':'initial_launch'},
           success: function(responce){
               $('#s_0').find('tbody').html(responce);
@@ -223,7 +223,7 @@ function reload_table() {
      var second_table = $.ajax({
         type:'POST',
         url:'general_table.php',
-        timeout: 5000,
+        timeout: 10000,
         data:{'initial_launch':'initial_launch'},
           success: function(responce){
               $('#s_1').find('tbody').html(responce);
@@ -374,7 +374,7 @@ $(document).ready(function(){
   var db_check = "db_check";
   var xhr = $.ajax({
     type: 'POST',
-    timeout: 5000,
+    timeout: 10000,
     url:"handle_clients.php",
     data: {'db_check':db_check},
     success:function (response){
@@ -512,7 +512,7 @@ function show_modal(title,body){
 </div>
 
 
-
+<!-- interface_request.php method called to complete tast -->
 <div class="modal fade" id="add_new_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

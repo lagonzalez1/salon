@@ -423,6 +423,7 @@ if(isset($_GET['duplicate'])) {
 	    		</div>
 	    		<div class="col-md-6 appointment pl-md-5">
 	    			<h3 class="apt_title">Appointments</h3>
+                    <p> Current wait time...  </p>
 	    	<form action="make_appointment.php" method="post">
 	            <div class="row form-group d-flex">
 	            	<div class="col-md-6">
@@ -439,14 +440,18 @@ if(isset($_GET['duplicate'])) {
 	            		<input type="text" class="form-control no-border" placeholder="Phone" id="phone" name="phone" autocomplete="off" required="">
 	            		<hr class= "w-hr">
 	            	</div>
-	            	<div class="col-md-6">
-	              		<input type="text" value="" class="form-control no-border" id="time" name="time" maxlength="8" readonly required="">
+                    <?php
+                    global $current_date;
+	            	echo '<div class="col-md-6">
+	              		<input type="text" value="Today Date: '.htmlentities($current_date).'" class="form-control no-border" id="time" name="time" maxlength="8" readonly>
 	           			<hr class="w-hr">
-	            	</div>
+	            	</div>';
+
+                    ?>
 	            </div>
 	            <div class="row form-group d-flex">
 	            <div class="col-md-6">
-	            	<select class="form-control" id="employee-id" name="empl" required>
+	            	<select class="form-control" id="employee-id" name="empl" required hidden>
 					        <option value="None">Perferred stylist</option>
 					        <option value="Stacy">Stacy Carrol</option>
 					        <option value="Sam">Sam Jr</option>
@@ -454,12 +459,12 @@ if(isset($_GET['duplicate'])) {
 					        <option value="Emily">Emily Valdovinos</option>
 					        <option value="Karen">Karen Mayne</option>
 	          		</select>
-	          		<hr>
+	          		<hr hidden>
 	            </div>
 		            <div class="col-md-6">
 		              <div class="form-group">
-	                    <input type="text" class="form-control no-border" placeholder="Date" id="calendar" autocomplete="off" name="date" required="">
-		              <hr class= "w-hr">
+	                    <input type="text" class="form-control no-border" placeholder="Date" id="calendar" autocomplete="off" name="date"hidden>
+		              <hr class= "w-hr" hidden>
 		            </div>
 		        	</div>
 	        	</div>
@@ -467,11 +472,13 @@ if(isset($_GET['duplicate'])) {
 	        		<div class="col-md-6">
 	        			<div class="form-group">
 							
-	        				<input class="btn btn-primary" type="button" value="Check Available Times" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample" id="check_tm">		
+	        				<input class="btn btn-primary" type="button" value="Check Available Times" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample" id="check_tm" hidden>		
 	        			</div>
 	        		</div>
 	        	</div>
 	            <div class="form-group">
+                <!-- If this is present when calling make_appointment.php   -->
+                  <input type="text" name="scale_version" id="scale" value="scale_version" hidden>
 	              <input type="submit" value="Make Appointment" class="btn btn-primary" id="create_app" name="clicked" >
 	            </div>
 	          </form>
