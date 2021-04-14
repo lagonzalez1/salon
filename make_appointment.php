@@ -42,6 +42,7 @@ if( isset($_POST['clicked']) ){
 			
 		}else {
 			echo "Empty, name, empl , date, time";
+			header('Location: main.php');
 			exit();
 		}
 	}

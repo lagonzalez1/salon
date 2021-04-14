@@ -422,8 +422,10 @@ if(isset($_GET['duplicate'])) {
 	    			</div>
 	    		</div>
 	    		<div class="col-md-6 appointment pl-md-5">
-	    			<h3 class="apt_title">Appointments</h3>
+	    			<h3 class="apt_title">Same Day Appointments</h3>
                     <p> Current wait time...  </p>
+					<br>
+
 	    	<form action="make_appointment.php" method="post">
 	            <div class="row form-group d-flex">
 	            	<div class="col-md-6">
