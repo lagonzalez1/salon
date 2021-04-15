@@ -38,7 +38,7 @@ if( isset($_POST['clicked']) ){
 
 		if($_POST['scale_version'] == 'scale_version'){
 			// Enter based on first come first serve
-			createAppointmentGeneral($name,$email, $phone);
+			createAppointmentGeneral($name,$email,$phone);
 			
 		}else {
 			echo "Empty, name, empl , date, time";
@@ -77,8 +77,6 @@ if( isset($_POST['clicked']) ){
 	}
 }
 
-
-
 function check_dead_time($time,$empl,$date){
 	global $connection;
 	$stmt = "SELECT * FROM `client_upgrade` WHERE Per_stylist = '$empl' AND App_Date = '$date' AND App_Time = '$time'; ";
@@ -92,8 +90,6 @@ function check_dead_time($time,$empl,$date){
 		// Nothing showed up ok
 		return false;
 	}
-
-
 }
 
 header("Location: error_restricted.html");

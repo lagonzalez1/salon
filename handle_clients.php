@@ -3,8 +3,6 @@
 include('server_connect.php');
 
 
-
-
 // August 14 2020 Test this
 if(isset($_GET['send_message']) && isset($_GET['email'])){
 	$body = $_GET['body'];

@@ -40,28 +40,26 @@ if(isset($_POST['initial_launch'])){
 							$status_title = "Not Checked in";
 							break;
 					}
-
 					// Skip other dates
 					if($current_date !== $date ){
 						continue;
 					}
 
 					$long_string .= '<tr class='.$color_cordination.'>
-			<td>'.$it++.'</td>
-			<td><strong>'.htmlentities($style).'</strong></td>
-			<td>'.htmlentities($name).'</td>
-			<td>'.htmlentities($phone).'</td>
-			<td>'.htmlentities($time).'</td>
-			<td>'.htmlentities($date).'</td>
-			<td class="'.$st_color.'">'.htmlentities($status_title).'</td>
-			<td>
-			<input type = "submit" class = "check btn btn-success btn-sm" id ='.$id.' name = "check" value = "Check-in">
-			<input type = "submit" value ="Notify" name = "email_send" id = '.$id.' class = "email_send btn btn-info btn-sm">
-			<input type="submit" value="Move Time" name="Time" id='.$id.' class = "btn btn-warning btn-sm">
-			<input type="submit" value="Remove" name ="remove" id ='.$id.' class ="remove btn btn-danger btn-sm">
-			</td>
-			</tr>';
-
+					<td>'.$it++.'</td>
+					<td><strong>'.htmlentities($style).'</strong></td>
+					<td>'.htmlentities($name).'</td>
+					<td>'.htmlentities($phone).'</td>
+					<td>'.htmlentities($time).'</td>
+					<td>'.htmlentities($date).'</td>
+					<td class="'.$st_color.'">'.htmlentities($status_title).'</td>
+					<td>
+					<input type = "submit" class = "check btn btn-success btn-sm" id ='.$id.' name = "check" value = "Check-in">
+					<input type = "submit" value ="Notify" name = "email_send" id = '.$id.' class = "email_send btn btn-info btn-sm">
+					<input type="submit" value="Move Time" name="Time" id='.$id.' class = "btn btn-warning btn-sm">
+					<input type="submit" value="Remove" name ="remove" id ='.$id.' class ="remove btn btn-danger btn-sm">
+					</td>
+					</tr>';
 				}
 				continue;
 			}
